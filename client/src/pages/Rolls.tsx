@@ -5,66 +5,59 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 
-const plasticTypes = [
+const rollTypes = [
   {
-    id: "flex-premium-e",
-    name: "FLEX Premium - E",
-    description: "Premium elastomer for aligner and retainer applications",
+    id: "flex-economical-k",
+    name: "FLEX Economical - K",
+    description: "Cost-effective aligner roll material with excellent value",
     products: [
-      { name: "Retainer Pack", thickness: "1.00mm", price: "€38,00" },
-      { name: "Aligner Pack", thickness: "0.76mm", price: "€50,00" },
-      { name: "Aligner Pack", thickness: "0.63mm", price: "€36,00" }
+      { name: "Aligner Roll", thickness: "0.76mm", width: "Standard" }
     ]
   },
   {
-    id: "flex-dual-premium",
-    name: "FLEX Dual Premium",
-    description: "Dual-layer material for night guards and intensive applications",
+    id: "flex-premium-plus",
+    name: "FLEX Premium Plus",
+    description: "Premium plus formulation for high-quality production",
     products: [
-      { name: "Night Guard Pack", thickness: "2.00mm", price: "€76,00" },
-      { name: "Night Guard Pack", thickness: "1.30mm", price: "€46,00" },
-      { name: "Night Guard Pack", thickness: "1.00mm", price: "€38,00" }
+      { name: "Aligner Roll", thickness: "0.76mm", width: "Standard" }
     ]
   },
   {
-    id: "max-white-premium",
-    name: "MAX White Premium",
-    description: "Clear white material for cosmetic Hollywood smile applications",
+    id: "flex-premium",
+    name: "FLEX Premium",
+    description: "Premium material for professional aligner manufacturing",
     products: [
-      { name: "Hollywood Smile Pack", thickness: "1.00mm", price: "€48,00" },
-      { name: "Hollywood Smile Pack", thickness: "0.76mm", price: "€46,00" },
-      { name: "Hollywood Smile Pack", thickness: "0.50mm", price: "€44,00" }
+      { name: "Aligner Roll", thickness: "0.76mm", width: "Standard" }
     ]
   },
   {
-    id: "max-premium-e",
-    name: "MAX Premium - E",
-    description: "Premium standard material for general applications",
+    id: "max-standard-retainer",
+    name: "MAX Standard - E (Retainer)",
+    description: "Standard material for retainer roll applications",
     products: [
-      { name: "Retainer Pack", thickness: "1.00mm/125mm", price: "€34,00" }
+      { name: "Retainer Roll", thickness: "1.00mm", width: "137mm" }
+    ]
+  },
+  {
+    id: "max-standard-aligner",
+    name: "MAX Standard - E (Aligner)",
+    description: "Standard material for aligner roll applications",
+    products: [
+      { name: "Aligner Roll", thickness: "0.76mm", width: "102mm" }
     ]
   },
   {
     id: "max-comfort",
     name: "MAX Comfort - E",
-    description: "Comfortable formulation for sensitive patients",
+    description: "Comfortable formulation for sensitive patient applications",
     products: [
-      { name: "Aligner Pack", thickness: "0.76mm", price: "€35,00 - €40,00" }
-    ]
-  },
-  {
-    id: "max-standard",
-    name: "MAX Standard - E",
-    description: "Standard material for cost-effective production",
-    products: [
-      { name: "Retainer Pack", thickness: "1.00mm/125mm", price: "€35,00" },
-      { name: "Attachment Template Pack", thickness: "0.4mm", price: "€34,00" }
+      { name: "Aligner Roll", thickness: "0.76mm", width: "137mm" }
     ]
   }
 ];
 
-export default function PlasticsMaterials() {
-  const [selectedPlastic, setSelectedPlastic] = useState("flex-premium-e");
+export default function Rolls() {
+  const [selectedRoll, setSelectedRoll] = useState("flex-economical-k");
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -73,7 +66,7 @@ export default function PlasticsMaterials() {
     message: ""
   });
 
-  const currentPlastic = plasticTypes.find(p => p.id === selectedPlastic);
+  const currentRoll = rollTypes.find(r => r.id === selectedRoll);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,23 +86,23 @@ export default function PlasticsMaterials() {
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide uppercase mb-6">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                Premium Manufacturing Materials
+                Bulk Manufacturing Materials
               </div>
               
               <h1 className="font-heading text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-                High-Performance <br/>
+                High-Volume <br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                  Plastics
+                  Material Rolls
                 </span>
               </h1>
               
               <p className="text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
-                Premium-grade thermoplastic materials engineered for precision aligner production. Choose from our range of FLEX and MAX formulations.
+                Premium thermoplastic rolls for high-volume aligner production. Optimized for automated thermoforming and seamless integration.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium" data-testid="button-request-samples">
-                  Request Samples <ArrowRight className="ml-2 w-4 h-4" />
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium" data-testid="button-request-quote">
+                  Request Quote <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </div>
             </div>
@@ -119,71 +112,72 @@ export default function PlasticsMaterials() {
         {/* Products Section */}
         <section className="py-20 bg-secondary/20">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 font-heading">Select Plastic Type</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 font-heading">Select Roll Type</h2>
             
             {/* Toggle Buttons */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-16">
-              {plasticTypes.map((plastic) => (
+              {rollTypes.map((roll) => (
                 <button
-                  key={plastic.id}
-                  onClick={() => setSelectedPlastic(plastic.id)}
+                  key={roll.id}
+                  onClick={() => setSelectedRoll(roll.id)}
                   className={`px-4 py-3 rounded-lg font-semibold transition-all duration-300 text-sm ${
-                    selectedPlastic === plastic.id
+                    selectedRoll === roll.id
                       ? "bg-primary text-white shadow-lg shadow-primary/50"
                       : "bg-white/5 text-gray-300 border border-white/10 hover:border-primary/50 hover:text-white"
                   }`}
-                  data-testid={`button-plastic-${plastic.id}`}
+                  data-testid={`button-roll-${roll.id}`}
                 >
-                  {plastic.name}
+                  {roll.name}
                 </button>
               ))}
             </div>
 
-            {/* Selected Plastic Details */}
-            {currentPlastic && (
+            {/* Selected Roll Details */}
+            {currentRoll && (
               <div className="space-y-8">
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-8 md:p-12">
-                  <h3 className="text-3xl font-bold text-white mb-4 font-heading">{currentPlastic.name}</h3>
-                  <p className="text-gray-400 text-lg mb-8">{currentPlastic.description}</p>
+                  <h3 className="text-3xl font-bold text-white mb-4 font-heading">{currentRoll.name}</h3>
+                  <p className="text-gray-400 text-lg mb-8">{currentRoll.description}</p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {currentPlastic.products.map((product, idx) => (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    {currentRoll.products.map((product, idx) => (
                       <Card key={idx} className="bg-white/5 border-white/10 p-6 hover:border-primary/50 transition-colors">
-                        <div className="flex justify-between items-start mb-4">
-                          <div>
-                            <h4 className="text-white font-bold text-lg">{product.name}</h4>
-                            <p className="text-gray-400 text-sm">Thickness: {product.thickness}</p>
+                        <div className="mb-4">
+                          <h4 className="text-white font-bold text-lg">{product.name}</h4>
+                          <div className="space-y-2 mt-3">
+                            <p className="text-gray-400 text-sm"><span className="font-semibold">Thickness:</span> {product.thickness}</p>
+                            <p className="text-gray-400 text-sm"><span className="font-semibold">Width:</span> {product.width}</p>
                           </div>
-                          <div className="text-2xl font-bold text-primary">{product.price}</div>
                         </div>
-                        <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg" data-testid={`button-add-${idx}`}>
-                          Add to Inquiry
+                        <p className="text-primary font-semibold mb-4">Contact for pricing</p>
+                        <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg" data-testid={`button-inquiry-${idx}`}>
+                          Request Quote
                         </Button>
                       </Card>
                     ))}
                   </div>
-                </div>
 
-                <div className="border-l-4 border-primary pl-6 py-4 bg-white/5 rounded-lg p-6">
-                  <h4 className="text-white font-bold mb-2 text-lg">Key Features</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center gap-2 text-gray-300">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      Exceptional tear resistance and durability
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-300">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      Superior optical clarity and aesthetics
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-300">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      Optimized stress retention and force delivery
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-300">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      Stain resistant and biocompatible
-                    </li>
-                  </ul>
+                  <div className="border-l-4 border-primary pl-6 py-4 bg-white/5 rounded-lg p-6">
+                    <h4 className="text-white font-bold mb-2 text-lg">Roll Advantages</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-center gap-2 text-gray-300">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        Consistent material quality across entire roll
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        Minimized material waste in production
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        Seamless integration with thermoforming equipment
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-300">
+                        <CheckCircle2 className="w-4 h-4 text-primary" />
+                        Flexible supply and delivery options
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             )}
@@ -194,9 +188,9 @@ export default function PlasticsMaterials() {
         <section className="py-20">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading text-center">Request Plastics</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading text-center">Request Material Rolls</h2>
               <p className="text-gray-400 text-lg mb-12 text-center">
-                Contact our materials team to request samples, place orders, or inquire about bulk pricing and custom formulations.
+                Contact our materials team to request samples, quotes, or discuss bulk orders and customization options.
               </p>
               
               <Card className="bg-white/5 border-white/10 p-8 md:p-12">
@@ -258,13 +252,13 @@ export default function PlasticsMaterials() {
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                       className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors resize-none"
                       rows={5}
-                      placeholder="Tell us about your needs, quantities, and any custom requirements..."
+                      placeholder="Estimated monthly volume, delivery preferences, any custom requirements..."
                       data-testid="textarea-message"
                     />
                   </div>
 
                   <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg py-3 font-semibold" data-testid="button-submit-form">
-                    Send Inquiry
+                    Send Request
                   </Button>
                 </form>
 

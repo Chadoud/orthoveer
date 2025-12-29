@@ -5,66 +5,7 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2, Mail, Phone } from "lucide-react";
 import { useState } from "react";
 
-const plasticTypes = [
-  {
-    id: "flex-premium-e",
-    name: "FLEX Premium - E",
-    description: "Premium elastomer for aligner and retainer applications",
-    products: [
-      { name: "Retainer Pack", thickness: "1.00mm", price: "€38,00" },
-      { name: "Aligner Pack", thickness: "0.76mm", price: "€50,00" },
-      { name: "Aligner Pack", thickness: "0.63mm", price: "€36,00" }
-    ]
-  },
-  {
-    id: "flex-dual-premium",
-    name: "FLEX Dual Premium",
-    description: "Dual-layer material for night guards and intensive applications",
-    products: [
-      { name: "Night Guard Pack", thickness: "2.00mm", price: "€76,00" },
-      { name: "Night Guard Pack", thickness: "1.30mm", price: "€46,00" },
-      { name: "Night Guard Pack", thickness: "1.00mm", price: "€38,00" }
-    ]
-  },
-  {
-    id: "max-white-premium",
-    name: "MAX White Premium",
-    description: "Clear white material for cosmetic Hollywood smile applications",
-    products: [
-      { name: "Hollywood Smile Pack", thickness: "1.00mm", price: "€48,00" },
-      { name: "Hollywood Smile Pack", thickness: "0.76mm", price: "€46,00" },
-      { name: "Hollywood Smile Pack", thickness: "0.50mm", price: "€44,00" }
-    ]
-  },
-  {
-    id: "max-premium-e",
-    name: "MAX Premium - E",
-    description: "Premium standard material for general applications",
-    products: [
-      { name: "Retainer Pack", thickness: "1.00mm/125mm", price: "€34,00" }
-    ]
-  },
-  {
-    id: "max-comfort",
-    name: "MAX Comfort - E",
-    description: "Comfortable formulation for sensitive patients",
-    products: [
-      { name: "Aligner Pack", thickness: "0.76mm", price: "€35,00 - €40,00" }
-    ]
-  },
-  {
-    id: "max-standard",
-    name: "MAX Standard - E",
-    description: "Standard material for cost-effective production",
-    products: [
-      { name: "Retainer Pack", thickness: "1.00mm/125mm", price: "€35,00" },
-      { name: "Attachment Template Pack", thickness: "0.4mm", price: "€34,00" }
-    ]
-  }
-];
-
-export default function PlasticsMaterials() {
-  const [selectedPlastic, setSelectedPlastic] = useState("flex-premium-e");
+export default function MaxTrimT2() {
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -72,8 +13,6 @@ export default function PlasticsMaterials() {
     phone: "",
     message: ""
   });
-
-  const currentPlastic = plasticTypes.find(p => p.id === selectedPlastic);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -93,100 +32,66 @@ export default function PlasticsMaterials() {
             <div className="max-w-3xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide uppercase mb-6">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                Premium Manufacturing Materials
+                Precision Trimming Equipment
               </div>
               
               <h1 className="font-heading text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-                High-Performance <br/>
+                MaxTrim <br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                  Plastics
+                  T2
                 </span>
               </h1>
               
               <p className="text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
-                Premium-grade thermoplastic materials engineered for precision aligner production. Choose from our range of FLEX and MAX formulations.
+                Advanced CNC trimming system with precision laser edge polishing for perfect trimlines and smooth finishes.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium" data-testid="button-request-samples">
-                  Request Samples <ArrowRight className="ml-2 w-4 h-4" />
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium" data-testid="button-schedule-demo">
+                  Schedule Demo <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Products Section */}
+        {/* Specifications Section */}
         <section className="py-20 bg-secondary/20">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 font-heading">Select Plastic Type</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 font-heading">Key Specifications</h2>
             
-            {/* Toggle Buttons */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-16">
-              {plasticTypes.map((plastic) => (
-                <button
-                  key={plastic.id}
-                  onClick={() => setSelectedPlastic(plastic.id)}
-                  className={`px-4 py-3 rounded-lg font-semibold transition-all duration-300 text-sm ${
-                    selectedPlastic === plastic.id
-                      ? "bg-primary text-white shadow-lg shadow-primary/50"
-                      : "bg-white/5 text-gray-300 border border-white/10 hover:border-primary/50 hover:text-white"
-                  }`}
-                  data-testid={`button-plastic-${plastic.id}`}
-                >
-                  {plastic.name}
-                </button>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              {[
+                { label: "Cycle Time", value: "75 seconds" },
+                { label: "Precision", value: "±0.02mm" },
+                { label: "Laser Polishing", value: "Standard" },
+                { label: "Material Waste", value: "< 5%" },
+                { label: "Production Capacity", value: "1,200 aligners/day" },
+                { label: "Power Supply", value: "380V 3-phase" }
+              ].map((spec, i) => (
+                <Card key={i} className="bg-white/5 border-white/10 p-6">
+                  <p className="text-gray-400 text-sm uppercase tracking-wide mb-2">{spec.label}</p>
+                  <p className="text-3xl font-bold text-primary">{spec.value}</p>
+                </Card>
               ))}
             </div>
 
-            {/* Selected Plastic Details */}
-            {currentPlastic && (
-              <div className="space-y-8">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-8 md:p-12">
-                  <h3 className="text-3xl font-bold text-white mb-4 font-heading">{currentPlastic.name}</h3>
-                  <p className="text-gray-400 text-lg mb-8">{currentPlastic.description}</p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {currentPlastic.products.map((product, idx) => (
-                      <Card key={idx} className="bg-white/5 border-white/10 p-6 hover:border-primary/50 transition-colors">
-                        <div className="flex justify-between items-start mb-4">
-                          <div>
-                            <h4 className="text-white font-bold text-lg">{product.name}</h4>
-                            <p className="text-gray-400 text-sm">Thickness: {product.thickness}</p>
-                          </div>
-                          <div className="text-2xl font-bold text-primary">{product.price}</div>
-                        </div>
-                        <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg" data-testid={`button-add-${idx}`}>
-                          Add to Inquiry
-                        </Button>
-                      </Card>
-                    ))}
-                  </div>
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-white font-heading">Features & Benefits</h3>
+              {[
+                "Automated trimming with precision edge finishing for perfect trimlines",
+                "Integrated laser polishing system for smooth, comfortable edges",
+                "Low material waste with optimized cutting patterns",
+                "Real-time process monitoring and quality feedback",
+                "Compatible with all standard aligner materials",
+                "User-friendly interface with programmable patterns"
+              ].map((feature, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <CheckCircle2 className="w-6 h-6 text-primary shrink-0 mt-1" />
+                  <p className="text-gray-300">{feature}</p>
                 </div>
-
-                <div className="border-l-4 border-primary pl-6 py-4 bg-white/5 rounded-lg p-6">
-                  <h4 className="text-white font-bold mb-2 text-lg">Key Features</h4>
-                  <ul className="space-y-2">
-                    <li className="flex items-center gap-2 text-gray-300">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      Exceptional tear resistance and durability
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-300">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      Superior optical clarity and aesthetics
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-300">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      Optimized stress retention and force delivery
-                    </li>
-                    <li className="flex items-center gap-2 text-gray-300">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      Stain resistant and biocompatible
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            )}
+              ))}
+            </div>
           </div>
         </section>
 
@@ -194,9 +99,9 @@ export default function PlasticsMaterials() {
         <section className="py-20">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading text-center">Request Plastics</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading text-center">Interested in MaxTrim T2?</h2>
               <p className="text-gray-400 text-lg mb-12 text-center">
-                Contact our materials team to request samples, place orders, or inquire about bulk pricing and custom formulations.
+                Schedule a demonstration or request detailed technical specifications and pricing information.
               </p>
               
               <Card className="bg-white/5 border-white/10 p-8 md:p-12">
@@ -258,18 +163,18 @@ export default function PlasticsMaterials() {
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                       className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors resize-none"
                       rows={5}
-                      placeholder="Tell us about your needs, quantities, and any custom requirements..."
+                      placeholder="Tell us about your production needs, production volume, and timeline..."
                       data-testid="textarea-message"
                     />
                   </div>
 
                   <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg py-3 font-semibold" data-testid="button-submit-form">
-                    Send Inquiry
+                    Request Information
                   </Button>
                 </form>
 
                 <div className="mt-8 pt-8 border-t border-white/10">
-                  <p className="text-gray-400 text-sm mb-6">Or reach out directly:</p>
+                  <p className="text-gray-400 text-sm mb-6">Or contact us directly:</p>
                   <div className="flex flex-col md:flex-row gap-6">
                     <a href="tel:+33185331183" className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
                       <Phone className="w-5 h-5 text-primary" />

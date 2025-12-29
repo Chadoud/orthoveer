@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2, Factory, Globe, Layers, ShieldCheck, Zap } from "lucide-react";
+import { Link } from "wouter";
 
 // Import images
 import techImage from "@assets/generated_images/abstract_digital_dental_wireframe.png";
@@ -36,47 +37,64 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Solutions Grid */}
+        {/* Product Categories */}
         <section id="solutions" className="py-24 relative overflow-hidden">
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">Complete Orthodontic Ecosystem</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">Complete Orthodontic Solutions</h2>
               <p className="text-gray-400 text-lg">
-                We provide end-to-end solutions for dental professionals, from digital scanning integration to final product delivery.
+                Everything you need for professional aligner manufacturing and orthodontic appliances, from materials to machinery.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: Layers,
-                  title: "Clear Aligners",
-                  desc: "Premium multi-layer material offering superior retention and clarity for complex movements."
-                },
-                {
-                  icon: Globe,
-                  title: "Digital Planning",
-                  desc: "AI-assisted treatment plans reviewed by expert orthodontists for predictable outcomes."
-                },
-                {
-                  icon: Factory,
-                  title: "White Label",
-                  desc: "Full branding capabilities allowing you to market the product as your own premier solution."
-                }
-              ].map((item, i) => (
-                <div key={i} className="group p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10">
+              {/* Plastics */}
+              <Link href="/plastics-materials" className="group">
+                <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col cursor-pointer">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                    <item.icon className="w-6 h-6" />
+                    <Layers className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 font-heading">{item.title}</h3>
-                  <p className="text-gray-400 leading-relaxed mb-6">
-                    {item.desc}
+                  <h3 className="text-xl font-bold text-white mb-3 font-heading">Plastics & Materials</h3>
+                  <p className="text-gray-400 leading-relaxed mb-6 flex-1">
+                    Premium FLEX and MAX thermoplastic materials for aligner production. Engineered for clarity, durability, and performance.
                   </p>
-                  <a href="#" className="inline-flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
-                    Learn more <ArrowRight className="w-4 h-4 ml-2" />
-                  </a>
+                  <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
+                    Explore materials <ArrowRight className="w-4 h-4 ml-2" />
+                  </div>
                 </div>
-              ))}
+              </Link>
+
+              {/* Rolls */}
+              <Link href="/rolls" className="group">
+                <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col cursor-pointer">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                    <Zap className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 font-heading">Material Rolls</h3>
+                  <p className="text-gray-400 leading-relaxed mb-6 flex-1">
+                    High-volume bulk material rolls optimized for automated thermoforming. Consistent quality with minimal waste.
+                  </p>
+                  <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
+                    View rolls <ArrowRight className="w-4 h-4 ml-2" />
+                  </div>
+                </div>
+              </Link>
+
+              {/* Machines */}
+              <Link href="/machines" className="group">
+                <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col cursor-pointer">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                    <Factory className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 font-heading">Machines & Equipment</h3>
+                  <p className="text-gray-400 leading-relaxed mb-6 flex-1">
+                    Complete range of manufacturing equipment: thermoformers, trimmers, polishers, scanners, and marking systems.
+                  </p>
+                  <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
+                    Explore machines <ArrowRight className="w-4 h-4 ml-2" />
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
@@ -116,10 +134,6 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
-                
-                <Button variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-full px-8">
-                  Explore Tech Specs
-                </Button>
               </div>
             </div>
           </div>
@@ -137,8 +151,7 @@ export default function Home() {
                   Scalable manufacturing <br/> at your fingertips
                 </h2>
                 <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                  Whether you are a single clinic or a large DSO, our automated production lines 
-                  scale to meet your demand without compromising quality.
+                  Whether you are a single clinic or a large DSO, our solutions scale to meet your demand without compromising quality.
                 </p>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -171,14 +184,16 @@ export default function Home() {
           <div className="container mx-auto px-6 relative z-10 text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-heading">Ready to elevate your practice?</h2>
             <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
-              Join hundreds of dental professionals who trust OrthoVeer for their aligner manufacturing needs.
+              Explore our complete range of materials and equipment, or contact our team for personalized support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-8 h-14 text-lg font-bold shadow-2xl shadow-black/20">
-                Partner With Us
-              </Button>
+              <Link href="/plastics-materials">
+                <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-8 h-14 text-lg font-bold shadow-2xl shadow-black/20">
+                  Shop Now
+                </Button>
+              </Link>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 rounded-full px-8 h-14 text-lg font-bold">
-                Schedule Demo
+                Get in Touch
               </Button>
             </div>
           </div>
