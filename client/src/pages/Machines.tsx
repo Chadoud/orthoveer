@@ -2,10 +2,24 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, CheckCircle2, Cpu, Zap, Shield, BarChart3 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Cpu, Zap, Shield, BarChart3, Mail, Phone } from "lucide-react";
 import labImage from "@assets/generated_images/high_tech_dental_manufacturing_lab.png";
+import { useState } from "react";
 
 export default function Machines() {
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
       <Navbar />
@@ -234,73 +248,104 @@ export default function Machines() {
                     </div>
                   </div>
                 </div>
-
-                <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-8" data-testid="button-request-proposal">
-                  Request a Proposal
-                </Button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Pricing & Packages */}
+        {/* Contact Form Section */}
         <section className="py-20 bg-secondary/20">
           <div className="container mx-auto px-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 font-heading">Equipment Packages & Pricing</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { 
-                  name: "Starter Line", 
-                  price: "€180,000", 
-                  capacity: "500 aligners/day",
-                  items: ["Thermoformer OV-3000X", "Trimming System", "Basic QA"] 
-                },
-                { 
-                  name: "Professional Line", 
-                  price: "€350,000", 
-                  capacity: "1,500 aligners/day",
-                  items: ["Thermoformer OV-3000X (x2)", "CNC Trimmer Pro", "Polishing Unit", "Advanced QA"], 
-                  featured: true 
-                },
-                { 
-                  name: "Enterprise Line", 
-                  price: "€650,000+", 
-                  capacity: "3,000+ aligners/day",
-                  items: ["Full automation", "Dedicated tech support", "Custom integration", "Training included"] 
-                }
-              ].map((pkg, i) => (
-                <Card key={i} className={`p-8 border-white/10 flex flex-col ${pkg.featured ? 'bg-primary/20 border-primary/50' : 'bg-white/5'}`}>
-                  <h3 className="text-2xl font-bold text-white mb-2 font-heading">{pkg.name}</h3>
-                  <p className="text-gray-400 text-sm mb-6">Daily capacity: <span className="text-white font-semibold">{pkg.capacity}</span></p>
-                  <div className="text-3xl font-bold text-white mb-8">{pkg.price}</div>
-                  <ul className="space-y-3 mb-auto flex-1">
-                    {pkg.items.map((item, j) => (
-                      <li key={j} className="flex items-center gap-2 text-gray-300 text-sm">
-                        <CheckCircle2 className="w-4 h-4 text-primary" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button className="w-full mt-8 bg-primary hover:bg-primary/90 text-white rounded-full" data-testid={`button-info-pkg-${i}`}>
-                    Get More Details
-                  </Button>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading text-center">Interested in Our Machines?</h2>
+              <p className="text-gray-400 text-lg mb-12 text-center">
+                Each machine is sold individually and customized to your production needs. Contact us to discuss your requirements and request a detailed quote.
+              </p>
+              
+              <Card className="bg-white/5 border-white/10 p-8 md:p-12">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-white font-semibold mb-3">Full Name</label>
+                      <input
+                        type="text"
+                        value={formData.name}
+                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
+                        placeholder="John Doe"
+                        data-testid="input-name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-white font-semibold mb-3">Company</label>
+                      <input
+                        type="text"
+                        value={formData.company}
+                        onChange={(e) => setFormData({...formData, company: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
+                        placeholder="Your Company"
+                        data-testid="input-company"
+                      />
+                    </div>
+                  </div>
 
-        {/* CTA */}
-        <section className="py-20 bg-primary relative overflow-hidden">
-          <div className="container mx-auto px-6 relative z-10 text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-heading">Ready to scale your production?</h2>
-            <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
-              Schedule a live demonstration and explore financing options for your manufacturing equipment.
-            </p>
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-8 h-14 text-lg font-bold" data-testid="button-schedule-demo-cta">
-              Schedule Live Demo
-            </Button>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-white font-semibold mb-3">Email</label>
+                      <input
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
+                        placeholder="contact@company.com"
+                        data-testid="input-email"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-white font-semibold mb-3">Phone</label>
+                      <input
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                        className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
+                        placeholder="+1 (555) 123-4567"
+                        data-testid="input-phone"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-white font-semibold mb-3">Which machines are you interested in?</label>
+                    <textarea
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors resize-none"
+                      rows={5}
+                      placeholder="Tell us about your production needs, equipment interests, and production volume..."
+                      data-testid="textarea-message"
+                    />
+                  </div>
+
+                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg py-3 font-semibold" data-testid="button-submit-form">
+                    Send Inquiry
+                  </Button>
+                </form>
+
+                <div className="mt-8 pt-8 border-t border-white/10">
+                  <p className="text-gray-400 text-sm mb-6">Or reach out directly:</p>
+                  <div className="flex flex-col md:flex-row gap-6">
+                    <a href="tel:+33185331183" className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+                      <Phone className="w-5 h-5 text-primary" />
+                      <span>(+33) 1 85 33 11 83</span>
+                    </a>
+                    <a href="mailto:contact@orthoveer.fr" className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors">
+                      <Mail className="w-5 h-5 text-primary" />
+                      <span>contact@orthoveer.fr</span>
+                    </a>
+                  </div>
+                </div>
+              </Card>
+            </div>
           </div>
         </section>
       </main>
