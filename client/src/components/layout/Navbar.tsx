@@ -37,7 +37,7 @@ export function Navbar() {
         <div className="hidden md:flex items-center gap-8">
           <Link href="/plastics-materials" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Plastics</Link>
           <Link href="/rolls" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Rolls</Link>
-          <a href="/machines/maxtrim-t2" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Machines</a>
+          <Link href="/machines" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Machines</Link>
         </div>
 
         <div className="hidden md:flex items-center gap-4">
@@ -61,7 +61,7 @@ export function Navbar() {
         <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl border-b border-border p-6 flex flex-col gap-4 animate-in slide-in-from-top-5">
           <Link href="/plastics-materials" className="text-lg font-medium text-gray-300" onClick={() => setIsOpen(false)}>Plastics</Link>
           <Link href="/rolls" className="text-lg font-medium text-gray-300" onClick={() => setIsOpen(false)}>Rolls</Link>
-          <a href="/machines/maxtrim-t2" className="text-lg font-medium text-gray-300" onClick={() => setIsOpen(false)}>Machines</a>
+          <Link href="/machines" className="text-lg font-medium text-gray-300" onClick={() => setIsOpen(false)}>Machines</Link>
           <div className="h-px bg-border my-2" />
           <Button className="w-full bg-primary" onClick={() => setIsOpen(false)}>Order Now</Button>
         </div>
