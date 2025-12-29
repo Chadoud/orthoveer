@@ -35,18 +35,15 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
+          <Link href="/plastics-materials" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Plastics & Materials</Link>
+          <Link href="/machines" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Machines</Link>
           <a href="#solutions" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Solutions</a>
-          <a href="#technology" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Technology</a>
-          <a href="#manufacturing" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Manufacturing</a>
           <a href="#about" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">About Us</a>
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <Button variant="ghost" className="text-white hover:text-primary hover:bg-white/5">
-            Login
-          </Button>
-          <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6">
-            Partner With Us
+          <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6" data-testid="button-partner">
+            Order Now
           </Button>
         </div>
 
@@ -54,6 +51,7 @@ export function Navbar() {
         <button
           className="md:hidden text-white p-2"
           onClick={() => setIsOpen(!isOpen)}
+          data-testid="button-menu-toggle"
         >
           {isOpen ? <X /> : <Menu />}
         </button>
@@ -62,12 +60,12 @@ export function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-xl border-b border-border p-6 flex flex-col gap-4 animate-in slide-in-from-top-5">
+          <Link href="/plastics-materials" className="text-lg font-medium text-gray-300" onClick={() => setIsOpen(false)}>Plastics & Materials</Link>
+          <Link href="/machines" className="text-lg font-medium text-gray-300" onClick={() => setIsOpen(false)}>Machines</Link>
           <a href="#solutions" className="text-lg font-medium text-gray-300" onClick={() => setIsOpen(false)}>Solutions</a>
-          <a href="#technology" className="text-lg font-medium text-gray-300" onClick={() => setIsOpen(false)}>Technology</a>
-          <a href="#manufacturing" className="text-lg font-medium text-gray-300" onClick={() => setIsOpen(false)}>Manufacturing</a>
           <a href="#about" className="text-lg font-medium text-gray-300" onClick={() => setIsOpen(false)}>About Us</a>
           <div className="h-px bg-border my-2" />
-          <Button className="w-full bg-primary" onClick={() => setIsOpen(false)}>Partner With Us</Button>
+          <Button className="w-full bg-primary" onClick={() => setIsOpen(false)}>Order Now</Button>
         </div>
       )}
     </nav>
