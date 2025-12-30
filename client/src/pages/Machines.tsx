@@ -6,15 +6,15 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
 // Import machine images
-import maxTrimT2 from "@assets/generated_images/maxtrim-t2-600x600-removebg-preview_1767043189566.png";
-import maxTrimT1 from "@assets/generated_images/maxtrim-t1-600x600-removebg-preview_1767043189567.png";
-import maxFormL2 from "@assets/generated_images/maxform-l2-removebg-preview_1767043189567.png";
-import maxScanS1 from "@assets/generated_images/maxscan-s1-600x600-removebg-preview_1767043189566.png";
-import maxPrinterP2 from "@assets/generated_images/maxprinter-p2-600x600-removebg-preview_1767043189565.png";
-import maxPrinterP1 from "@assets/generated_images/maxprinter-p1-600x600-removebg-preview_1767043189565.png";
-import maxMarkM2 from "@assets/generated_images/maxmark-m2-600x600-removebg-preview_1767043189564.png";
-import maxPolishI from "@assets/generated_images/maxpolish-1-600x600-removebg-preview_1767043189564.png";
-import maxPolishII from "@assets/generated_images/maxpolish-2-600x600-removebg-preview_1767043189563.png";
+import maxTrimT2 from "@assets/maxtrim-t2-600x600-removebg-preview_1767043189566.png";
+import maxTrimT1 from "@assets/maxtrim-t1-600x600-removebg-preview_1767043189567.png";
+import maxFormL2 from "@assets/maxform-l2-removebg-preview_1767043189567.png";
+import maxScanS1 from "@assets/maxscan-s1-600x600-removebg-preview_1767043189566.png";
+import maxPrinterP2 from "@assets/maxprinter-p2-600x600-removebg-preview_1767043189565.png";
+import maxPrinterP1 from "@assets/maxprinter-p1-600x600-removebg-preview_1767043189565.png";
+import maxMarkM2 from "@assets/maxmark-m2-600x600-removebg-preview_1767043189564.png";
+import maxPolishI from "@assets/maxpolish-1-600x600-removebg-preview_1767043189564.png";
+import maxPolishII from "@assets/maxpolish-2-600x600-removebg-preview_1767043189563.png";
 
 const machines = [
   {
