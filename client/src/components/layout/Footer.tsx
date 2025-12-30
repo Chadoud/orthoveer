@@ -1,4 +1,6 @@
 import { Link } from "wouter";
+import { CONTACT_INFO } from "@/lib/constants";
+import logoImage from "@assets/logo/logo.png";
 
 export function Footer() {
   return (
@@ -6,45 +8,113 @@ export function Footer() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-2 group cursor-pointer">
-              <div className="w-8 h-8 rounded-sm bg-primary flex items-center justify-center">
-                <div className="w-4 h-4 border-2 border-white rounded-full" />
-              </div>
+            <Link
+              href="/"
+              className="flex items-center gap-3 group cursor-pointer"
+            >
+              <img
+                src={logoImage}
+                alt="OrthoVeer Logo"
+                className="h-10 w-10 object-contain"
+              />
               <span className="font-heading font-bold text-xl tracking-tight text-white">
-                ORTHOVEER
+                OrthoVeer
+                <br className="leading-none" />
+                <span className="text-sm text-gray-400 -mt-1 block">
+                  Dental
+                </span>
               </span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              Premier B2B orthodontic manufacturing partner. Delivering precision aligners and digital treatment planning for dental professionals worldwide.
+              Premier B2B orthodontic manufacturing partner. Delivering
+              precision aligners and digital treatment planning for dental
+              professionals worldwide.
             </p>
           </div>
 
           <div>
-            <h4 className="font-heading font-semibold text-white mb-6">Solutions</h4>
+            <h4 className="font-heading font-semibold text-white mb-6">
+              Products & Services
+            </h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-primary transition-colors">Clear Aligners</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Retainers</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Treatment Planning</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">White Labeling</a></li>
+              <li>
+                <Link
+                  href="/machines"
+                  className="hover:text-primary transition-colors"
+                >
+                  Aligner Production Machines
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/white-labeling"
+                  className="hover:text-primary transition-colors"
+                >
+                  Aligner White Labeling
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/plastics-materials"
+                  className="hover:text-primary transition-colors"
+                >
+                  Plastics
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/rolls"
+                  className="hover:text-primary transition-colors"
+                >
+                  Rolls
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-heading font-semibold text-white mb-6">Company</h4>
+            <h4 className="font-heading font-semibold text-white mb-6">
+              Company
+            </h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-primary transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Manufacturing</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Quality Assurance</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
+              <li>
+                <a href="#" className="hover:text-primary transition-colors">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary transition-colors">
+                  Manufacturing
+                </a>
+              </li>
+              <li>
+                <a href="#" className="hover:text-primary transition-colors">
+                  Quality Assurance
+                </a>
+              </li>
+              <li>
+                <Link
+                  href="/careers"
+                  className="hover:text-primary transition-colors"
+                >
+                  Careers
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-heading font-semibold text-white mb-6">Contact</h4>
+            <h4 className="font-heading font-semibold text-white mb-6">
+              Contact
+            </h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li>contact@orthoveer.fr</li>
-              <li>+33 1 23 45 67 89</li>
-              <li>123 Avenue des Champs-Élysées<br/>75008 Paris, France</li>
+              <li>{CONTACT_INFO.email.display}</li>
+              <li>{CONTACT_INFO.phone.display}</li>
+              <li>
+                123 Avenue des Champs-Élysées
+                <br />
+                75008 Paris, France
+              </li>
             </ul>
           </div>
         </div>
@@ -54,8 +124,12 @@ export function Footer() {
             © {new Date().getFullYear()} OrthoVeer. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-gray-500">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-white transition-colors">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
+              Terms of Service
+            </a>
           </div>
         </div>
       </div>

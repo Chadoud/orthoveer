@@ -3,18 +3,30 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, CheckCircle2, Factory, Globe, Layers, ShieldCheck, Zap } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Factory,
+  Globe,
+  Layers,
+  ShieldCheck,
+  Zap,
+  TrendingDown,
+  Settings,
+  Target,
+  Activity,
+} from "lucide-react";
 import { Link } from "wouter";
 
 // Import images
-import techImage from "@assets/generated_images/abstract_digital_dental_wireframe.png";
-import labImage from "@assets/generated_images/high_tech_dental_manufacturing_lab.png";
+import techImage from "@assets/hero/tech-hero.png";
+import labImage from "@assets/hero/lab-hero.png";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/30">
       <Navbar />
-      
+
       <main>
         <Hero />
 
@@ -29,8 +41,12 @@ export default function Home() {
                 { label: "Success Rate", value: "99.8%" },
               ].map((stat, i) => (
                 <div key={i} className="text-center md:text-left">
-                  <div className="text-4xl font-bold text-white mb-2 font-heading tracking-tight">{stat.value}</div>
-                  <div className="text-sm text-gray-500 uppercase tracking-wider font-semibold">{stat.label}</div>
+                  <div className="text-4xl font-bold text-white mb-2 font-heading tracking-tight">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-gray-500 uppercase tracking-wider font-semibold">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -40,136 +56,234 @@ export default function Home() {
         {/* Product Categories */}
         <section id="solutions" className="py-24 relative overflow-hidden">
           <div className="container mx-auto px-6 relative z-10">
-            <div className="text-center max-w-2xl mx-auto mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">Complete Orthodontic Solutions</h2>
-              <p className="text-gray-400 text-lg">
-                Everything you need for professional aligner manufacturing and orthodontic appliances, from materials to machinery.
-              </p>
+            <div className="mb-20">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 font-heading">
+                In-House Clear Aligner Production
+              </h2>
+
+              <div className="mb-16">
+                <h3 className="text-2xl font-bold text-white mb-8 font-heading">
+                  Orthodontic Production Equipment
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                  <Link href="/machines" className="group">
+                    <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col cursor-pointer">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <Factory className="w-6 h-6" />
+                      </div>
+                      <div className="text-xl font-bold text-white mb-3 font-heading">
+                        Aligner Production Machines
+                      </div>
+                      <p className="text-gray-400 leading-relaxed mb-6 flex-1">
+                        Professional-grade machines dedicated to clear aligner
+                        production, from thermoforming to finishing. Each system
+                        is selected for reliability, precision, and scalability,
+                        enabling clinics and labs to produce aligners in-house
+                        with full control over quality and costs.
+                      </p>
+                      <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
+                        Explore machines{" "}
+                        <ArrowRight
+                          className="w-4 h-4 ml-2"
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link href="/plastics-materials" className="group">
+                    <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col cursor-pointer">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <Layers className="w-6 h-6" />
+                      </div>
+                      <div className="text-xl font-bold text-white mb-3 font-heading">
+                        Aligner Sheet Materials
+                      </div>
+                      <p className="text-gray-400 leading-relaxed mb-6 flex-1">
+                        High-quality plastic materials for aligner
+                        manufacturing. All materials are tested for
+                        transparency, durability, and biocompatibility, ensuring
+                        predictable results and compatibility with professional
+                        production workflows.
+                      </p>
+                      <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
+                        Explore plastics{" "}
+                        <ArrowRight
+                          className="w-4 h-4 ml-2"
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Link href="/rolls" className="group">
+                    <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col cursor-pointer">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <Zap className="w-6 h-6" />
+                      </div>
+                      <div className="text-xl font-bold text-white mb-3 font-heading">
+                        Bulk Roll Materials
+                      </div>
+                      <p className="text-gray-400 leading-relaxed mb-6 flex-1">
+                        High-volume bulk material rolls for thermoforming
+                        production. Consistent quality with minimal waste,
+                        tested for transparency, durability, and
+                        biocompatibility.
+                      </p>
+                      <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
+                        View rolls{" "}
+                        <ArrowRight
+                          className="w-4 h-4 ml-2"
+                          aria-hidden="true"
+                        />
+                      </div>
+                    </div>
+                  </Link>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-4 font-heading">
+                    Digital Workflow Integration
+                  </h3>
+                  <p className="text-gray-400 text-lg">
+                    Direct integration with 3Shape, iTero, and Medit scanners,
+                    treatment planning software connectivity, and real-time
+                    production tracking.
+                  </p>
+                </div>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Plastics */}
-              <Link href="/plastics-materials" className="group">
-                <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col cursor-pointer">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                    <Layers className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3 font-heading">Plastics & Materials</h3>
-                  <p className="text-gray-400 leading-relaxed mb-6 flex-1">
-                    Premium FLEX and MAX thermoplastic materials for aligner production. Engineered for clarity, durability, and performance.
+            <div className="mb-20">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 font-heading">
+                White-Label Clear Aligner Manufacturing
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-4 font-heading">
+                    Outsourced Aligner Production
+                  </h3>
+                  <p className="text-gray-400 text-lg leading-relaxed">
+                    White-label clear aligners manufactured to clinical
+                    standards and branded under your name, without
+                    infrastructure investment.
                   </p>
-                  <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
-                    Explore materials <ArrowRight className="w-4 h-4 ml-2" />
-                  </div>
                 </div>
-              </Link>
-
-              {/* Rolls */}
-              <Link href="/rolls" className="group">
-                <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col cursor-pointer">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                    <Zap className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3 font-heading">Material Rolls</h3>
-                  <p className="text-gray-400 leading-relaxed mb-6 flex-1">
-                    High-volume bulk material rolls optimized for automated thermoforming. Consistent quality with minimal waste.
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-4 font-heading">
+                    Clinical Workflow Integration
+                  </h3>
+                  <p className="text-gray-400 text-lg leading-relaxed">
+                    Seamless integration with your existing clinical workflows,
+                    scanner platforms, and treatment planning software.
                   </p>
-                  <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
-                    View rolls <ArrowRight className="w-4 h-4 ml-2" />
-                  </div>
                 </div>
-              </Link>
-
-              {/* Machines */}
-              <Link href="/machines" className="group">
-                <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col cursor-pointer">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                    <Factory className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3 font-heading">Machines & Equipment</h3>
-                  <p className="text-gray-400 leading-relaxed mb-6 flex-1">
-                    Complete range of manufacturing equipment: thermoformers, trimmers, polishers, scanners, and marking systems.
-                  </p>
-                  <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
-                    Explore machines <ArrowRight className="w-4 h-4 ml-2" />
-                  </div>
-                </div>
-              </Link>
+              </div>
+              <div className="mt-8">
+                <Link href="/white-labeling">
+                  <Button
+                    size="lg"
+                    className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                  >
+                    Learn more{" "}
+                    <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Technology Section */}
-        <section id="technology" className="py-24 bg-secondary/20 relative">
+        {/* Production Models Section */}
+        <section className="py-24">
           <div className="container mx-auto px-6">
-            <div className="flex flex-col lg:flex-row items-center gap-16">
-              <div className="lg:w-1/2">
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                  <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10" />
-                  <img src={techImage} alt="Digital Treatment Planning" className="w-full h-auto" />
-                </div>
-              </div>
-              <div className="lg:w-1/2">
-                <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wide mb-6">
-                  Proprietary Technology
-                </div>
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-heading leading-tight">
-                  Precision driven by <br/> digital innovation
-                </h2>
-                <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                  Our manufacturing process integrates direct API connections with intraoral scanners, ensuring 
-                  micron-level accuracy from scan to shipment.
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
+                Production Models for Orthodontic Practices
+              </h2>
+              <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+                Choose the production model that fits your practice size and
+                operational needs.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+                <h3 className="text-2xl font-bold text-white mb-4 font-heading">
+                  In-House Production Model
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Produce aligners in your own facility with complete control
+                  over quality, timing, and costs.
                 </p>
-                
-                <ul className="space-y-4 mb-10">
-                  {[
-                    "Direct integration with 3Shape, iTero, and Medit",
-                    "Automated trimline generation for comfort",
-                    "Real-time production tracking portal",
-                    "Laser-marked identification on every aligner"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-gray-300">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              </Card>
+
+              <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+                <h3 className="text-2xl font-bold text-white mb-4 font-heading">
+                  Centralized & Lab Production Models
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Centralized production for multi-location practices or
+                  dedicated lab facilities serving multiple clinics.
+                </p>
+              </Card>
+
+              <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+                <h3 className="text-2xl font-bold text-white mb-4 font-heading">
+                  White-Label Manufacturing Model
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Outsource aligner production while maintaining your brand
+                  identity and clinical standards.
+                </p>
+              </Card>
             </div>
           </div>
         </section>
 
         {/* Manufacturing Section */}
         <section id="manufacturing" className="py-24 relative overflow-hidden">
-           {/* Background Mesh */}
-           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
+          {/* Background Mesh */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
 
-           <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-10">
             <div className="flex flex-col-reverse lg:flex-row items-center gap-16">
               <div className="lg:w-1/2">
                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-heading leading-tight">
-                  Scalable manufacturing <br/> at your fingertips
+                  Quality Standards & Compliance
                 </h2>
                 <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                  Whether you are a single clinic or a large DSO, our solutions scale to meet your demand without compromising quality.
+                  Whether you are a single clinic or a large DSO, our solutions
+                  scale to meet your demand without compromising quality.
                 </p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                   <Card className="bg-white/5 border-white/10 p-6">
-                     <ShieldCheck className="w-8 h-8 text-primary mb-4" />
-                     <h4 className="text-white font-bold mb-2">ISO 13485 Certified</h4>
-                     <p className="text-sm text-gray-400">Meeting global medical device standards.</p>
-                   </Card>
-                   <Card className="bg-white/5 border-white/10 p-6">
-                     <Zap className="w-8 h-8 text-primary mb-4" />
-                     <h4 className="text-white font-bold mb-2">Rapid Dispatch</h4>
-                     <p className="text-sm text-gray-400">Production to shipping in under 48 hours.</p>
-                   </Card>
+
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-3 font-heading">
+                      ISO 13485 Medical Device Certification
+                    </h3>
+                    <p className="text-gray-400 leading-relaxed">
+                      Meeting global medical device standards for orthodontic
+                      manufacturing.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-3 font-heading">
+                      Production Capacity & Turnaround
+                    </h3>
+                    <p className="text-gray-400 leading-relaxed">
+                      Production to shipping in under 48 hours with scalable
+                      capacity.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className="lg:w-1/2">
                 <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                  <img src={labImage} alt="Manufacturing Lab" className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-700" />
+                  <img
+                    src={labImage}
+                    alt="Manufacturing Lab"
+                    className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-700"
+                  />
                 </div>
               </div>
             </div>
@@ -180,27 +294,36 @@ export default function Home() {
         <section className="py-24 bg-primary relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
           <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/80 to-black/30" />
-          
+
           <div className="container mx-auto px-6 relative z-10 text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-heading">Ready to elevate your practice?</h2>
-            <p className="text-white/80 text-lg mb-10 max-w-2xl mx-auto">
-              Explore our complete range of materials and equipment, or contact our team for personalized support.
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-heading">
+              Ready to elevate your practice?
+            </h2>
+            <p className="text-white/80 text-lg mb-10">
+              Explore our complete range of materials and equipment, or contact
+              our team for personalized support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/plastics-materials">
-                <Button size="lg" className="bg-white text-primary hover:bg-white/90 rounded-full px-8 h-14 text-lg font-bold shadow-2xl shadow-black/20">
-                  Shop Now
+                <Button
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90 rounded-full px-8 h-14 text-lg font-bold shadow-2xl shadow-black/20"
+                >
+                  Discover Our Products
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 rounded-full px-8 h-14 text-lg font-bold">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white/10 rounded-full px-8 h-14 text-lg font-bold"
+              >
                 Get in Touch
               </Button>
             </div>
           </div>
         </section>
-
       </main>
-      
+
       <Footer />
     </div>
   );
