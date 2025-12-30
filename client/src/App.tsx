@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import PlasticsMaterials from "@/pages/PlasticsMaterials";
 import Rolls from "@/pages/Rolls";
+import Machines from "@/pages/Machines";
 import MaxTrimT2 from "@/pages/machines/MaxTrimT2";
 import MaxTrimT1 from "@/pages/machines/MaxTrimT1";
 import MaxFormL2 from "@/pages/machines/MaxFormL2";
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/plastics-materials" component={PlasticsMaterials} />
       <Route path="/rolls" component={Rolls} />
+      <Route path="/machines" component={Machines} />
       <Route path="/machines/maxtrim-t2" component={MaxTrimT2} />
       <Route path="/machines/maxtrim-t1" component={MaxTrimT1} />
       <Route path="/machines/maxform-l2" component={MaxFormL2} />
