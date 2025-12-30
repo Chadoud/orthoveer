@@ -20,7 +20,8 @@ export default function WhiteLabeling() {
     <PageLayout>
       <PageHero
         badge="White Label Solutions"
-        title="White-Label Clear Aligner Manufacturing"
+        title="White-Label"
+        titleHighlight=" Aligner"
         description="White-label clear aligners for orthodontic treatments, manufactured to clinical standards and branded under your name. This allows practices to offer aligner treatments without investing in production infrastructure, while maintaining consistency, quality, and margins."
         image={labHeroImage}
         imageAlt="White Label Aligners"

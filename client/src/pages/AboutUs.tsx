@@ -19,8 +19,9 @@ export default function AboutUs() {
     <PageLayout>
       <PageHero
         badge="Our Story"
-        title="ISO 13485 Certified Orthodontic Manufacturing"
-        description="Leading the future of orthodontic manufacturing with precision, innovation, and unwavering commitment to quality."
+        title="About"
+        titleHighlight="OrthoVeer"
+        description="Leading the future of orthodontic manufacturing with ISO 13485 Certified Manufacturing, precision, innovation, and unwavering commitment to quality."
         image={darkHeroImage}
         imageAlt="About OrthoVeer"
       />
