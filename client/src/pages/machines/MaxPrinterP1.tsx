@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2, Mail, Phone } from "lucide-react";
 import { useState } from "react";
-import image from "@assets/generated_images/maxprinter-p1-600x600-removebg-preview_1767043189565.png";
+import image from "@assets/maxprinter-p1-600x600-removebg-preview_1767043189565.png";
 
 export default function MaxPrinterP1() {
   const [formData, setFormData] = useState({

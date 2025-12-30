@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2, Mail, Phone } from "lucide-react";
 import { useState } from "react";
-import image from "@assets/generated_images/maxmark-m2-600x600-removebg-preview_1767043189564.png";
+import image from "@assets/maxmark-m2-600x600-removebg-preview_1767043189564.png";
 
 export default function MaxMarkM2() {
   const [formData, setFormData] = useState({

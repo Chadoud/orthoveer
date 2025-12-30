@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2, Mail, Phone } from "lucide-react";
 import { useState } from "react";
-import image from "@assets/generated_images/maxscan-s1-600x600-removebg-preview_1767043189566.png";
+import image from "@assets/maxscan-s1-600x600-removebg-preview_1767043189566.png";
 
 export default function MaxScanS1() {
   const [formData, setFormData] = useState({

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2, Mail, Phone } from "lucide-react";
 import { useState } from "react";
-import image from "@assets/generated_images/maxpolish-2-600x600-removebg-preview_1767043189563.png";
+import image from "@assets/maxpolish-2-600x600-removebg-preview_1767043189563.png";
 
 export default function MaxPolishII() {
   const [formData, setFormData] = useState({

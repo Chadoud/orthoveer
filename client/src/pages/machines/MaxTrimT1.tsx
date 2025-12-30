@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2, Mail, Phone } from "lucide-react";
 import { useState } from "react";
-import image from "@assets/generated_images/maxtrim-t1-600x600-removebg-preview_1767043189567.png";
+import image from "@assets/maxtrim-t1-600x600-removebg-preview_1767043189567.png";
 
 export default function MaxTrimT1() {
   const [formData, setFormData] = useState({
