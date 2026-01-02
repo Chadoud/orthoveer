@@ -1,5 +1,6 @@
 import { Link } from "wouter";
 import { CONTACT_INFO } from "@/lib/constants";
+import { resetConsent } from "@/lib/consent/consent.store";
 import logoImage from "@assets/logo/logo.png";
 
 export function Footer() {
@@ -42,7 +43,7 @@ export function Footer() {
                   href="/machines"
                   className="hover:text-primary transition-colors"
                 >
-                  Aligner Production Machines
+                  Aligner Production Equipment
                 </Link>
               </li>
               <li>
@@ -105,15 +106,34 @@ export function Footer() {
 
           <div>
             <h4 className="font-heading font-semibold text-white mb-6">
-              Contact
+              Contact Us
             </h4>
             <ul className="space-y-4 text-sm text-gray-400">
-              <li>{CONTACT_INFO.email.display}</li>
-              <li>{CONTACT_INFO.phone.display}</li>
               <li>
-                123 Avenue des Champs-Élysées
-                <br />
-                75008 Paris, France
+                <div className="font-medium text-white mb-1">Email</div>
+                <a
+                  href={CONTACT_INFO.email.href}
+                  className="hover:text-primary transition-colors"
+                >
+                  {CONTACT_INFO.email.display}
+                </a>
+              </li>
+              <li>
+                <div className="font-medium text-white mb-1">Phone</div>
+                <a
+                  href={CONTACT_INFO.phone.href}
+                  className="hover:text-primary transition-colors"
+                >
+                  {CONTACT_INFO.phone.display}
+                </a>
+              </li>
+              <li>
+                <div className="font-medium text-white mb-1">Address</div>
+                <div>
+                  190 Avenue du General de Gaulle 94500
+                  <br />
+                  Champigny sur Marne, France
+                </div>
               </li>
             </ul>
           </div>
@@ -124,6 +144,16 @@ export function Footer() {
             © {new Date().getFullYear()} OrthoVeer. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-gray-500">
+            <button
+              onClick={() => {
+                resetConsent();
+                // Banner will re-render automatically as visibility derives from consent
+                window.location.reload();
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Cookie Settings
+            </button>
             <a href="#" className="hover:text-white transition-colors">
               Privacy Policy
             </a>

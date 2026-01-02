@@ -13,16 +13,18 @@ export default function PlasticsMaterials() {
   return (
     <MaterialsPage
       badge="Premium Manufacturing Materials"
-      title="High-Performance"
+      title="Thermoforming"
       titleHighlight="Plastics"
       description="Premium-grade thermoplastic materials engineered for precision aligner production. Choose from our range of FLEX and MAX formulations."
       heroImage={plasticsImage}
-      heroImageAlt="Plastic Materials"
+      heroImageAlt="Thermoforming Plastic Materials"
       materials={plastics}
       features={features}
       formTitle="Request Plastics"
       formDescription="Contact our materials team to request samples, place orders, or inquire about bulk pricing and custom formulations."
       submitLabel="Send Inquiry"
+      sectionImage={plasticsImage}
+      sectionImageAlt="Thermoforming Plastic Materials"
     />
   );
 }

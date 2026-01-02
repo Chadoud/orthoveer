@@ -64,3 +64,5 @@ coverage/
 .nyc_output/
 .pytest_cache/
 __pycache__/
+# Local Netlify folder
+.netlify

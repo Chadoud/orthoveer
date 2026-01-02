@@ -1,21 +1,23 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { machines as machinesConfig } from "@/config/machines";
-import { PageHero } from "@/components/sections/PageHero";
-import machinesImage from "@assets/hero/lab-hero.png";
+import { useRef } from "react";
+import { ScrollArrow } from "@/components/sections/ScrollArrow";
+import heroMachinesVideo from "@assets/machinesPage/heroMachines.mp4";
 
 // Import machine images for listing
-import maxTrimT2 from "@assets/machines/maxtrim-t2.png";
-import maxTrimT1 from "@assets/machines/maxtrim-t1.png";
-import maxFormL2 from "@assets/machines/maxform-l2.png";
-import maxScanS1 from "@assets/machines/maxscan-s1.png";
-import maxPrinterP2 from "@assets/machines/maxprinter-p2.png";
-import maxPrinterP1 from "@assets/machines/maxprinter-p1.png";
-import maxMarkM2 from "@assets/machines/maxmark-m2.png";
-import maxPolishI from "@assets/machines/maxpolish-i.png";
-import maxPolishII from "@assets/machines/maxpolish-ii.png";
+import maxTrimT2 from "@assets/machinesPage/maxtrim-t2.png";
+import maxTrimT1 from "@assets/machinesPage/maxtrim-t1.png";
+import maxFormL2 from "@assets/machinesPage/maxform-l2.png";
+import maxScanS1 from "@assets/machinesPage/maxscan-s1.png";
+import maxPrinterP2 from "@assets/machinesPage/maxprinter-p2.png";
+import maxPrinterP1 from "@assets/machinesPage/maxprinter-p1.png";
+import maxMarkM2 from "@assets/machinesPage/maxmark-m2.png";
+import maxPolishI from "@assets/machinesPage/maxpolish-i.png";
+import maxPolishII from "@assets/machinesPage/maxpolish-ii.png";
 
 const machineImages: Record<string, string> = {
   "maxtrim-t2": maxTrimT2,
@@ -38,31 +40,77 @@ const machines = Object.values(machinesConfig).map((machine) => ({
 }));
 
 export default function Machines() {
+  const heroRef = useRef<HTMLElement>(null);
+
   return (
     <PageLayout>
-      <PageHero
-        badge="Manufacturing Equipment"
-        title="Orthodontic Production Equipment"
-        description="9 specialized machines for every stage of aligner manufacturing: thermoforming, trimming, scanning, 3D printing, marking, and polishing."
-        image={machinesImage}
-        imageAlt="Manufacturing Equipment"
-        buttonText="Request a Quote"
-        buttonHref="/contact"
-      />
+      {/* Custom Hero Section with Video Background */}
+      <section
+        ref={heroRef}
+        className="relative min-h-[100vh] flex items-center pt-12 overflow-hidden"
+      >
+        {/* Background Video with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-60"
+          >
+            <source src={heroMachinesVideo} type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-background/80" />
+        </div>
 
-      {/* Machines Grid */}
+        <div className="container mx-auto px-6 relative z-10">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide uppercase mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              Manufacturing Equipment
+            </div>
+
+            <h1 className="font-heading text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+              Orthodontic Production{" "}
+              <span className="text-primary">Equipment</span>
+            </h1>
+
+            <p className="text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
+              9 specialized production equipment for every stage of aligner
+              manufacturing: thermoforming, trimming, scanning, 3D printing,
+              marking, and polishing.
+            </p>
+
+            <div className="flex-responsive">
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                >
+                  Request a Quote <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Arrow Indicator */}
+        <ScrollArrow heroRef={heroRef} text="Scroll to explore" />
+      </section>
+
+      {/* Production Equipment Grid */}
       <section className="py-20 bg-secondary/20">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-16 font-heading">
             Clear Aligner Manufacturing Equipment
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid-3col-lg">
             {machines.map((machine) => (
               <Link key={machine.id} href={`/machines/${machine.id}`}>
                 <Card className="bg-white/5 border-white/10 overflow-hidden hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 cursor-pointer h-full group flex flex-col">
                   {/* Image Section */}
-                  <div className="h-64 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center overflow-hidden relative">
+                  <div className="h-64 bg-primary/10 flex items-center justify-center overflow-hidden relative">
                     <img
                       src={machine.image}
                       alt={`${machine.name} ${machine.nameHighlight} - ${machine.category}`}

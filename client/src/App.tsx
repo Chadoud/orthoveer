@@ -1,7 +1,10 @@
 import { Switch, Route } from "wouter";
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
+import { RouteTracker } from "@/components/layout/RouteTracker";
+import { initTracking } from "@/lib/tracking/init";
 import { routes, notFoundRoute } from "@/config/routes";
 
 function Router() {
@@ -26,9 +29,16 @@ function Router() {
 }
 
 function App() {
+  // Initialize tracking on app mount
+  // This checks existing consent and loads GA if conditions are met
+  useEffect(() => {
+    initTracking();
+  }, []);
+
   return (
     <TooltipProvider>
       <ScrollToTop />
+      <RouteTracker />
       <Toaster />
       <Router />
     </TooltipProvider>

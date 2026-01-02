@@ -8,8 +8,8 @@ export const CONTACT_INFO = {
     href: "tel:+33185331183",
   },
   email: {
-    display: "contact@orthoveer.fr",
-    href: "mailto:contact@orthoveer.fr",
+    display: "contact@orthoveer.com",
+    href: "mailto:contact@orthoveer.com",
   },
 } as const;
 

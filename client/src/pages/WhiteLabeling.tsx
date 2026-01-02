@@ -13,7 +13,9 @@ import {
   Award,
 } from "lucide-react";
 import { Link } from "wouter";
-import labHeroImage from "@assets/hero/lab-hero.png";
+import { track } from "@/lib/tracking/events";
+import labHeroImage from "@assets/aboutPage/factory.jpg";
+import customBoxImage from "@assets/whiteLabelingPage/customBox.jpg";
 
 export default function WhiteLabeling() {
   return (
@@ -42,15 +44,17 @@ export default function WhiteLabeling() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid-3col-lg">
             <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
-              <Package
-                className="w-12 h-12 text-primary mb-6"
-                aria-hidden="true"
-              />
-              <h3 className="text-xl font-bold text-white mb-4 font-heading">
-                Your Brand, Your Control
-              </h3>
+              <div className="flex-icon-title">
+                <Package
+                  className="w-12 h-12 text-primary shrink-0"
+                  aria-hidden="true"
+                />
+                <h3 className="text-xl font-bold text-white font-heading">
+                  Your Brand, Your Control
+                </h3>
+              </div>
               <p className="text-gray-400 leading-relaxed">
                 All aligners are manufactured to clinical standards and branded
                 under your practice name, maintaining your brand identity
@@ -59,13 +63,15 @@ export default function WhiteLabeling() {
             </Card>
 
             <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
-              <TrendingUp
-                className="w-12 h-12 text-primary mb-6"
-                aria-hidden="true"
-              />
-              <h3 className="text-xl font-bold text-white mb-4 font-heading">
-                Maintain Margins
-              </h3>
+              <div className="flex-icon-title">
+                <TrendingUp
+                  className="w-12 h-12 text-primary shrink-0"
+                  aria-hidden="true"
+                />
+                <h3 className="text-xl font-bold text-white font-heading">
+                  Maintain Margins
+                </h3>
+              </div>
               <p className="text-gray-400 leading-relaxed">
                 No need to invest in expensive production infrastructure. Focus
                 on patient care while we handle manufacturing, ensuring
@@ -74,13 +80,15 @@ export default function WhiteLabeling() {
             </Card>
 
             <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
-              <ShieldCheck
-                className="w-12 h-12 text-primary mb-6"
-                aria-hidden="true"
-              />
-              <h3 className="text-xl font-bold text-white mb-4 font-heading">
-                Clinical Standards
-              </h3>
+              <div className="flex-icon-title">
+                <ShieldCheck
+                  className="w-12 h-12 text-primary shrink-0"
+                  aria-hidden="true"
+                />
+                <h3 className="text-xl font-bold text-white font-heading">
+                  Clinical Standards
+                </h3>
+              </div>
               <p className="text-gray-400 leading-relaxed">
                 Every aligner is manufactured to the highest clinical standards,
                 ensuring predictable results and patient satisfaction with every
@@ -89,13 +97,15 @@ export default function WhiteLabeling() {
             </Card>
 
             <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
-              <Users
-                className="w-12 h-12 text-primary mb-6"
-                aria-hidden="true"
-              />
-              <h3 className="text-xl font-bold text-white mb-4 font-heading">
-                Consistency & Quality
-              </h3>
+              <div className="flex-icon-title">
+                <Users
+                  className="w-12 h-12 text-primary shrink-0"
+                  aria-hidden="true"
+                />
+                <h3 className="text-xl font-bold text-white font-heading">
+                  Consistency & Quality
+                </h3>
+              </div>
               <p className="text-gray-400 leading-relaxed">
                 Our manufacturing processes ensure consistent quality across all
                 orders, so you can confidently offer aligner treatments knowing
@@ -104,13 +114,15 @@ export default function WhiteLabeling() {
             </Card>
 
             <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
-              <Award
-                className="w-12 h-12 text-primary mb-6"
-                aria-hidden="true"
-              />
-              <h3 className="text-xl font-bold text-white mb-4 font-heading">
-                No Infrastructure Investment
-              </h3>
+              <div className="flex-icon-title">
+                <Award
+                  className="w-12 h-12 text-primary shrink-0"
+                  aria-hidden="true"
+                />
+                <h3 className="text-xl font-bold text-white font-heading">
+                  No Infrastructure Investment
+                </h3>
+              </div>
               <p className="text-gray-400 leading-relaxed">
                 Start offering aligner treatments immediately without the need
                 for production equipment, specialized staff, or facility
@@ -119,13 +131,15 @@ export default function WhiteLabeling() {
             </Card>
 
             <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
-              <CheckCircle2
-                className="w-12 h-12 text-primary mb-6"
-                aria-hidden="true"
-              />
-              <h3 className="text-xl font-bold text-white mb-4 font-heading">
-                Scalable Solutions
-              </h3>
+              <div className="flex-icon-title">
+                <CheckCircle2
+                  className="w-12 h-12 text-primary shrink-0"
+                  aria-hidden="true"
+                />
+                <h3 className="text-xl font-bold text-white font-heading">
+                  Scalable Solutions
+                </h3>
+              </div>
               <p className="text-gray-400 leading-relaxed">
                 Scale your aligner practice as your patient base grows, with
                 flexible ordering and production capacity that adapts to your
@@ -190,6 +204,57 @@ export default function WhiteLabeling() {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Custom Branding Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="relative w-full h-full min-h-[400px] lg:min-h-[500px]">
+              <img
+                src={customBoxImage}
+                alt="Custom Branded Aligner Packaging"
+                className="w-full h-full object-cover rounded-lg"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wide mb-6">
+                Branding & Packaging
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-heading">
+                Custom Branded Packaging & Presentation
+              </h2>
+              <p className="text-lg text-gray-400 leading-relaxed mb-6">
+                Every white-label aligner order includes custom branded
+                packaging that reflects your practice's identity. From the outer
+                box to individual aligner cases, we ensure your brand is
+                prominently displayed, creating a professional and cohesive
+                patient experience that reinforces your practice's reputation.
+              </p>
+              <p className="text-lg text-gray-400 leading-relaxed mb-6">
+                Our custom packaging solutions are designed to protect aligners
+                during shipping while maintaining a premium, clinical appearance
+                that patients expect. Choose from various packaging options to
+                match your practice's aesthetic and branding requirements.
+              </p>
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                  onClick={() => {
+                    track("cta_request_custom_branding", {
+                      location: "white_labeling",
+                    });
+                  }}
+                >
+                  Request Custom Branding{" "}
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -271,7 +336,7 @@ export default function WhiteLabeling() {
               In addition to white-label services, we offer production machines
               and materials for in-house manufacturing.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex-responsive-center">
               <Link href="/machines">
                 <Button
                   size="lg"

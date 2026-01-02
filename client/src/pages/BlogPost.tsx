@@ -6,7 +6,7 @@ import { Calendar, User, Tag, ArrowLeft, Clock } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { getBlogPostBySlug } from "@/config/blog";
 import { NotFound } from "@/pages/not-found";
-import labHeroImage from "@assets/hero/lab-hero.png";
+import labHeroImage from "@assets/aboutPage/factory.jpg";
 
 export default function BlogPostPage() {
   const [, params] = useRoute("/blog/:slug");

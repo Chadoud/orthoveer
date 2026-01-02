@@ -30,6 +30,7 @@ export interface CaseStudy {
     quote: string;
     author: string;
     role: string;
+    authorImage?: string;
   };
 }
 

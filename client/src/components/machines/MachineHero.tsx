@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import { useRef } from "react";
+import { ScrollArrow } from "@/components/sections/ScrollArrow";
 
 interface MachineHeroProps {
   category: string;
@@ -9,6 +11,7 @@ interface MachineHeroProps {
   description: string;
   image: string;
   imageAlt: string;
+  scrollText?: string;
 }
 
 export function MachineHero({
@@ -18,13 +21,19 @@ export function MachineHero({
   description,
   image,
   imageAlt,
+  scrollText = "Scroll for details",
 }: MachineHeroProps) {
+  const heroRef = useRef<HTMLElement>(null);
+
   return (
-    <section className="min-h-[90vh] flex items-center pt-12 relative overflow-hidden">
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-primary/20 via-background to-background" />
+    <section
+      ref={heroRef}
+      className="min-h-[100vh] flex items-center pt-12 relative overflow-hidden"
+    >
+      <div className="absolute inset-0 z-0 bg-background" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide uppercase mb-6">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
@@ -36,9 +45,7 @@ export function MachineHero({
               {nameHighlight && (
                 <>
                   {" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                    {nameHighlight}
-                  </span>
+                  <span className="text-primary">{nameHighlight}</span>
                 </>
               )}
             </h1>
@@ -47,7 +54,7 @@ export function MachineHero({
               {description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex-responsive">
               <Link href="/contact">
                 <Button
                   size="lg"
@@ -60,13 +67,16 @@ export function MachineHero({
             </div>
           </div>
 
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-start lg:justify-end">
             <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 p-8">
               <img src={image} alt={imageAlt} className="w-full h-auto" />
             </div>
           </div>
         </div>
       </div>
+
+      {/* Scroll Arrow Indicator */}
+      <ScrollArrow heroRef={heroRef} text={scrollText} />
     </section>
   );
 }

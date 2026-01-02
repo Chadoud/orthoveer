@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, User, Tag } from "lucide-react";
 import { Link } from "wouter";
 import { getAllBlogPosts } from "@/config/blog";
-import darkHeroImage from "@assets/hero/dark-hero.png";
+import darkHeroImage from "@assets/dark-hero.png";
 
 const blogPosts = getAllBlogPosts();
 
@@ -23,12 +23,22 @@ export default function Blog() {
       {/* Blog Posts Grid */}
       <section className="py-20">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid-3col-lg">
             {blogPosts.map((post) => (
               <Link key={post.id} href={`/blog/${post.slug}`}>
-                <Card className="bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300 group cursor-pointer overflow-hidden h-full">
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-4">
+                <Card className="bg-white/5 border-white/10 hover:border-primary/50 transition-all duration-300 group cursor-pointer overflow-hidden h-full flex flex-col">
+                  {post.image && (
+                    <div className="relative w-full h-48 overflow-hidden">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6 flex flex-col grow">
+                    <div className="flex-inline mb-4">
                       <Tag className="w-4 h-4 text-primary" />
                       <span className="text-xs text-primary font-semibold uppercase">
                         {post.category}
@@ -39,7 +49,7 @@ export default function Blog() {
                       {post.title}
                     </h3>
 
-                    <p className="text-gray-400 text-sm mb-6 leading-relaxed line-clamp-3">
+                    <p className="text-gray-400 text-sm mb-6 leading-relaxed line-clamp-3 grow">
                       {post.excerpt}
                     </p>
 

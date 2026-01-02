@@ -17,10 +17,11 @@ import {
   Activity,
 } from "lucide-react";
 import { Link } from "wouter";
+import { track } from "@/lib/tracking/events";
 
 // Import images
-import techImage from "@assets/hero/tech-hero.png";
-import labImage from "@assets/hero/lab-hero.png";
+import trimmingImage from "@assets/aboutPage/thrimming.jpg";
+import labHeroImage from "@assets/lab-hero.png";
 
 export default function Home() {
   return (
@@ -65,24 +66,25 @@ export default function Home() {
                 <h3 className="text-2xl font-bold text-white mb-8 font-heading">
                   Orthodontic Production Equipment
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                <div className="grid-3col-lg mb-8">
                   <Link href="/machines" className="group">
                     <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 h-full flex flex-col cursor-pointer">
                       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
                         <Factory className="w-6 h-6" />
                       </div>
                       <div className="text-xl font-bold text-white mb-3 font-heading">
-                        Aligner Production Machines
+                        Aligner Production Equipment
                       </div>
                       <p className="text-gray-400 leading-relaxed mb-6 flex-1">
-                        Professional-grade machines dedicated to clear aligner
-                        production, from thermoforming to finishing. Each system
-                        is selected for reliability, precision, and scalability,
-                        enabling clinics and labs to produce aligners in-house
-                        with full control over quality and costs.
+                        Professional-grade production equipment dedicated to
+                        clear aligner production, from thermoforming to
+                        finishing. Each system is selected for reliability,
+                        precision, and scalability, enabling clinics and labs to
+                        produce aligners in-house with full control over quality
+                        and costs.
                       </p>
                       <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
-                        Explore machines{" "}
+                        Explore equipment{" "}
                         <ArrowRight
                           className="w-4 h-4 ml-2"
                           aria-hidden="true"
@@ -97,7 +99,7 @@ export default function Home() {
                         <Layers className="w-6 h-6" />
                       </div>
                       <div className="text-xl font-bold text-white mb-3 font-heading">
-                        Aligner Sheet Materials
+                        Thermoplastic Sheets
                       </div>
                       <p className="text-gray-400 leading-relaxed mb-6 flex-1">
                         High-quality plastic materials for aligner
@@ -107,7 +109,7 @@ export default function Home() {
                         production workflows.
                       </p>
                       <div className="flex items-center text-primary text-sm font-semibold hover:text-white transition-colors">
-                        Explore plastics{" "}
+                        View plastics{" "}
                         <ArrowRight
                           className="w-4 h-4 ml-2"
                           aria-hidden="true"
@@ -122,7 +124,7 @@ export default function Home() {
                         <Zap className="w-6 h-6" />
                       </div>
                       <div className="text-xl font-bold text-white mb-3 font-heading">
-                        Bulk Roll Materials
+                        Thermoplastic Rolls
                       </div>
                       <p className="text-gray-400 leading-relaxed mb-6 flex-1">
                         High-volume bulk material rolls for thermoforming
@@ -140,63 +142,69 @@ export default function Home() {
                     </div>
                   </Link>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-4 font-heading">
-                    Digital Workflow Integration
-                  </h3>
-                  <p className="text-gray-400 text-lg">
-                    Direct integration with 3Shape, iTero, and Medit scanners,
-                    treatment planning software connectivity, and real-time
-                    production tracking.
-                  </p>
-                </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div className="mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 font-heading">
-                Aligner White-Label Manufacturing
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-4 font-heading">
-                    Outsourced Aligner Production
-                  </h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">
-                    White-label clear aligners manufactured to clinical
-                    standards and branded under your name, without
-                    infrastructure investment.
-                  </p>
+        {/* Aligner White-Label Manufacturing Section */}
+        <section className="py-20 border-t border-white/5">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 font-heading">
+              Aligner White-Label Manufacturing
+            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12 items-center">
+              <div>
+                <div className="grid-2col">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-6 font-heading">
+                      Outsourced Aligner Production
+                    </h3>
+                    <p className="text-gray-400 text-lg leading-relaxed">
+                      White-label clear aligners manufactured to clinical
+                      standards and branded under your name, without
+                      infrastructure investment.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-6 font-heading">
+                      Clinical Workflow Integration
+                    </h3>
+                    <p className="text-gray-400 text-lg leading-relaxed">
+                      Seamless integration with your existing clinical
+                      workflows, scanner platforms, and treatment planning
+                      software.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white mb-4 font-heading">
-                    Clinical Workflow Integration
-                  </h3>
-                  <p className="text-gray-400 text-lg leading-relaxed">
-                    Seamless integration with your existing clinical workflows,
-                    scanner platforms, and treatment planning software.
-                  </p>
+                <div className="mt-8">
+                  <Link href="/white-labeling">
+                    <Button
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                    >
+                      Learn more{" "}
+                      <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
-              <div className="mt-8">
-                <Link href="/white-labeling">
-                  <Button
-                    size="lg"
-                    className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
-                  >
-                    Learn more{" "}
-                    <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
-                  </Button>
-                </Link>
+              <div className="relative w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden">
+                <img
+                  src={labHeroImage}
+                  alt="White-Label Aligner Manufacturing"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
         </section>
 
         {/* Production Models Section */}
-        <section className="py-24">
+        <section className="pt-12 pb-24">
           <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
                 Production Models for Orthodontic Practices
               </h2>
@@ -206,7 +214,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
                 <h3 className="text-2xl font-bold text-white mb-4 font-heading">
                   In-House Production Model
@@ -243,7 +251,7 @@ export default function Home() {
         {/* Manufacturing Section */}
         <section id="manufacturing" className="py-24 relative overflow-hidden">
           {/* Background Mesh */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
+          <div className="absolute inset-0 bg-background" />
 
           <div className="container mx-auto px-6 relative z-10">
             <div className="flex flex-col-reverse lg:flex-row items-center gap-16">
@@ -280,7 +288,7 @@ export default function Home() {
               <div className="lg:w-1/2">
                 <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                   <img
-                    src={labImage}
+                    src={trimmingImage}
                     alt="Manufacturing Lab"
                     className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-700"
                   />
@@ -293,7 +301,7 @@ export default function Home() {
         {/* CTA Section */}
         <section className="py-24 bg-primary relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/80 to-black/30" />
+          <div className="absolute inset-0 bg-primary" />
 
           <div className="container mx-auto px-6 relative z-10 text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 font-heading">
@@ -303,7 +311,7 @@ export default function Home() {
               Explore our complete range of materials and equipment, or contact
               our team for personalized support.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex-responsive-center">
               <Link href="/plastics-materials">
                 <Button
                   size="lg"
@@ -312,13 +320,20 @@ export default function Home() {
                   Discover Our Products
                 </Button>
               </Link>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10 rounded-full px-8 h-14 text-lg font-bold"
-              >
-                Get in Touch
-              </Button>
+              <Link href="/contact">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white/10 rounded-full px-8 h-14 text-lg font-bold"
+                  onClick={() => {
+                    track("cta_get_in_touch", {
+                      location: "cta_section",
+                    });
+                  }}
+                >
+                  Get in Touch
+                </Button>
+              </Link>
             </div>
           </div>
         </section>

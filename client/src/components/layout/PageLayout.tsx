@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { CookieBanner } from "@/components/layout/CookieBanner";
 import { ReactNode } from "react";
 
 interface PageLayoutProps {
@@ -12,6 +13,7 @@ export function PageLayout({ children }: PageLayoutProps) {
       <Navbar />
       <main className="">{children}</main>
       <Footer />
+      <CookieBanner />
     </div>
   );
 }

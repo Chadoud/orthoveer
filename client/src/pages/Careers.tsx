@@ -16,7 +16,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { useState } from "react";
-import darkHeroImage from "@assets/hero/dark-hero.png";
+import darkHeroImage from "@assets/dark-hero.png";
 
 interface Job {
   id: string;
@@ -180,8 +180,8 @@ export default function Careers() {
     <PageLayout>
       <PageHero
         badge="Join Our Team"
-        title="Careers"
-        titleHighlight="at OrthoVeer"
+        title="OrthoVeer"
+        titleHighlight="Careers"
         description="Be part of the future of orthodontic manufacturing. Join a team dedicated to precision, innovation, and transforming patient care."
         image={darkHeroImage}
         imageAlt="Careers at OrthoVeer"
@@ -200,7 +200,7 @@ export default function Careers() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid-3col">
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
               return (
@@ -208,10 +208,12 @@ export default function Careers() {
                   key={index}
                   className="bg-white/5 border-white/10 p-6 hover:border-primary/50 transition-all duration-300"
                 >
-                  <Icon className="w-10 h-10 text-primary mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-2 font-heading">
-                    {benefit.title}
-                  </h3>
+                  <div className="flex-icon-title-sm">
+                    <Icon className="w-10 h-10 text-primary shrink-0" />
+                    <h3 className="text-xl font-bold text-white font-heading">
+                      {benefit.title}
+                    </h3>
+                  </div>
                   <p className="text-gray-400 text-sm leading-relaxed">
                     {benefit.description}
                   </p>
@@ -235,30 +237,30 @@ export default function Careers() {
             </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 grid-2col">
             {jobs.map((job) => (
               <Card
                 key={job.id}
                 className="bg-white/5 border-white/10 p-6 md:p-8 hover:border-primary/50 transition-all duration-300"
               >
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                <div className="flex-between-responsive">
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
+                    <div className="flex-icon-title-sm-md">
                       <Briefcase className="w-5 h-5 text-primary" />
                       <h3 className="text-2xl font-bold text-white font-heading">
                         {job.title}
                       </h3>
                     </div>
                     <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-gray-400">
-                      <div className="flex items-center gap-2">
+                      <div className="flex-inline">
                         <Building2 className="w-4 h-4" />
                         <span>{job.department}</span>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex-inline">
                         <MapPin className="w-4 h-4" />
                         <span>{job.location}</span>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex-inline">
                         <Clock className="w-4 h-4" />
                         <span>{job.type}</span>
                       </div>

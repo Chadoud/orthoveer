@@ -29,12 +29,29 @@ export function MachinePage({ machineId, image }: MachinePageProps) {
         imageAlt={machineData.imageAlt}
       />
 
-      {machineData.equipmentParameters && (
-        <EquipmentParameters parameters={machineData.equipmentParameters} />
-      )}
+      {(machineData.equipmentParameters ||
+        (machineData.hasSpecs && machineData.specs)) && (
+        <section className="py-20">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+              {machineData.equipmentParameters && (
+                <div className="flex-1 min-w-0">
+                  <EquipmentParameters
+                    parameters={machineData.equipmentParameters}
+                    description={machineData.equipmentDescription}
+                    className="py-0"
+                  />
+                </div>
+              )}
 
-      {machineData.hasSpecs && machineData.specs && (
-        <MachineSpecs specs={machineData.specs} />
+              {machineData.hasSpecs && machineData.specs && (
+                <div className="flex-1 min-w-0">
+                  <MachineSpecs specs={machineData.specs} className="py-0" />
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
       )}
 
       <MachineFeatures

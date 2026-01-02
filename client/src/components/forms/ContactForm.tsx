@@ -1,8 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Mail, Phone, Loader2, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { CONTACT_INFO } from "@/lib/constants";
+import { machines } from "@/config/machines";
+import { track } from "@/lib/tracking/events";
 
 interface ContactFormProps {
   title?: string;
@@ -22,6 +31,9 @@ export function ContactForm({
     company: "",
     email: "",
     phone: "",
+    productService: "",
+    machine: "",
+    quantity: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,6 +51,18 @@ export function ContactForm({
       newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!formData.productService.trim()) {
+      newErrors.productService = "Product/Service selection is required";
+    }
+
+    if (formData.productService === "machines" && !formData.machine.trim()) {
+      newErrors.machine = "Production Equipment selection is required";
+    }
+
+    if (!formData.quantity.trim()) {
+      newErrors.quantity = "Quantity selection is required";
     }
 
     if (!formData.message.trim()) {
@@ -71,11 +95,21 @@ export function ContactForm({
       // });
 
       setIsSubmitted(true);
+
+      // Track form submission (no-op if analytics consent missing)
+      track("contact_form_submit", {
+        form_type: "contact",
+        context: "general",
+      });
+
       setFormData({
         name: "",
         company: "",
         email: "",
         phone: "",
+        productService: "",
+        machine: "",
+        quantity: "",
         message: "",
       });
 
@@ -110,7 +144,7 @@ export function ContactForm({
   return (
     <Card className="bg-white/5 border-white/10 p-8 md:p-12">
       <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid-2col-lg">
           <div>
             <label
               htmlFor="name"
@@ -164,7 +198,7 @@ export function ContactForm({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid-2col-lg">
           <div>
             <label
               htmlFor="email"
@@ -217,6 +251,160 @@ export function ContactForm({
             />
           </div>
         </div>
+
+        <div className="grid-2col-lg">
+          <div>
+            <label
+              htmlFor="productService"
+              className="block text-white font-semibold mb-3"
+            >
+              Product / Service <span className="text-red-500">*</span>
+            </label>
+            <Select
+              value={formData.productService}
+              onValueChange={(value) => {
+                setFormData({
+                  ...formData,
+                  productService: value,
+                  machine: "",
+                });
+                if (errors.productService)
+                  setErrors({ ...errors, productService: "", machine: "" });
+              }}
+              required
+            >
+              <SelectTrigger
+                className={`w-full h-12 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                  errors.productService
+                    ? "border-red-500"
+                    : "border-white/20 focus:border-primary"
+                }`}
+                data-testid="select-product-service"
+              >
+                <SelectValue placeholder="Select a product or service" />
+              </SelectTrigger>
+              <SelectContent className="bg-background border-white/20 text-white">
+                <SelectItem value="machines" className="focus:bg-white/10">
+                  Production Equipment
+                </SelectItem>
+                <SelectItem value="plastics" className="focus:bg-white/10">
+                  Plastic Sheets
+                </SelectItem>
+                <SelectItem value="rolls" className="focus:bg-white/10">
+                  Thermoforming Rolls
+                </SelectItem>
+                <SelectItem
+                  value="white-labeling"
+                  className="focus:bg-white/10"
+                >
+                  White-Label Manufacturing
+                </SelectItem>
+                <SelectItem value="other" className="focus:bg-white/10">
+                  Other
+                </SelectItem>
+              </SelectContent>
+            </Select>
+            {errors.productService && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.productService}
+              </p>
+            )}
+          </div>
+          <div>
+            <label
+              htmlFor="quantity"
+              className="block text-white font-semibold mb-3"
+            >
+              Quantity <span className="text-red-500">*</span>
+            </label>
+            <Select
+              value={formData.quantity}
+              onValueChange={(value) => {
+                setFormData({ ...formData, quantity: value });
+                if (errors.quantity) setErrors({ ...errors, quantity: "" });
+              }}
+              required
+            >
+              <SelectTrigger
+                className={`w-full h-12 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                  errors.quantity
+                    ? "border-red-500"
+                    : "border-white/20 focus:border-primary"
+                }`}
+                data-testid="select-quantity"
+              >
+                <SelectValue placeholder="Select quantity" />
+              </SelectTrigger>
+              <SelectContent className="bg-background border-white/20 text-white">
+                <SelectItem value="1" className="focus:bg-white/10">
+                  1
+                </SelectItem>
+                <SelectItem value="2-5" className="focus:bg-white/10">
+                  2-5
+                </SelectItem>
+                <SelectItem value="6-10" className="focus:bg-white/10">
+                  6-10
+                </SelectItem>
+                <SelectItem value="11-20" className="focus:bg-white/10">
+                  11-20
+                </SelectItem>
+                <SelectItem value="21-50" className="focus:bg-white/10">
+                  21-50
+                </SelectItem>
+                <SelectItem value="50+" className="focus:bg-white/10">
+                  50+
+                </SelectItem>
+              </SelectContent>
+            </Select>
+            {errors.quantity && (
+              <p className="text-red-500 text-sm mt-1">{errors.quantity}</p>
+            )}
+          </div>
+        </div>
+
+        {formData.productService === "machines" && (
+          <div>
+            <label
+              htmlFor="machine"
+              className="block text-white font-semibold mb-3"
+            >
+              Production Equipment <span className="text-red-500">*</span>
+            </label>
+            <Select
+              value={formData.machine}
+              onValueChange={(value) => {
+                setFormData({ ...formData, machine: value });
+                if (errors.machine) setErrors({ ...errors, machine: "" });
+              }}
+              required
+            >
+              <SelectTrigger
+                className={`w-full h-12 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                  errors.machine
+                    ? "border-red-500"
+                    : "border-white/20 focus:border-primary"
+                }`}
+                data-testid="select-machine"
+              >
+                <SelectValue placeholder="Select production equipment" />
+              </SelectTrigger>
+              <SelectContent className="bg-background border-white/20 text-white">
+                {Object.values(machines).map((machine) => (
+                  <SelectItem
+                    key={machine.id}
+                    value={machine.id}
+                    className="focus:bg-white/10"
+                  >
+                    {machine.name} {machine.nameHighlight}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.machine && (
+              <p className="text-red-500 text-sm mt-1">{errors.machine}</p>
+            )}
+          </div>
+        )}
 
         <div>
           <label

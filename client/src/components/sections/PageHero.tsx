@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import { useRef } from "react";
+import { ScrollArrow } from "./ScrollArrow";
 
 interface PageHeroProps {
   badge: string;
@@ -12,6 +14,7 @@ interface PageHeroProps {
   buttonText?: string;
   buttonHref?: string;
   onButtonClick?: () => void;
+  scrollText?: string;
 }
 
 export function PageHero({
@@ -24,7 +27,9 @@ export function PageHero({
   buttonText,
   buttonHref,
   onButtonClick,
+  scrollText = "Scroll to learn more",
 }: PageHeroProps) {
+  const heroRef = useRef<HTMLElement>(null);
   const button = buttonText ? (
     buttonHref ? (
       <Link href={buttonHref}>
@@ -48,6 +53,7 @@ export function PageHero({
 
   return (
     <section
+      ref={heroRef}
       className="min-h-[100vh] flex items-center pt-12 relative overflow-hidden"
       style={{
         backgroundImage: `url(${image})`,
@@ -57,8 +63,7 @@ export function PageHero({
       }}
     >
       {/* Background overlay for readability */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-primary/20 via-background/80 to-background/90" />
-      <div className="absolute inset-0 z-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+      <div className="absolute inset-0 z-0 bg-background/80" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div>
@@ -72,9 +77,7 @@ export function PageHero({
             {titleHighlight && (
               <>
                 {" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
-                  {titleHighlight}
-                </span>
+                <span className="text-primary">{titleHighlight}</span>
               </>
             )}
           </h1>
@@ -83,11 +86,12 @@ export function PageHero({
             {description}
           </p>
 
-          {button && (
-            <div className="flex flex-col sm:flex-row gap-4">{button}</div>
-          )}
+          {button && <div className="flex-responsive">{button}</div>}
         </div>
       </div>
+
+      {/* Scroll Arrow Indicator */}
+      <ScrollArrow heroRef={heroRef} text={scrollText} />
     </section>
   );
 }

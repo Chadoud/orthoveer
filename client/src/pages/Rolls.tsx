@@ -13,16 +13,18 @@ export default function Rolls() {
   return (
     <MaterialsPage
       badge="Bulk Manufacturing Materials"
-      title="High-Volume"
-      titleHighlight="Material Rolls"
+      title="Thermoforming"
+      titleHighlight="Rolls"
       description="Premium thermoplastic rolls for high-volume aligner production. Designed for thermoforming production with seamless integration."
       heroImage={rollsImage}
-      heroImageAlt="Material Rolls"
+      heroImageAlt="Thermoforming Material Rolls"
       materials={rolls}
       features={features}
       formTitle="Request Material Rolls"
       formDescription="Contact our materials team to request samples, quotes, or discuss bulk orders and customization options."
       submitLabel="Send Request"
+      sectionImage={rollsImage}
+      sectionImageAlt="Thermoforming Material Rolls"
     />
   );
 }
