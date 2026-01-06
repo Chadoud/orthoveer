@@ -18,6 +18,7 @@ export default function Blog() {
         description="Stay informed with the latest insights, best practices, and industry updates from the world of orthodontic manufacturing."
         image={darkHeroImage}
         imageAlt="Blog"
+        showContactButton={true}
       />
 
       {/* Blog Posts Grid */}

@@ -185,6 +185,7 @@ export default function Careers() {
         description="Be part of the future of orthodontic manufacturing. Join a team dedicated to precision, innovation, and transforming patient care."
         image={darkHeroImage}
         imageAlt="Careers at OrthoVeer"
+        showContactButton={true}
       />
 
       {/* Why Join Us Section */}

@@ -161,6 +161,12 @@ export function Navbar() {
                 About
               </Link>
               <Link
+                href="/team"
+                className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-4 py-2"
+              >
+                Team
+              </Link>
+              <Link
                 href="/careers"
                 className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-4 py-2"
               >
@@ -330,6 +336,13 @@ function MobileMenu({
                     onClick={() => setIsOpen(false)}
                   >
                     About
+                  </Link>
+                  <Link
+                    href="/team"
+                    className="text-xl font-medium text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Team
                   </Link>
                   <Link
                     href="/careers"

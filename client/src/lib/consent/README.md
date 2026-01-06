@@ -90,4 +90,3 @@ Consent is stored in localStorage as JSON:
 - All functions handle missing/corrupted storage gracefully
 - No browser API access at module top-level
 - Never throws errors (returns null/false on failure)
-

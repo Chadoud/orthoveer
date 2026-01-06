@@ -51,10 +51,9 @@ export function CookieBanner() {
       marketing: false,
     };
     setConsent(consent);
-    // No tracking initialization needed - consent revoked
-    // Note: If analytics was previously true, events will stop immediately
-    // because hasConsent('analytics') in events.ts will return false.
-    // GA script remains loaded but no events are sent.
+    // Trigger tracking cleanup immediately after consent is revoked
+    // This will unload GA and delete cookies if they were previously loaded
+    initTracking();
   };
 
   const handleSavePreferences = () => {
@@ -71,13 +70,13 @@ export function CookieBanner() {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
+      className="fixed bottom-0 left-0 right-0 z-50"
       role="dialog"
       aria-labelledby="cookie-banner-title"
       aria-modal="true"
     >
-      <Card className="mx-auto max-w-4xl bg-background/95 backdrop-blur-sm border-white/20 shadow-2xl">
-        <div className="p-6 md:p-8">
+      <Card className="w-full bg-background/50 backdrop-blur-sm border-white/20 shadow-2xl rounded-none border-t border-b-0 border-l-0 border-r-0">
+        <div className="p-6 md:p-8 container mx-auto">
           {!showCustomize ? (
             <>
               <h2
@@ -88,8 +87,8 @@ export function CookieBanner() {
               </h2>
               <p className="text-gray-300 mb-6 leading-relaxed">
                 We use cookies to enhance your browsing experience and analyze
-                site traffic. You can choose to accept all cookies, reject
-                non-essential cookies, or customize your preferences.
+                site traffic. You can choose to accept all cookies or customize
+                your preferences.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -97,13 +96,6 @@ export function CookieBanner() {
                   className="bg-primary hover:bg-primary/90 text-white"
                 >
                   Accept All
-                </Button>
-                <Button
-                  onClick={handleRejectNonEssential}
-                  variant="outline"
-                  className="border-white/20 text-white hover:bg-white/5"
-                >
-                  Reject Non-Essential
                 </Button>
                 <Button
                   onClick={() => setShowCustomize(true)}
@@ -213,4 +205,3 @@ export function CookieBanner() {
     </div>
   );
 }
-

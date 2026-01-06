@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { RouteTracker } from "@/components/layout/RouteTracker";
-import { initTracking } from "@/lib/tracking/init";
+import { initTracking, initConsentModeEarly } from "@/lib/tracking/init";
 import { routes, notFoundRoute } from "@/config/routes";
 
 function Router() {
@@ -29,6 +29,12 @@ function Router() {
 }
 
 function App() {
+  // Initialize Consent Mode early (before GA loads)
+  // This ensures GA respects consent even if it loads before user interaction
+  useEffect(() => {
+    initConsentModeEarly();
+  }, []);
+
   // Initialize tracking on app mount
   // This checks existing consent and loads GA if conditions are met
   useEffect(() => {

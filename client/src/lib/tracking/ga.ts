@@ -1,84 +1,120 @@
 /**
- * Google Analytics 4 loader and utilities.
- * Loads GA4 script dynamically only when explicitly allowed.
- * Never throws errors - all failures are silent.
- */
-
-declare global {
-  interface Window {
-    gtag?: (
-      command: "config" | "event" | "js" | "set",
-      targetId: string | Date,
-      config?: Record<string, unknown>
-    ) => void;
-    dataLayer?: unknown[];
-  }
-}
-
-let gaLoaded = false;
-
-/**
- * Check if GA is already loaded.
- */
-export function isGALoaded(): boolean {
-  return (
-    gaLoaded &&
-    typeof window !== "undefined" &&
-    typeof window.gtag === "function"
-  );
-}
-
-/**
- * Load and initialize Google Analytics 4.
- * Prevents double-loading.
- * Never throws - silently fails if script injection fails.
+ * Google Analytics 4 main coordination module.
+ * Re-exports and coordinates all tracking functionality.
  *
- * @param measurementId - GA4 measurement ID (e.g., "G-XXXXXXXXXX")
+ * This module maintains backward compatibility while using the new
+ * modular architecture internally.
  */
-export function loadGA(measurementId: string): void {
-  // Prevent double loading
-  if (isGALoaded()) {
-    return;
-  }
 
-  if (typeof window === "undefined") {
-    return;
-  }
+// Re-export cookie functions
+export {
+  getGACookies,
+  hasGACookies,
+  getCookieDomain,
+  getCookiePaths,
+  deleteAllGACookies,
+  supportsCookies,
+  supportsLocalStorage,
+} from "./cookies";
 
-  // Initialize dataLayer
-  window.dataLayer = window.dataLayer || [];
+// Re-export consent mode functions
+export { initConsentMode, updateConsentMode, createConsentConfig } from "./consent";
 
-  // Define gtag function
-  window.gtag = function (
-    command: "config" | "event" | "js" | "set",
-    targetId: string | Date,
-    config?: Record<string, unknown>
-  ) {
-    // eslint-disable-next-line prefer-rest-params
-    window.dataLayer?.push(arguments);
-  };
+// Re-export loader functions
+export {
+  loadGA,
+  unloadGA,
+  isGALoaded,
+  getMeasurementId,
+  setDependencies,
+  getDependencies,
+} from "./loader";
 
-  // Set initial timestamp
-  window.gtag("js", new Date());
+// Re-export validation functions
+export {
+  validateMeasurementId,
+  sanitizeEventName,
+  validateAndSanitizeEventName,
+  validateMeasurementIdOrThrow,
+  sanitizePayload,
+  validatePayload,
+  sanitizePath,
+  validatePathOrThrow,
+} from "./validation";
 
-  // Configure with anonymize_ip
-  window.gtag("config", measurementId, {
-    anonymize_ip: true,
-    page_path: window.location.pathname,
-    page_title: document.title,
-  });
+// Re-export utility functions
+export {
+  checkRateLimit,
+  resetRateLimit,
+  getRateLimitStats,
+  initRateLimitCleanup,
+  removeRateLimitCleanup,
+  isDuplicateEvent,
+  resetDeduplication,
+  initDeduplicationCleanup,
+  removeDeduplicationCleanup,
+  isGAConsentState,
+  isMeasurementId,
+  isEventName,
+  isPayload,
+  hasGtag,
+  isValidPath,
+  recordMetric,
+  getMetrics,
+  getMetricsByName,
+  getAverageMetric,
+  clearMetrics,
+  getMetricsSummary,
+  retryWithBackoff,
+  getGtagWindow,
+  isGtagAvailable,
+  getDataLayer,
+  getGtag,
+  queueEvent,
+  flushEventQueue,
+  clearEventQueue,
+  getQueueSize,
+  getQueueStats,
+  setQueuePersistence,
+  stopQueueFlushInterval,
+  addToBatch,
+  flushBatch,
+  clearBatch,
+  getBatchSize,
+  setBatchConfig,
+  setBatchingEnabled,
+  shouldSampleEvent,
+  getSamplingRate,
+} from "./utils";
 
-  // Inject script
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+// Re-export types for external use
+export type {
+  GAConsentState,
+  GAConsentConfig,
+  TrackingLogger,
+  GADependencies,
+  TrackingErrorCode,
+} from "./types";
 
-  script.onerror = () => {
-    // Silently handle script load failure
-    // Don't throw, don't log
-  };
+// Re-export error classes
+export {
+  TrackingError,
+  createGALoadError,
+  createGAUnloadError,
+  createInvalidMeasurementIdError,
+  createInvalidEventNameError,
+  createCookieDeletionError,
+  createConsentModeError,
+  createBrowserIncompatibleError,
+  createScriptTimeoutError,
+} from "./errors";
 
-  document.head.appendChild(script);
-  gaLoaded = true;
-}
+// Re-export logger functions
+export {
+  setTrackingLogger,
+  getTrackingLogger,
+  isLoggingEnabled,
+} from "./logger";
 
+// Re-export config
+export { GA_CONFIG } from "./config";

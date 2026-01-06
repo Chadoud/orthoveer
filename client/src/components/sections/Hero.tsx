@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useRef } from "react";
 import { track } from "@/lib/tracking/events";
@@ -58,13 +58,6 @@ export function Hero() {
                 Become a Partner <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
             </Link>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white/20 text-white hover:bg-white/5 rounded-full px-8 h-12 text-base font-medium backdrop-blur-sm"
-            >
-              <Play className="mr-2 w-4 h-4 fill-current" /> Our Process
-            </Button>
           </div>
         </div>
       </div>

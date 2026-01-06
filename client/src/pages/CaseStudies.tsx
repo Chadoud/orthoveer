@@ -113,6 +113,7 @@ export default function CaseStudies() {
         description="Discover how orthodontic practices and labs worldwide are achieving remarkable results with OrthoVeer solutions."
         image={labHeroImage}
         imageAlt="Case Studies"
+        showContactButton={true}
       />
 
       {/* Case Studies List */}

@@ -16,7 +16,7 @@ export function RouteTracker() {
     // On initial mount, wait a bit for GA to load (if consent exists)
     if (isInitialMount.current) {
       isInitialMount.current = false;
-      
+
       // Track initial page view if GA is already loaded (user has existing consent)
       // Use setTimeout to ensure GA script has time to initialize
       const timeoutId = setTimeout(() => {
@@ -24,7 +24,7 @@ export function RouteTracker() {
           trackPageView(location);
         }
       }, 100);
-      
+
       return () => clearTimeout(timeoutId);
     }
 
@@ -35,4 +35,3 @@ export function RouteTracker() {
 
   return null;
 }
-

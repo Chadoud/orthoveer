@@ -15,6 +15,7 @@ interface PageHeroProps {
   buttonHref?: string;
   onButtonClick?: () => void;
   scrollText?: string;
+  showContactButton?: boolean;
 }
 
 export function PageHero({
@@ -28,6 +29,7 @@ export function PageHero({
   buttonHref,
   onButtonClick,
   scrollText = "Scroll to learn more",
+  showContactButton = false,
 }: PageHeroProps) {
   const heroRef = useRef<HTMLElement>(null);
   const button = buttonText ? (
@@ -49,6 +51,17 @@ export function PageHero({
         {buttonText} <ArrowRight className="ml-2 w-4 h-4" />
       </Button>
     )
+  ) : null;
+
+  const contactButton = showContactButton ? (
+    <Link href="/contact">
+      <Button
+        size="lg"
+        className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+      >
+        Contact Us <ArrowRight className="ml-2 w-4 h-4" />
+      </Button>
+    </Link>
   ) : null;
 
   return (
@@ -86,7 +99,12 @@ export function PageHero({
             {description}
           </p>
 
-          {button && <div className="flex-responsive">{button}</div>}
+          {(button || contactButton) && (
+            <div className="flex-responsive">
+              {button}
+              {contactButton}
+            </div>
+          )}
         </div>
       </div>
 

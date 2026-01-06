@@ -9,6 +9,7 @@ import BlogPost from "@/pages/BlogPost";
 import CaseStudies from "@/pages/CaseStudies";
 import Contact from "@/pages/Contact";
 import Careers from "@/pages/Careers";
+import Team from "@/pages/Team";
 import WhiteLabeling from "@/pages/WhiteLabeling";
 import Solutions from "@/pages/Solutions";
 import MaxTrimT2 from "@/pages/machines/MaxTrimT2";
@@ -38,6 +39,7 @@ export const routes: Route[] = [
   { path: "/case-studies", component: CaseStudies },
   { path: "/contact", component: Contact },
   { path: "/careers", component: Careers },
+  { path: "/team", component: Team },
   { path: "/white-labeling", component: WhiteLabeling },
   { path: "/solutions", component: Solutions },
   { path: "/machines/maxtrim-t2", component: MaxTrimT2 },
