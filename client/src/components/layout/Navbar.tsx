@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import logoImage from "@assets/logo/logo.png";
+import { routePrefetcher } from "@/lib/prefetch/route-prefetcher";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -116,18 +117,40 @@ export function Navbar() {
                         <Link
                           href="/machines"
                           className="block px-6 py-4 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors"
+                          onMouseEnter={() =>
+                            routePrefetcher.scheduleHoverPrefetch("/machines")
+                          }
+                          onMouseLeave={() =>
+                            routePrefetcher.cancelHoverPrefetch("/machines")
+                          }
                         >
                           Production Equipment
                         </Link>
                         <Link
                           href="/plastics-materials"
                           className="block px-6 py-4 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors"
+                          onMouseEnter={() =>
+                            routePrefetcher.scheduleHoverPrefetch(
+                              "/plastics-materials"
+                            )
+                          }
+                          onMouseLeave={() =>
+                            routePrefetcher.cancelHoverPrefetch(
+                              "/plastics-materials"
+                            )
+                          }
                         >
                           Plastics
                         </Link>
                         <Link
                           href="/rolls"
                           className="block px-6 py-4 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors"
+                          onMouseEnter={() =>
+                            routePrefetcher.scheduleHoverPrefetch("/rolls")
+                          }
+                          onMouseLeave={() =>
+                            routePrefetcher.cancelHoverPrefetch("/rolls")
+                          }
                         >
                           Rolls
                         </Link>
@@ -140,6 +163,16 @@ export function Navbar() {
                         <Link
                           href="/white-labeling"
                           className="block px-6 py-4 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-md transition-colors"
+                          onMouseEnter={() =>
+                            routePrefetcher.scheduleHoverPrefetch(
+                              "/white-labeling"
+                            )
+                          }
+                          onMouseLeave={() =>
+                            routePrefetcher.cancelHoverPrefetch(
+                              "/white-labeling"
+                            )
+                          }
                         >
                           White Labeling
                         </Link>
@@ -151,30 +184,60 @@ export function Navbar() {
               <Link
                 href="/case-studies"
                 className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-4 py-2"
+                onMouseEnter={() =>
+                  routePrefetcher.scheduleHoverPrefetch("/case-studies")
+                }
+                onMouseLeave={() =>
+                  routePrefetcher.cancelHoverPrefetch("/case-studies")
+                }
               >
                 Case Studies
               </Link>
               <Link
                 href="/about"
                 className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-4 py-2"
+                onMouseEnter={() =>
+                  routePrefetcher.scheduleHoverPrefetch("/about")
+                }
+                onMouseLeave={() =>
+                  routePrefetcher.cancelHoverPrefetch("/about")
+                }
               >
                 About
               </Link>
               <Link
                 href="/team"
                 className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-4 py-2"
+                onMouseEnter={() =>
+                  routePrefetcher.scheduleHoverPrefetch("/team")
+                }
+                onMouseLeave={() =>
+                  routePrefetcher.cancelHoverPrefetch("/team")
+                }
               >
                 Team
               </Link>
               <Link
                 href="/careers"
                 className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-4 py-2"
+                onMouseEnter={() =>
+                  routePrefetcher.scheduleHoverPrefetch("/careers")
+                }
+                onMouseLeave={() =>
+                  routePrefetcher.cancelHoverPrefetch("/careers")
+                }
               >
                 Careers
               </Link>
               <Link
                 href="/blog"
                 className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-4 py-2"
+                onMouseEnter={() =>
+                  routePrefetcher.scheduleHoverPrefetch("/blog")
+                }
+                onMouseLeave={() =>
+                  routePrefetcher.cancelHoverPrefetch("/blog")
+                }
               >
                 Blog
               </Link>
@@ -182,7 +245,15 @@ export function Navbar() {
 
             {/* Contact Button - Right */}
             <div className="hidden lg:flex items-center gap-4 z-10 shrink-0">
-              <Link href="/contact">
+              <Link
+                href="/contact"
+                onMouseEnter={() =>
+                  routePrefetcher.scheduleHoverPrefetch("/contact")
+                }
+                onMouseLeave={() =>
+                  routePrefetcher.cancelHoverPrefetch("/contact")
+                }
+              >
                 <Button
                   className="bg-primary hover:bg-primary/90 text-white rounded-full px-6"
                   data-testid="button-contact"

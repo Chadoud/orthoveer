@@ -65,7 +65,8 @@ The application will be available at **http://localhost:3000**
 - 📝 **Blog System** - Blog listing and individual post pages with images
 - 📈 **Case Studies** - Success stories with testimonials and statistics
 - 👥 **About & Careers** - Company information and job listings
-- 📧 **Contact Forms** - Integrated forms with product/service selection
+- 📧 **Contact Forms** - Integrated forms with product/service selection and API integration
+- ⚖️ **Legal Pages** - Terms of Service, Privacy Policy, and Cookie Policy
 
 ### Design & UX
 
@@ -75,7 +76,9 @@ The application will be available at **http://localhost:3000**
 - 🎭 **Smooth Animations** - Scroll animations, hover effects, and transitions
 - 🔍 **SEO Optimized** - Proper heading hierarchy and meta tags
 - ♿ **Accessible** - Built with accessibility in mind using Radix UI primitives
-- 🍪 **Cookie Consent & Tracking** - EU/CH-compliant cookie consent system with granular controls and Google Analytics 4 integration
+- 🍪 **Cookie Consent & Tracking** - EU/CH-compliant cookie consent system with granular controls and Google Analytics 4 integration (Consent Mode v2)
+- 🛡️ **Error Handling** - React Error Boundaries with structured error logging
+- 🔄 **API Client** - Centralized API client with retry logic, caching, circuit breaker, and health monitoring
 
 ## 🛠 Technology Stack
 
@@ -123,19 +126,33 @@ OrthoVeer/
 │       │   ├── materials.ts   # Materials data
 │       │   ├── blog.ts        # Blog posts
 │       │   └── routes.tsx     # Route definitions
-│       ├── lib/                # Utilities and constants
+│       ├── lib/                # Utilities and libraries
+│       │   ├── analytics/     # Analytics and funnel tracking
+│       │   ├── api/           # API client, caching, circuit breaker
+│       │   ├── consent/       # Cookie consent management
+│       │   ├── constants/     # App constants
+│       │   ├── errors/        # Error logging and handling
+│       │   ├── monitoring/    # Health monitoring
+│       │   ├── prefetch/      # Route prefetching
 │       │   ├── styles/        # Modular style system
-│       │   ├── constants.ts   # App constants
-│       │   └── utils.ts       # Helper functions
+│       │   ├── tracking/      # Google Analytics tracking
+│       │   └── utils/         # Helper functions
 │       ├── pages/              # Page components
 │       │   ├── machines/      # 9 equipment pages
 │       │   └── [page].tsx    # Main pages
 │       └── types/              # TypeScript definitions
 ├── server/                      # Express server
-│   ├── index.ts               # Server entry
-│   ├── routes.ts              # API routes
-│   ├── static.ts              # Static file serving
-│   └── vite.ts                # Vite integration
+│   ├── api/                   # API handlers
+│   │   ├── contact.ts        # Contact form handler
+│   │   ├── careers.ts       # Career application handler
+│   │   └── middleware/     # Rate limiting middleware
+│   ├── lib/                  # Server utilities
+│   │   └── system/          # System monitoring
+│   ├── middleware/          # Express middleware (CSP)
+│   ├── index.ts             # Server entry
+│   ├── routes.ts            # API routes
+│   ├── static.ts            # Static file serving
+│   └── vite.ts              # Vite integration
 ├── attached_assets/            # Images and videos
 │   ├── machinesPage/          # Equipment images
 │   ├── materials/             # Material images
@@ -196,11 +213,10 @@ export default function MaxTrimT2() {
 
 #### 3. **Modular Style System**
 
-Three-layer styling approach:
+Two-layer styling approach:
 
-1. **Design Tokens** (`lib/design-tokens.ts`) - Color, spacing, typography constants
-2. **Style Variants** (`lib/styles/variants.ts`) - Pre-defined component styles
-3. **Utility Classes** (`index.css`) - Reusable layout patterns
+1. **Style Variants** (`lib/styles/variants.ts`) - Pre-defined component styles
+2. **Utility Classes** (`index.css`) - Reusable layout patterns
 
 **Rationale**:
 
@@ -389,24 +405,14 @@ See `HEADING_HIERARCHY.md` for detailed SEO guidelines.
 
 #### Known Issues
 
-1. **Legacy Style System**: `lib/styles.ts` is deprecated but still referenced
-
-   - **Action**: Migrate remaining components to `lib/styles/`
-   - **Priority**: Medium
-
-2. **No Error Boundary**: Unhandled errors crash entire app
-
-   - **Action**: Add React Error Boundary
-   - **Priority**: High
-
-3. **No Loading States**: No skeleton loaders for async content
+1. **No Loading States**: No skeleton loaders for async content
 
    - **Action**: Add loading states for better UX
    - **Priority**: Medium
 
-4. **Form Validation**: Client-side only, no server validation
-   - **Action**: Add API endpoint for form submission
-   - **Priority**: Low (forms currently email-based)
+2. **Form Validation**: Server-side validation could be enhanced
+   - **Action**: Add more comprehensive server-side validation
+   - **Priority**: Low (basic validation already implemented)
 
 #### Future Enhancements
 
@@ -444,9 +450,11 @@ See `HEADING_HIERARCHY.md` for detailed SEO guidelines.
 
 ### Testing Strategy
 
-**Current State**: No tests (technical debt)
+**Current State**: No automated tests (technical debt)
 
-**Recommended Approach**:
+**Note**: Test infrastructure (Vitest, Playwright) is not currently set up. The tracking system includes framework-agnostic integration tests in `client/src/lib/tracking/__tests__/`.
+
+**Recommended Approach** (when implementing):
 
 - **Unit tests**: Components, utilities (Vitest)
 - **Integration tests**: Form submissions, routing
@@ -455,11 +463,12 @@ See `HEADING_HIERARCHY.md` for detailed SEO guidelines.
 
 ### Security Considerations
 
-1. **Form Validation**: Client + server-side validation needed
+1. **Form Validation**: Client + server-side validation implemented
 2. **XSS Prevention**: React's built-in escaping
-3. **CSRF Protection**: Add tokens for form submissions
-4. **Content Security Policy**: Add CSP headers
-5. **Environment Variables**: Never commit secrets
+3. **CSRF Protection**: Add tokens for form submissions (future enhancement)
+4. **Content Security Policy**: CSP headers implemented
+5. **Rate Limiting**: Adaptive rate limiting on API endpoints
+6. **Environment Variables**: Never commit secrets
 
 ### Environment Variables
 
@@ -474,11 +483,11 @@ See `HEADING_HIERARCHY.md` for detailed SEO guidelines.
 
 ### Server (Express)
 
-| Variable   | Description                    | Required | Default     |
-| ---------- | ------------------------------ | -------- | ----------- |
-| `PORT`     | Server port                    | No       | `3000`      |
-| `HOST`     | Server host                    | No       | `localhost` |
-| `NODE_ENV` | Environment (development/production) | No | `development` |
+| Variable   | Description                          | Required | Default       |
+| ---------- | ------------------------------------ | -------- | ------------- |
+| `PORT`     | Server port                          | No       | `3000`        |
+| `HOST`     | Server host                          | No       | `localhost`   |
+| `NODE_ENV` | Environment (development/production) | No       | `development` |
 
 ## Deployment Architecture
 
@@ -559,20 +568,13 @@ import logo from "@assets/logo/logo.png"; // @assets/ → attached_assets/
 
 ### Style System
 
-The project uses a modular style system. See [Style System Documentation](client/src/lib/styles/README.md) for details.
+The project uses Tailwind CSS with shadcn/ui components for a modern, accessible UI.
 
-**Quick Example:**
+**Component Library:**
 
-```typescript
-import { section, card, button } from "@/lib/styles";
-
-// Use pre-defined variants
-<section className={section.large}>
-  <Card className={card.hover}>
-    <Button className={button.primary}>Click me</Button>
-  </Card>
-</section>;
-```
+- 56+ shadcn/ui components in `client/src/components/ui/`
+- Built on Radix UI primitives for accessibility
+- Fully customizable with Tailwind CSS
 
 **Utility Classes:**
 
@@ -658,7 +660,7 @@ The blog listing and individual post pages will automatically update.
 
 ### Updating Contact Information
 
-Edit `client/src/lib/constants.ts` - changes propagate to all pages automatically.
+Edit `client/src/lib/constants/contact.ts` - changes propagate to all pages automatically.
 
 ## 🚢 Deployment
 
@@ -699,11 +701,11 @@ For static hosting (Vercel, GitHub Pages, etc.):
 
 #### Server (Express)
 
-| Variable   | Description                    | Required | Default     |
-| ---------- | ------------------------------ | -------- | ----------- |
-| `PORT`     | Server port                    | No       | `3000`      |
-| `HOST`     | Server host                    | No       | `localhost` |
-| `NODE_ENV` | Environment (development/production) | No | `development` |
+| Variable   | Description                          | Required | Default       |
+| ---------- | ------------------------------------ | -------- | ------------- |
+| `PORT`     | Server port                          | No       | `3000`        |
+| `HOST`     | Server host                          | No       | `localhost`   |
+| `NODE_ENV` | Environment (development/production) | No       | `development` |
 
 ## 🔧 Troubleshooting
 
@@ -766,12 +768,8 @@ import image from "../assets/image.png";
 
 ### Internal Documentation
 
-- **[Style System](client/src/lib/styles/README.md)** - Complete style system guide
-- **[Style Utilities](client/src/lib/styles/utilities.md)** - Utility class reference
 - **[Cookie Consent & Tracking](client/src/lib/tracking/README.md)** - Cookie consent and GA4 tracking system
-- **[Consent Management](client/src/lib/consent/README.md)** - Consent storage and utilities
 - **[SEO Guidelines](HEADING_HIERARCHY.md)** - Heading hierarchy and SEO best practices
-- **[Legacy Styles](client/src/lib/STYLES.md)** - Legacy style documentation (deprecated)
 
 ### External Resources
 

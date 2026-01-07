@@ -16,6 +16,10 @@ import {
 } from "@/components/ui/dialog";
 import { Upload, Loader2, CheckCircle2, FileText, X } from "lucide-react";
 import { useState, useRef } from "react";
+import { api } from "@/lib/api/client";
+import { ApiError } from "@/lib/api/types";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { FormLoadingState } from "@/components/loading/FormLoadingState";
 
 interface CareerApplicationFormProps {
   jobTitle?: string;
@@ -232,7 +236,16 @@ export function CareerApplicationForm({
         }, 3000);
       }
     } catch (error) {
-      setErrors({ submit: "Failed to submit application. Please try again." });
+      if (error instanceof ApiError) {
+        if (error.code === "VALIDATION_ERROR") {
+          // Handle validation errors
+          setErrors({ submit: error.message });
+        } else {
+          setErrors({ submit: "Failed to submit application. Please try again." });
+        }
+      } else {
+        setErrors({ submit: "Failed to submit application. Please try again." });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -264,7 +277,12 @@ export function CareerApplicationForm({
 
   const selectedJob = availableJobs.find((job) => job.id === formData.position);
 
+  if (isSubmitting) {
+    return <FormLoadingState fieldCount={8} showButton />;
+  }
+
   const formContent = isSubmitted ? (
+    <ErrorBoundary errorBoundaryName="CareerApplicationForm-Success">
     <div className="text-center py-6 sm:py-8">
       <CheckCircle2 className="w-12 h-12 sm:w-16 sm:h-16 text-primary mx-auto mb-4" />
       <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-heading">
@@ -281,6 +299,7 @@ export function CareerApplicationForm({
         Close
       </Button>
     </div>
+    </ErrorBoundary>
   ) : (
     <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
       {/* Personal Information */}
@@ -705,7 +724,8 @@ export function CareerApplicationForm({
 
   // If used as standalone form
   return (
-    <Card className="bg-white/5 border-white/10 p-4 sm:p-6 md:p-8 lg:p-12">
+    <ErrorBoundary errorBoundaryName="CareerApplicationForm">
+      <Card className="bg-white/5 border-white/10 p-4 sm:p-6 md:p-8 lg:p-12">
       <div className="mb-6 sm:mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-heading">
           {jobTitle ? `Apply for ${jobTitle}` : "Apply for a Position"}
@@ -717,5 +737,6 @@ export function CareerApplicationForm({
       </div>
       {formContent}
     </Card>
+    </ErrorBoundary>
   );
 }

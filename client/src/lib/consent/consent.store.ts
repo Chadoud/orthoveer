@@ -54,6 +54,8 @@ export function setConsent(consent: CookieConsent): void {
 
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
+    // Dispatch custom event to notify components of consent change
+    window.dispatchEvent(new Event("consent-changed"));
   } catch {
     // Storage quota exceeded or other error
     // Silently fail, don't throw
@@ -84,6 +86,8 @@ export function resetConsent(): void {
 
   try {
     localStorage.removeItem(STORAGE_KEY);
+    // Dispatch custom event to notify components of consent reset
+    window.dispatchEvent(new Event("consent-changed"));
   } catch {
     // Silently fail if storage is unavailable
   }

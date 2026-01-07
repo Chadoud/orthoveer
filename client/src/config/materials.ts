@@ -22,9 +22,9 @@ export const plastics: MaterialType[] = [
     name: "FLEX Premium - E",
     description: "Premium elastomer for aligner and retainer applications",
     products: [
-      { name: "Retainer Pack", thickness: "1.00mm", price: "€38,00" },
-      { name: "Aligner Pack", thickness: "0.76mm", price: "€50,00" },
-      { name: "Aligner Pack", thickness: "0.63mm", price: "€36,00" },
+      { name: "Retainer Pack", thickness: "1.00mm" },
+      { name: "Aligner Pack", thickness: "0.76mm" },
+      { name: "Aligner Pack", thickness: "0.63mm" },
     ],
   },
   {
@@ -32,9 +32,9 @@ export const plastics: MaterialType[] = [
     name: "FLEX Dual Premium",
     description: "Dual-layer material for night guards and intensive applications",
     products: [
-      { name: "Night Guard Pack", thickness: "2.00mm", price: "€76,00" },
-      { name: "Night Guard Pack", thickness: "1.30mm", price: "€46,00" },
-      { name: "Night Guard Pack", thickness: "1.00mm", price: "€38,00" },
+      { name: "Night Guard Pack", thickness: "2.00mm" },
+      { name: "Night Guard Pack", thickness: "1.30mm" },
+      { name: "Night Guard Pack", thickness: "1.00mm" },
     ],
   },
   {
@@ -42,23 +42,23 @@ export const plastics: MaterialType[] = [
     name: "MAX White Premium",
     description: "Clear white material for cosmetic Hollywood smile applications",
     products: [
-      { name: "Hollywood Smile Pack", thickness: "1.00mm", price: "€48,00" },
-      { name: "Hollywood Smile Pack", thickness: "0.76mm", price: "€46,00" },
-      { name: "Hollywood Smile Pack", thickness: "0.50mm", price: "€44,00" },
+      { name: "Hollywood Smile Pack", thickness: "1.00mm" },
+      { name: "Hollywood Smile Pack", thickness: "0.76mm" },
+      { name: "Hollywood Smile Pack", thickness: "0.50mm" },
     ],
   },
   {
     id: "max-premium-e",
     name: "MAX Premium - E",
     description: "Premium standard material for general applications",
-    products: [{ name: "Retainer Pack", thickness: "1.00mm/125mm", price: "€34,00" }],
+    products: [{ name: "Retainer Pack", thickness: "1.00mm/125mm" }],
   },
   {
     id: "max-comfort",
     name: "MAX Comfort - E",
     description: "Comfortable formulation for sensitive patients",
     products: [
-      { name: "Aligner Pack", thickness: "0.76mm", price: "€35,00 - €40,00" },
+      { name: "Aligner Pack", thickness: "0.76mm" },
     ],
   },
   {
@@ -66,8 +66,8 @@ export const plastics: MaterialType[] = [
     name: "MAX Standard - E",
     description: "Standard material for cost-effective production",
     products: [
-      { name: "Retainer Pack", thickness: "1.00mm/125mm", price: "€35,00" },
-      { name: "Attachment Template Pack", thickness: "0.4mm", price: "€34,00" },
+      { name: "Retainer Pack", thickness: "1.00mm/125mm" },
+      { name: "Attachment Template Pack", thickness: "0.4mm" },
     ],
   },
 ];

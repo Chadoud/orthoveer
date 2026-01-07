@@ -3,7 +3,7 @@
  * Provides safe type narrowing for tracking system.
  */
 
-import type { GAConsentState } from "../types";
+import type { GAConsentState, GAWindow, GtagFunction } from "../types";
 
 /**
  * Type guard for GAConsentState.
@@ -16,7 +16,8 @@ export function isGAConsentState(value: unknown): value is GAConsentState {
 }
 
 /**
- * Type guard for valid measurement ID string.
+ * Type guard for measurement ID format.
+ * GA4 measurement IDs start with "G-" followed by 10 alphanumeric characters.
  *
  * @param value - Value to check
  * @returns true if value is a valid measurement ID format
@@ -26,83 +27,69 @@ export function isMeasurementId(value: unknown): value is string {
     return false;
   }
 
-  // Basic format check (G-XXXXXXXXXX or UA-XXXXX-X)
-  return /^(G-[A-Z0-9]+|UA-\d+-\d+)$/i.test(value.trim());
+  return /^G-[A-Z0-9]{10}$/i.test(value);
 }
 
 /**
- * Type guard for valid event name.
+ * Type guard for event name.
+ * Event names must be non-empty strings and follow GA naming conventions.
  *
  * @param value - Value to check
- * @returns true if value is a valid event name format
+ * @returns true if value is a valid event name
  */
 export function isEventName(value: unknown): value is string {
   if (typeof value !== "string") {
     return false;
   }
 
-  const trimmed = value.trim();
-  if (trimmed.length === 0 || trimmed.length > 40) {
-    return false;
-  }
-
-  // Only alphanumeric, underscore, hyphen allowed
-  return /^[a-zA-Z0-9_-]+$/.test(trimmed);
+  // Event names must be non-empty and not too long
+  return value.length > 0 && value.length <= 40;
 }
 
 /**
- * Type guard for valid payload object.
+ * Type guard for payload object.
+ * Payloads must be plain objects (not arrays, null, etc.).
  *
  * @param value - Value to check
  * @returns true if value is a valid payload
  */
-export function isPayload(
-  value: unknown
-): value is Record<string, unknown> {
-  if (!value || typeof value !== "object") {
-    return false;
-  }
-
-  if (Array.isArray(value)) {
-    return false;
-  }
-
-  return true;
+export function isPayload(value: unknown): value is Record<string, unknown> {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    !Array.isArray(value) &&
+    Object.getPrototypeOf(value) === Object.prototype
+  );
 }
 
 /**
- * Type guard for window with gtag.
+ * Type guard for window with gtag function.
  *
  * @param win - Window object to check
  * @returns true if window has gtag function
  */
 export function hasGtag(
   win: Window | undefined
-): win is Window & { gtag: (command: string, targetId: string, config?: Record<string, unknown>) => void } {
+): win is GAWindow & { gtag: GtagFunction } {
   if (!win) {
     return false;
   }
 
-  return typeof win.gtag === "function";
+  const gaWin = win as GAWindow;
+  return typeof gaWin.gtag === "function";
 }
 
 /**
- * Type guard for valid page path.
+ * Type guard for valid path.
+ * Paths must be strings starting with "/".
  *
- * @param path - Path to validate
- * @returns true if path is valid
+ * @param value - Value to check
+ * @returns true if value is a valid path
  */
-export function isValidPath(path: unknown): path is string {
-  if (typeof path !== "string") {
+export function isValidPath(value: unknown): value is string {
+  if (typeof value !== "string") {
     return false;
   }
 
-  const trimmed = path.trim();
-  if (trimmed.length === 0) {
-    return false;
-  }
-
-  // Path should start with /
-  return trimmed.startsWith("/");
+  return value.startsWith("/");
 }
-

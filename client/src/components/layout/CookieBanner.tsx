@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { setConsent } from "@/lib/consent/consent.store";
+import { Link } from "wouter";
+import { setConsent, getConsent } from "@/lib/consent/consent.store";
 import { isConsentRequired } from "@/lib/consent/consent.utils";
 import { initTracking } from "@/lib/tracking/init";
 import type { CookieConsent } from "@/lib/consent/consent.types";
@@ -16,9 +17,41 @@ export function CookieBanner() {
   const [showCustomize, setShowCustomize] = useState(false);
   const [analyticsEnabled, setAnalyticsEnabled] = useState(false);
   const [marketingEnabled, setMarketingEnabled] = useState(false);
+  // Initialize with true to ensure banner shows by default on first render
+  // Then immediately check actual consent status
+  const [shouldShow, setShouldShow] = useState(true);
 
-  // Check if banner should be shown
-  const shouldShow = isConsentRequired();
+  // Check consent status on mount and listen for changes
+  useEffect(() => {
+    // Check immediately on mount - this ensures banner shows by default
+    const checkConsent = () => {
+      setShouldShow(isConsentRequired());
+    };
+
+    // Check right away
+    checkConsent();
+
+    // Listen for storage changes (e.g., from other tabs or resetConsent)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "orthoveer_cookie_consent" || e.key === null) {
+        checkConsent();
+      }
+    };
+
+    // Listen for custom events (e.g., when consent is set in this tab)
+    const handleConsentChange = () => {
+      checkConsent();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    // Custom event for same-tab updates
+    window.addEventListener("consent-changed", handleConsentChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("consent-changed", handleConsentChange);
+    };
+  }, []);
 
   // Reset toggles when customize view is opened
   useEffect(() => {
@@ -39,20 +72,11 @@ export function CookieBanner() {
       marketing: true,
     };
     setConsent(consent);
+    setShouldShow(false);
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new Event("consent-changed"));
     // Trigger tracking initialization immediately after consent is set
     // This is the single place allowed to call initTracking after consent change
-    initTracking();
-  };
-
-  const handleRejectNonEssential = () => {
-    const consent: CookieConsent = {
-      necessary: true,
-      analytics: false,
-      marketing: false,
-    };
-    setConsent(consent);
-    // Trigger tracking cleanup immediately after consent is revoked
-    // This will unload GA and delete cookies if they were previously loaded
     initTracking();
   };
 
@@ -63,6 +87,9 @@ export function CookieBanner() {
       marketing: marketingEnabled,
     };
     setConsent(consent);
+    setShouldShow(false);
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new Event("consent-changed"));
     // Trigger tracking initialization immediately after consent is set
     // initTracking will check if analytics is enabled
     initTracking();
@@ -85,10 +112,34 @@ export function CookieBanner() {
               >
                 Cookie Preferences
               </h2>
-              <p className="text-gray-300 mb-6 leading-relaxed">
+              <p className="text-gray-300 mb-4 leading-relaxed">
                 We use cookies to enhance your browsing experience and analyze
                 site traffic. You can choose to accept all cookies or customize
                 your preferences.
+              </p>
+              <p className="text-sm text-gray-400 mb-6">
+                By continuing, you agree to our{" "}
+                <Link
+                  href="/terms-of-service"
+                  className="text-primary hover:text-primary/80 underline"
+                >
+                  Terms of Service
+                </Link>
+                {", "}
+                <Link
+                  href="/privacy-policy"
+                  className="text-primary hover:text-primary/80 underline"
+                >
+                  Privacy Policy
+                </Link>
+                {" and "}
+                <Link
+                  href="/cookie-policy"
+                  className="text-primary hover:text-primary/80 underline"
+                >
+                  Cookie Policy
+                </Link>
+                .
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
@@ -114,9 +165,26 @@ export function CookieBanner() {
               >
                 Customize Cookie Preferences
               </h2>
-              <p className="text-gray-300 mb-6 leading-relaxed">
+              <p className="text-gray-300 mb-4 leading-relaxed">
                 Choose which cookies you want to allow. Necessary cookies are
                 always enabled as they are required for the site to function.
+              </p>
+              <p className="text-sm text-gray-400 mb-6">
+                Learn more in our{" "}
+                <Link
+                  href="/cookie-policy"
+                  className="text-primary hover:text-primary/80 underline"
+                >
+                  Cookie Policy
+                </Link>
+                {" and "}
+                <Link
+                  href="/privacy-policy"
+                  className="text-primary hover:text-primary/80 underline"
+                >
+                  Privacy Policy
+                </Link>
+                .
               </p>
 
               <div className="space-y-6 mb-6">

@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useLocation } from "wouter";
 import { trackPageView } from "@/lib/tracking/events";
 import { isGALoaded } from "@/lib/tracking/ga";
+import { routePrefetcher } from "@/lib/prefetch/route-prefetcher";
 
 /**
  * Route tracker component for SPA page view tracking.
@@ -31,6 +32,9 @@ export function RouteTracker() {
     // Track page view on route change
     // trackPageView is a no-op if consent is missing or GA is not loaded
     trackPageView(location);
+    
+    // Prefetch likely next routes when route changes
+    routePrefetcher.prefetchLikelyNextRoutes(location);
   }, [location]);
 
   return null;

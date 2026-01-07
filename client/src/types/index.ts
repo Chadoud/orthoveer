@@ -1,36 +1,14 @@
 /**
- * Shared TypeScript types and interfaces
+ * Central export point for all TypeScript types.
+ * Re-exports all domain-specific types for convenient importing.
  */
 
-export interface BlogPost {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  author: string;
-  date: string;
-  category: string;
-  readTime: string;
-  content: string[];
-  image?: string;
-}
+// Re-export React types for convenience
+export type { ComponentType, ReactNode } from "react";
 
-export interface CaseStudy {
-  id: string;
-  title: string;
-  client: string;
-  industry: string;
-  challenge: string;
-  solution: string;
-  results: {
-    metric: string;
-    value: string;
-  }[];
-  testimonial?: {
-    quote: string;
-    author: string;
-    role: string;
-    authorImage?: string;
-  };
-}
+// Domain-specific types
+export * from "./routes";
+export * from "./machines";
+export * from "./api";
+export * from "./blog";
 

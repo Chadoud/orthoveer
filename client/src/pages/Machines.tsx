@@ -6,30 +6,10 @@ import { Link } from "wouter";
 import { machines as machinesConfig } from "@/config/machines";
 import { useRef } from "react";
 import { ScrollArrow } from "@/components/sections/ScrollArrow";
-import heroMachinesVideo from "@assets/machinesPage/heroMachines.mp4";
+import { videos } from "@/lib/assets";
+import { getAllMachineImages } from "@/lib/assets/machines";
 
-// Import machine images for listing
-import maxTrimT2 from "@assets/machinesPage/maxtrim-t2.png";
-import maxTrimT1 from "@assets/machinesPage/maxtrim-t1.png";
-import maxFormL2 from "@assets/machinesPage/maxform-l2.png";
-import maxScanS1 from "@assets/machinesPage/maxscan-s1.png";
-import maxPrinterP2 from "@assets/machinesPage/maxprinter-p2.png";
-import maxPrinterP1 from "@assets/machinesPage/maxprinter-p1.png";
-import maxMarkM2 from "@assets/machinesPage/maxmark-m2.png";
-import maxPolishI from "@assets/machinesPage/maxpolish-i.png";
-import maxPolishII from "@assets/machinesPage/maxpolish-ii.png";
-
-const machineImages: Record<string, string> = {
-  "maxtrim-t2": maxTrimT2,
-  "maxtrim-t1": maxTrimT1,
-  "maxform-l2": maxFormL2,
-  "maxscan-s1": maxScanS1,
-  "maxprinter-p2": maxPrinterP2,
-  "maxprinter-p1": maxPrinterP1,
-  "maxmark-m2": maxMarkM2,
-  "maxpolish-i": maxPolishI,
-  "maxpolish-ii": maxPolishII,
-};
+const machineImages = getAllMachineImages();
 
 const machines = Object.values(machinesConfig).map((machine) => ({
   ...machine,
@@ -58,7 +38,7 @@ export default function Machines() {
             playsInline
             className="w-full h-full object-cover opacity-60"
           >
-            <source src={heroMachinesVideo} type="video/mp4" />
+            <source src={videos.heroMachines} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-background/80" />
         </div>

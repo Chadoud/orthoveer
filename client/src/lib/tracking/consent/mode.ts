@@ -3,10 +3,11 @@
  * Manages consent state for Google Analytics and advertising features.
  */
 
-import type { GAConsentConfig, GAConsentState } from "../types";
+import type { GAConsentConfig, GAConsentState, GAWindow } from "../types";
 import { CONSENT_UPDATE_WAIT } from "../config";
 import { getTrackingLogger } from "../logger";
 import { createConsentModeError } from "../errors";
+import { getDataLayer, getGtag } from "../utils/window";
 
 /**
  * Create a consent configuration object.
@@ -63,18 +64,20 @@ export function initConsentMode(
   const logger = getTrackingLogger();
 
   try {
+    const gaWin = win as GAWindow;
+    
     // Initialize dataLayer if not already initialized
-    win.dataLayer = win.dataLayer || [];
+    gaWin.dataLayer = gaWin.dataLayer || [];
 
     // Define gtag function if not already defined
-    if (typeof win.gtag !== "function") {
-      win.gtag = function (
+    if (typeof gaWin.gtag !== "function") {
+      gaWin.gtag = function (
         command: "config" | "event" | "js" | "set" | "consent",
         targetId: string | Date | "default" | "update",
         config?: Record<string, unknown>
       ) {
         // eslint-disable-next-line prefer-rest-params
-        win.dataLayer?.push(arguments);
+        gaWin.dataLayer?.push(arguments);
       };
     }
 
@@ -86,7 +89,7 @@ export function initConsentMode(
     );
 
     // Set initial consent state (before GA loads)
-    win.gtag("consent", "default", config);
+    gaWin.gtag("consent", "default", config as unknown as Record<string, unknown>);
 
     logger.debug?.("Consent mode initialized", {
       analytics: config.analytics_storage,
@@ -117,7 +120,12 @@ export function updateConsentMode(
   const win =
     window ?? (typeof globalThis !== "undefined" && globalThis.window ? globalThis.window : undefined);
 
-  if (!win || typeof win.gtag !== "function") {
+  if (!win) {
+    return;
+  }
+
+  const gtag = getGtag(win);
+  if (!gtag) {
     return;
   }
 
@@ -128,7 +136,7 @@ export function updateConsentMode(
     const config = createConsentConfig(analyticsGranted, marketingGranted);
 
     // Update consent state
-    win.gtag("consent", "update", config);
+    gtag("consent", "update", config as unknown as Record<string, unknown>);
 
     logger.debug?.("Consent mode updated", {
       analytics: config.analytics_storage,

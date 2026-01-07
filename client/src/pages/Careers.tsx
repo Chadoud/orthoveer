@@ -2,7 +2,7 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { PageHero } from "@/components/sections/PageHero";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CareerApplicationForm } from "@/components/forms/CareerApplicationForm";
+import { CareerApplicationForm } from "@/components/forms";
 import {
   Briefcase,
   MapPin,

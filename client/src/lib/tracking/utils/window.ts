@@ -71,6 +71,6 @@ export function getGtag(
     return undefined;
   }
 
-  return windowObj.gtag;
+  const gaWin = windowObj as GAWindow;
+  return gaWin.gtag as GtagFunction | undefined;
 }
-

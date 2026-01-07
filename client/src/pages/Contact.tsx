@@ -1,5 +1,5 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import { ContactForm } from "@/components/forms/ContactForm";
+import { ContactForm } from "@/components/forms";
 import { useRef } from "react";
 import { ScrollArrow } from "@/components/sections/ScrollArrow";
 import heroVideo from "@assets/homePage/homeHero.mp4";

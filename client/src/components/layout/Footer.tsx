@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { CONTACT_INFO } from "@/lib/constants";
+import { CONTACT_INFO } from "@/lib/constants/contact";
 import { resetConsent } from "@/lib/consent/consent.store";
 import logoImage from "@assets/logo/logo.png";
 
@@ -20,10 +20,6 @@ export function Footer() {
               />
               <span className="font-heading font-bold text-xl tracking-tight text-white">
                 OrthoVeer
-                <br className="leading-none" />
-                <span className="text-sm text-gray-400 -mt-1 block">
-                  Dental
-                </span>
               </span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
@@ -154,12 +150,15 @@ export function Footer() {
             >
               Cookie Settings
             </button>
-            <a href="#" className="hover:text-white transition-colors">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
+            </Link>
+            <Link href="/terms-of-service" className="hover:text-white transition-colors">
               Terms of Service
-            </a>
+            </Link>
+            <Link href="/cookie-policy" className="hover:text-white transition-colors">
+              Cookie Policy
+            </Link>
           </div>
         </div>
       </div>

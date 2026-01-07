@@ -2,6 +2,8 @@
  * Machine data configuration
  */
 
+import type { ComponentType } from "react";
+
 export interface MachineSpec {
   label: string;
   value: string;
@@ -240,4 +242,29 @@ export const machines: Record<string, MachineData> = {
     hasSpecs: false,
   },
 };
+
+/**
+ * Generate route configurations for all machines.
+ * Used to automatically create routes from machine data.
+ */
+export function generateMachineRoutes(): Array<{
+  path: string;
+  component: () => Promise<{ default: ComponentType }>;
+  lazy: true;
+  title: string;
+  description: string;
+  meta: { preload: false };
+}> {
+  return Object.keys(machines).map((machineId) => {
+    const machine = machines[machineId];
+    return {
+      path: `/machines/${machineId}`,
+      component: () => import("@/pages/machines/[machineId]"),
+      lazy: true as const,
+      title: `${machine.name} ${machine.nameHighlight} - ${machine.category}`,
+      description: machine.description,
+      meta: { preload: false as const },
+    };
+  });
+}
 

@@ -28,57 +28,57 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     id: "1",
-    name: "Leadership Team",
-    role: "Executive Leadership",
+    name: "Dr. Sarah Chen",
+    role: "Chief Executive Officer",
     department: "Management",
-    bio: "Our leadership team brings decades of combined experience in orthodontics, manufacturing, and medical device innovation.",
+    bio: "With over 15 years of experience in medical device manufacturing, Dr. Chen leads OrthoVeer's strategic vision and innovation initiatives.",
     linkedin: "#",
-    email: "leadership@orthoveer.com",
+    email: "s.chen@orthoveer.com",
   },
   {
     id: "2",
-    name: "Engineering Team",
-    role: "Engineering & Innovation",
+    name: "Michael Rodriguez",
+    role: "Head of Engineering",
     department: "Engineering",
-    bio: "Our engineering team designs and optimizes manufacturing processes, ensuring precision and efficiency in every aligner we produce.",
+    bio: "Michael specializes in manufacturing automation and process optimization, ensuring precision in every aligner we produce.",
     linkedin: "#",
-    email: "engineering@orthoveer.com",
+    email: "m.rodriguez@orthoveer.com",
   },
   {
     id: "3",
-    name: "Quality Team",
-    role: "Quality Assurance",
+    name: "Emma Thompson",
+    role: "Quality Assurance Manager",
     department: "Quality",
-    bio: "Dedicated to maintaining the highest standards, our quality team ensures every product meets ISO 13485 certification requirements.",
+    bio: "Emma ensures every product meets ISO 13485 certification requirements, maintaining the highest standards in quality control.",
     linkedin: "#",
-    email: "quality@orthoveer.com",
+    email: "e.thompson@orthoveer.com",
   },
   {
     id: "4",
-    name: "Clinical Support Team",
-    role: "Clinical Services",
+    name: "Dr. James Wilson",
+    role: "Clinical Director",
     department: "Clinical",
-    bio: "Our clinical support team works directly with orthodontic professionals, providing guidance and expertise throughout the treatment process.",
+    bio: "Dr. Wilson works directly with orthodontic professionals, providing clinical guidance and expertise throughout the treatment process.",
     linkedin: "#",
-    email: "clinical@orthoveer.com",
+    email: "j.wilson@orthoveer.com",
   },
   {
     id: "5",
-    name: "Manufacturing Team",
-    role: "Production & Operations",
+    name: "Lisa Anderson",
+    role: "Production Manager",
     department: "Manufacturing",
-    bio: "Our skilled manufacturing team operates state-of-the-art equipment to produce high-quality aligners with precision and care.",
+    bio: "Lisa oversees our manufacturing operations, ensuring our skilled team produces high-quality aligners with precision and care.",
     linkedin: "#",
-    email: "manufacturing@orthoveer.com",
+    email: "l.anderson@orthoveer.com",
   },
   {
     id: "6",
-    name: "Sales & Business Development",
-    role: "Business Development",
+    name: "David Park",
+    role: "Business Development Director",
     department: "Sales",
-    bio: "Our sales team builds relationships with orthodontic practices and labs, helping them find the right solutions for their needs.",
+    bio: "David builds relationships with orthodontic practices and labs, helping them find the right solutions for their specific needs.",
     linkedin: "#",
-    email: "sales@orthoveer.com",
+    email: "d.park@orthoveer.com",
   },
 ];
 
@@ -86,22 +86,26 @@ const values = [
   {
     icon: Award,
     title: "Excellence",
-    description: "We strive for excellence in every product and service we deliver.",
+    description:
+      "We strive for excellence in every product and service we deliver.",
   },
   {
     icon: Lightbulb,
     title: "Innovation",
-    description: "We continuously innovate to improve orthodontic care and manufacturing processes.",
+    description:
+      "We continuously innovate to improve orthodontic care and manufacturing processes.",
   },
   {
     icon: Heart,
     title: "Patient Care",
-    description: "Our work is driven by a commitment to improving patient outcomes.",
+    description:
+      "Our work is driven by a commitment to improving patient outcomes.",
   },
   {
     icon: Users,
     title: "Collaboration",
-    description: "We believe in the power of teamwork and collaborative problem-solving.",
+    description:
+      "We believe in the power of teamwork and collaborative problem-solving.",
   },
 ];
 
@@ -162,7 +166,7 @@ export default function Team() {
               Our Team
             </h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-              Meet the talented professionals who make OrthoVeer a leader in
+              Meet the talented individuals who make OrthoVeer a leader in
               orthodontic manufacturing.
             </p>
           </div>
@@ -226,8 +230,9 @@ export default function Team() {
               Join Our Team
             </h2>
             <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-              We're always looking for talented individuals who share our passion
-              for innovation and excellence in orthodontic manufacturing.
+              We're always looking for talented individuals who share our
+              passion for innovation and excellence in orthodontic
+              manufacturing.
             </p>
             <Link href="/careers">
               <Button
@@ -279,5 +284,3 @@ export default function Team() {
     </PageLayout>
   );
 }
-
-

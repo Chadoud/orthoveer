@@ -3,7 +3,7 @@
  * Handles dynamic script injection and cleanup with dependency injection.
  */
 
-import type { GADependencies, GtagFunction } from "../types";
+import type { GADependencies, GtagFunction, GAWindow } from "../types";
 import { GA_CONFIG } from "../config";
 import { getTrackingLogger } from "../logger";
 import {
@@ -64,10 +64,11 @@ export function getDependencies(): GADependencies {
  */
 export function isGALoaded(): boolean {
   const { window: win } = dependencies;
+  if (!win) return false;
+  const gaWin = win as GAWindow;
   return (
     gaLoaded &&
-    typeof win !== "undefined" &&
-    typeof win.gtag === "function"
+    typeof gaWin.gtag === "function"
   );
 }
 
@@ -112,24 +113,26 @@ export function loadGA(measurementIdParam: string): void {
         ? performance.now()
         : Date.now();
 
+    const gaWin = win as GAWindow;
+    
     // Initialize dataLayer
-    win.dataLayer = win.dataLayer || [];
+    gaWin.dataLayer = gaWin.dataLayer || [];
 
     // Define gtag function
-    win.gtag = function (
+    gaWin.gtag = function (
       command: "config" | "event" | "js" | "set" | "consent",
       targetId: string | Date | "default" | "update",
       config?: Record<string, unknown>
     ) {
       // eslint-disable-next-line prefer-rest-params
-      win.dataLayer?.push(arguments);
+      gaWin.dataLayer?.push(arguments);
     } as GtagFunction;
 
     // Set initial timestamp
-    win.gtag("js", new Date());
+    gaWin.gtag("js", new Date());
 
     // Configure with enhanced privacy settings
-    win.gtag("config", measurementIdParam, {
+    gaWin.gtag("config", measurementIdParam, {
       anonymize_ip: true,
       cookie_expires: GA_CONFIG.COOKIE_EXPIRES,
       allow_google_signals: false,
@@ -230,13 +233,14 @@ export function unloadGA(): void {
       : Date.now();
 
   try {
+    const gaWin = win as GAWindow;
     // Clear dataLayer
-    if (win.dataLayer) {
-      win.dataLayer = [];
+    if (gaWin.dataLayer) {
+      gaWin.dataLayer = [];
     }
 
     // Remove gtag function
-    delete win.gtag;
+    delete gaWin.gtag;
 
     // Clean up all script elements
     const scriptsToRemove: HTMLScriptElement[] = [];

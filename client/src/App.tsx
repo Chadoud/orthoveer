@@ -1,20 +1,32 @@
 import { Switch, Route } from "wouter";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { RouteTracker } from "@/components/layout/RouteTracker";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { PageLoadingState } from "@/components/loading/PageLoadingState";
 import { initTracking, initConsentModeEarly } from "@/lib/tracking/init";
-import { routes, notFoundRoute } from "@/config/routes";
+import { routes, notFoundRoute, routeConfigs, isLazyRoute } from "@/config/routes";
+import { routePrefetcher } from "@/lib/prefetch/route-prefetcher";
 
 function Router() {
   return (
     <Switch>
       {routes.map((route) => {
+        const config = routeConfigs.find((r) => r.path === route.path);
+        const isLazy = config && isLazyRoute(config);
         const Component = route.component;
+
         return (
           <Route key={route.path} path={route.path}>
-            <Component />
+            {isLazy ? (
+              <Suspense fallback={<PageLoadingState message="Loading page..." />}>
+                <Component />
+              </Suspense>
+            ) : (
+              <Component />
+            )}
           </Route>
         );
       })}
@@ -41,13 +53,20 @@ function App() {
     initTracking();
   }, []);
 
+  // Prefetch priority routes on mount
+  useEffect(() => {
+    routePrefetcher.prefetchPriorityRoutes();
+  }, []);
+
   return (
-    <TooltipProvider>
-      <ScrollToTop />
-      <RouteTracker />
-      <Toaster />
-      <Router />
-    </TooltipProvider>
+    <ErrorBoundary errorBoundaryName="App">
+      <TooltipProvider>
+        <ScrollToTop />
+        <RouteTracker />
+        <Toaster />
+        <Router />
+      </TooltipProvider>
+    </ErrorBoundary>
   );
 }
 

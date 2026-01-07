@@ -3,7 +3,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { Card } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 import { useState } from "react";
-import { ContactForm } from "@/components/forms/ContactForm";
+import { ContactForm } from "@/components/forms";
 import { containerClass, sectionClass } from "@/lib/cn-utils";
 import type { MaterialType } from "@/config/materials";
 

@@ -1,9 +1,6 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import { MachineHero } from "@/components/machines/MachineHero";
-import { MachineSpecs } from "@/components/machines/MachineSpecs";
-import { MachineFeatures } from "@/components/machines/MachineFeatures";
-import { EquipmentParameters } from "@/components/machines/EquipmentParameters";
-import { ContactForm } from "@/components/forms/ContactForm";
+import { MachineHero, MachineSpecs, MachineFeatures, EquipmentParameters } from "@/components/machines";
+import { ContactForm } from "@/components/forms";
 import { machines, type MachineData } from "@/config/machines";
 
 interface MachinePageProps {

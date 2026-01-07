@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, User, Tag, ArrowLeft, Clock } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { getBlogPostBySlug } from "@/config/blog";
-import { NotFound } from "@/pages/not-found";
+import NotFound from "@/pages/not-found";
 import labHeroImage from "@assets/aboutPage/factory.jpg";
 
 export default function BlogPostPage() {

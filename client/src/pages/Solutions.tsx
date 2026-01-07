@@ -1,7 +1,7 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ContactForm } from "@/components/forms/ContactForm";
+import { ContactForm } from "@/components/forms";
 import {
   Factory,
   Package,

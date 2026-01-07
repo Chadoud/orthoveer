@@ -9,9 +9,14 @@ import {
 } from "@/components/ui/select";
 import { Mail, Phone, Loader2, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
-import { CONTACT_INFO } from "@/lib/constants";
+import { CONTACT_INFO } from "@/lib/constants/contact";
 import { machines } from "@/config/machines";
 import { track } from "@/lib/tracking/events";
+import { trackContactFunnel } from "@/lib/analytics/funnels";
+import { api } from "@/lib/api/client";
+import { ApiError } from "@/lib/api/types";
+import { FormLoadingState } from "@/components/loading/FormLoadingState";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 interface ContactFormProps {
   title?: string;
@@ -96,7 +101,9 @@ export function ContactForm({
 
       setIsSubmitted(true);
 
-      // Track form submission (no-op if analytics consent missing)
+      // Track form submission and success
+      trackContactFunnel("form_submit");
+      trackContactFunnel("form_success");
       track("contact_form_submit", {
         form_type: "contact",
         context: "general",
@@ -118,369 +125,386 @@ export function ContactForm({
         setIsSubmitted(false);
       }, 5000);
     } catch (error) {
-      setErrors({ submit: "Failed to send message. Please try again." });
+      if (error instanceof ApiError) {
+        if (error.code === "VALIDATION_ERROR") {
+          // Handle validation errors
+          setErrors({ submit: error.message });
+        } else {
+          setErrors({ submit: "Failed to send message. Please try again." });
+        }
+      } else {
+        setErrors({ submit: "Failed to send message. Please try again." });
+      }
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  if (isSubmitting) {
+    return <FormLoadingState fieldCount={6} showButton />;
+  }
+
   if (isSubmitted) {
     return (
-      <Card className="bg-white/5 border-white/10 p-8 md:p-12">
-        <div className="text-center py-8">
-          <CheckCircle2 className="w-16 h-16 text-primary mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-white mb-2 font-heading">
-            Message Sent Successfully!
-          </h3>
-          <p className="text-gray-400">
-            Thank you for contacting us. We'll get back to you as soon as
-            possible.
-          </p>
-        </div>
-      </Card>
+      <ErrorBoundary errorBoundaryName="ContactForm-Success">
+        <Card className="bg-white/5 border-white/10 p-8 md:p-12">
+          <div className="text-center py-8">
+            <CheckCircle2 className="w-16 h-16 text-primary mx-auto mb-4" />
+            <h3 className="text-2xl font-bold text-white mb-2 font-heading">
+              Message Sent Successfully!
+            </h3>
+            <p className="text-gray-400">
+              Thank you for contacting us. We'll get back to you as soon as
+              possible.
+            </p>
+          </div>
+        </Card>
+      </ErrorBoundary>
     );
   }
 
   return (
-    <Card className="bg-white/5 border-white/10 p-8 md:p-12">
-      <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-        <div className="grid-2col-lg">
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-white font-semibold mb-3"
-            >
-              Full Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="name"
-              type="text"
-              value={formData.name}
-              onChange={(e) => {
-                setFormData({ ...formData, name: e.target.value });
-                if (errors.name) setErrors({ ...errors, name: "" });
-              }}
-              className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
-                errors.name
-                  ? "border-red-500"
-                  : "border-white/20 focus:border-primary"
-              }`}
-              placeholder="John Doe"
-              data-testid="input-name"
-              required
-              aria-invalid={!!errors.name}
-              aria-describedby={errors.name ? "name-error" : undefined}
-            />
-            {errors.name && (
-              <p id="name-error" className="text-red-500 text-sm mt-1">
-                {errors.name}
-              </p>
-            )}
-          </div>
-          <div>
-            <label
-              htmlFor="company"
-              className="block text-white font-semibold mb-3"
-            >
-              Company
-            </label>
-            <input
-              id="company"
-              type="text"
-              value={formData.company}
-              onChange={(e) =>
-                setFormData({ ...formData, company: e.target.value })
-              }
-              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
-              placeholder="Your Company"
-              data-testid="input-company"
-            />
-          </div>
-        </div>
-
-        <div className="grid-2col-lg">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-white font-semibold mb-3"
-            >
-              Email <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={formData.email}
-              onChange={(e) => {
-                setFormData({ ...formData, email: e.target.value });
-                if (errors.email) setErrors({ ...errors, email: "" });
-              }}
-              className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
-                errors.email
-                  ? "border-red-500"
-                  : "border-white/20 focus:border-primary"
-              }`}
-              placeholder="contact@company.com"
-              data-testid="input-email"
-              required
-              aria-invalid={!!errors.email}
-              aria-describedby={errors.email ? "email-error" : undefined}
-            />
-            {errors.email && (
-              <p id="email-error" className="text-red-500 text-sm mt-1">
-                {errors.email}
-              </p>
-            )}
-          </div>
-          <div>
-            <label
-              htmlFor="phone"
-              className="block text-white font-semibold mb-3"
-            >
-              Phone
-            </label>
-            <input
-              id="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={(e) =>
-                setFormData({ ...formData, phone: e.target.value })
-              }
-              className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
-              placeholder="+1 (555) 123-4567"
-              data-testid="input-phone"
-            />
-          </div>
-        </div>
-
-        <div className="grid-2col-lg">
-          <div>
-            <label
-              htmlFor="productService"
-              className="block text-white font-semibold mb-3"
-            >
-              Product / Service <span className="text-red-500">*</span>
-            </label>
-            <Select
-              value={formData.productService}
-              onValueChange={(value) => {
-                setFormData({
-                  ...formData,
-                  productService: value,
-                  machine: "",
-                });
-                if (errors.productService)
-                  setErrors({ ...errors, productService: "", machine: "" });
-              }}
-              required
-            >
-              <SelectTrigger
-                className={`w-full h-12 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
-                  errors.productService
+    <ErrorBoundary errorBoundaryName="ContactForm">
+      <Card className="bg-white/5 border-white/10 p-8 md:p-12">
+        <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+          <div className="grid-2col-lg">
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-white font-semibold mb-3"
+              >
+                Full Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="name"
+                type="text"
+                value={formData.name}
+                onChange={(e) => {
+                  setFormData({ ...formData, name: e.target.value });
+                  if (errors.name) setErrors({ ...errors, name: "" });
+                }}
+                className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                  errors.name
                     ? "border-red-500"
                     : "border-white/20 focus:border-primary"
                 }`}
-                data-testid="select-product-service"
+                placeholder="John Doe"
+                data-testid="input-name"
+                required
+                aria-invalid={!!errors.name}
+                aria-describedby={errors.name ? "name-error" : undefined}
+              />
+              {errors.name && (
+                <p id="name-error" className="text-red-500 text-sm mt-1">
+                  {errors.name}
+                </p>
+              )}
+            </div>
+            <div>
+              <label
+                htmlFor="company"
+                className="block text-white font-semibold mb-3"
               >
-                <SelectValue placeholder="Select a product or service" />
-              </SelectTrigger>
-              <SelectContent className="bg-background border-white/20 text-white">
-                <SelectItem value="machines" className="focus:bg-white/10">
-                  Production Equipment
-                </SelectItem>
-                <SelectItem value="plastics" className="focus:bg-white/10">
-                  Plastic Sheets
-                </SelectItem>
-                <SelectItem value="rolls" className="focus:bg-white/10">
-                  Thermoforming Rolls
-                </SelectItem>
-                <SelectItem
-                  value="white-labeling"
-                  className="focus:bg-white/10"
+                Company
+              </label>
+              <input
+                id="company"
+                type="text"
+                value={formData.company}
+                onChange={(e) =>
+                  setFormData({ ...formData, company: e.target.value })
+                }
+                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
+                placeholder="Your Company"
+                data-testid="input-company"
+              />
+            </div>
+          </div>
+
+          <div className="grid-2col-lg">
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-white font-semibold mb-3"
+              >
+                Email <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => {
+                  setFormData({ ...formData, email: e.target.value });
+                  if (errors.email) setErrors({ ...errors, email: "" });
+                }}
+                className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                  errors.email
+                    ? "border-red-500"
+                    : "border-white/20 focus:border-primary"
+                }`}
+                placeholder="contact@company.com"
+                data-testid="input-email"
+                required
+                aria-invalid={!!errors.email}
+                aria-describedby={errors.email ? "email-error" : undefined}
+              />
+              {errors.email && (
+                <p id="email-error" className="text-red-500 text-sm mt-1">
+                  {errors.email}
+                </p>
+              )}
+            </div>
+            <div>
+              <label
+                htmlFor="phone"
+                className="block text-white font-semibold mb-3"
+              >
+                Phone
+              </label>
+              <input
+                id="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData({ ...formData, phone: e.target.value })
+                }
+                className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-500 focus:border-primary focus:outline-none transition-colors"
+                placeholder="+1 (555) 123-4567"
+                data-testid="input-phone"
+              />
+            </div>
+          </div>
+
+          <div className="grid-2col-lg">
+            <div>
+              <label
+                htmlFor="productService"
+                className="block text-white font-semibold mb-3"
+              >
+                Product / Service <span className="text-red-500">*</span>
+              </label>
+              <Select
+                value={formData.productService}
+                onValueChange={(value) => {
+                  setFormData({
+                    ...formData,
+                    productService: value,
+                    machine: "",
+                  });
+                  if (errors.productService)
+                    setErrors({ ...errors, productService: "", machine: "" });
+                }}
+                required
+              >
+                <SelectTrigger
+                  className={`w-full h-12 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                    errors.productService
+                      ? "border-red-500"
+                      : "border-white/20 focus:border-primary"
+                  }`}
+                  data-testid="select-product-service"
                 >
-                  White-Label Manufacturing
-                </SelectItem>
-                <SelectItem value="other" className="focus:bg-white/10">
-                  Other
-                </SelectItem>
-              </SelectContent>
-            </Select>
-            {errors.productService && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.productService}
-              </p>
-            )}
-          </div>
-          <div>
-            <label
-              htmlFor="quantity"
-              className="block text-white font-semibold mb-3"
-            >
-              Quantity <span className="text-red-500">*</span>
-            </label>
-            <Select
-              value={formData.quantity}
-              onValueChange={(value) => {
-                setFormData({ ...formData, quantity: value });
-                if (errors.quantity) setErrors({ ...errors, quantity: "" });
-              }}
-              required
-            >
-              <SelectTrigger
-                className={`w-full h-12 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
-                  errors.quantity
-                    ? "border-red-500"
-                    : "border-white/20 focus:border-primary"
-                }`}
-                data-testid="select-quantity"
-              >
-                <SelectValue placeholder="Select quantity" />
-              </SelectTrigger>
-              <SelectContent className="bg-background border-white/20 text-white">
-                <SelectItem value="1" className="focus:bg-white/10">
-                  1
-                </SelectItem>
-                <SelectItem value="2-5" className="focus:bg-white/10">
-                  2-5
-                </SelectItem>
-                <SelectItem value="6-10" className="focus:bg-white/10">
-                  6-10
-                </SelectItem>
-                <SelectItem value="11-20" className="focus:bg-white/10">
-                  11-20
-                </SelectItem>
-                <SelectItem value="21-50" className="focus:bg-white/10">
-                  21-50
-                </SelectItem>
-                <SelectItem value="50+" className="focus:bg-white/10">
-                  50+
-                </SelectItem>
-              </SelectContent>
-            </Select>
-            {errors.quantity && (
-              <p className="text-red-500 text-sm mt-1">{errors.quantity}</p>
-            )}
-          </div>
-        </div>
-
-        {formData.productService === "machines" && (
-          <div>
-            <label
-              htmlFor="machine"
-              className="block text-white font-semibold mb-3"
-            >
-              Production Equipment <span className="text-red-500">*</span>
-            </label>
-            <Select
-              value={formData.machine}
-              onValueChange={(value) => {
-                setFormData({ ...formData, machine: value });
-                if (errors.machine) setErrors({ ...errors, machine: "" });
-              }}
-              required
-            >
-              <SelectTrigger
-                className={`w-full h-12 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
-                  errors.machine
-                    ? "border-red-500"
-                    : "border-white/20 focus:border-primary"
-                }`}
-                data-testid="select-machine"
-              >
-                <SelectValue placeholder="Select production equipment" />
-              </SelectTrigger>
-              <SelectContent className="bg-background border-white/20 text-white">
-                {Object.values(machines).map((machine) => (
+                  <SelectValue placeholder="Select a product or service" />
+                </SelectTrigger>
+                <SelectContent className="bg-background border-white/20 text-white">
+                  <SelectItem value="machines" className="focus:bg-white/10">
+                    Production Equipment
+                  </SelectItem>
+                  <SelectItem value="plastics" className="focus:bg-white/10">
+                    Plastic Sheets
+                  </SelectItem>
+                  <SelectItem value="rolls" className="focus:bg-white/10">
+                    Thermoforming Rolls
+                  </SelectItem>
                   <SelectItem
-                    key={machine.id}
-                    value={machine.id}
+                    value="white-labeling"
                     className="focus:bg-white/10"
                   >
-                    {machine.name} {machine.nameHighlight}
+                    White-Label Manufacturing
                   </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.machine && (
-              <p className="text-red-500 text-sm mt-1">{errors.machine}</p>
+                  <SelectItem value="other" className="focus:bg-white/10">
+                    Other
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.productService && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.productService}
+                </p>
+              )}
+            </div>
+            <div>
+              <label
+                htmlFor="quantity"
+                className="block text-white font-semibold mb-3"
+              >
+                Quantity <span className="text-red-500">*</span>
+              </label>
+              <Select
+                value={formData.quantity}
+                onValueChange={(value) => {
+                  setFormData({ ...formData, quantity: value });
+                  if (errors.quantity) setErrors({ ...errors, quantity: "" });
+                }}
+                required
+              >
+                <SelectTrigger
+                  className={`w-full h-12 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                    errors.quantity
+                      ? "border-red-500"
+                      : "border-white/20 focus:border-primary"
+                  }`}
+                  data-testid="select-quantity"
+                >
+                  <SelectValue placeholder="Select quantity" />
+                </SelectTrigger>
+                <SelectContent className="bg-background border-white/20 text-white">
+                  <SelectItem value="1" className="focus:bg-white/10">
+                    1
+                  </SelectItem>
+                  <SelectItem value="2-5" className="focus:bg-white/10">
+                    2-5
+                  </SelectItem>
+                  <SelectItem value="6-10" className="focus:bg-white/10">
+                    6-10
+                  </SelectItem>
+                  <SelectItem value="11-20" className="focus:bg-white/10">
+                    11-20
+                  </SelectItem>
+                  <SelectItem value="21-50" className="focus:bg-white/10">
+                    21-50
+                  </SelectItem>
+                  <SelectItem value="50+" className="focus:bg-white/10">
+                    50+
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              {errors.quantity && (
+                <p className="text-red-500 text-sm mt-1">{errors.quantity}</p>
+              )}
+            </div>
+          </div>
+
+          {formData.productService === "machines" && (
+            <div>
+              <label
+                htmlFor="machine"
+                className="block text-white font-semibold mb-3"
+              >
+                Production Equipment <span className="text-red-500">*</span>
+              </label>
+              <Select
+                value={formData.machine}
+                onValueChange={(value) => {
+                  setFormData({ ...formData, machine: value });
+                  if (errors.machine) setErrors({ ...errors, machine: "" });
+                }}
+                required
+              >
+                <SelectTrigger
+                  className={`w-full h-12 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                    errors.machine
+                      ? "border-red-500"
+                      : "border-white/20 focus:border-primary"
+                  }`}
+                  data-testid="select-machine"
+                >
+                  <SelectValue placeholder="Select production equipment" />
+                </SelectTrigger>
+                <SelectContent className="bg-background border-white/20 text-white">
+                  {Object.values(machines).map((machine) => (
+                    <SelectItem
+                      key={machine.id}
+                      value={machine.id}
+                      className="focus:bg-white/10"
+                    >
+                      {machine.name} {machine.nameHighlight}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.machine && (
+                <p className="text-red-500 text-sm mt-1">{errors.machine}</p>
+              )}
+            </div>
+          )}
+
+          <div>
+            <label
+              htmlFor="message"
+              className="block text-white font-semibold mb-3"
+            >
+              Message <span className="text-red-500">*</span>
+            </label>
+            <textarea
+              id="message"
+              value={formData.message}
+              onChange={(e) => {
+                setFormData({ ...formData, message: e.target.value });
+                if (errors.message) setErrors({ ...errors, message: "" });
+              }}
+              className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors resize-none ${
+                errors.message
+                  ? "border-red-500"
+                  : "border-white/20 focus:border-primary"
+              }`}
+              rows={5}
+              placeholder={messagePlaceholder}
+              data-testid="textarea-message"
+              required
+              aria-invalid={!!errors.message}
+              aria-describedby={errors.message ? "message-error" : undefined}
+            />
+            {errors.message && (
+              <p id="message-error" className="text-red-500 text-sm mt-1">
+                {errors.message}
+              </p>
             )}
           </div>
-        )}
 
-        <div>
-          <label
-            htmlFor="message"
-            className="block text-white font-semibold mb-3"
-          >
-            Message <span className="text-red-500">*</span>
-          </label>
-          <textarea
-            id="message"
-            value={formData.message}
-            onChange={(e) => {
-              setFormData({ ...formData, message: e.target.value });
-              if (errors.message) setErrors({ ...errors, message: "" });
-            }}
-            className={`w-full px-4 py-3 rounded-lg bg-white/10 border text-white placeholder-gray-500 focus:outline-none transition-colors resize-none ${
-              errors.message
-                ? "border-red-500"
-                : "border-white/20 focus:border-primary"
-            }`}
-            rows={5}
-            placeholder={messagePlaceholder}
-            data-testid="textarea-message"
-            required
-            aria-invalid={!!errors.message}
-            aria-describedby={errors.message ? "message-error" : undefined}
-          />
-          {errors.message && (
-            <p id="message-error" className="text-red-500 text-sm mt-1">
-              {errors.message}
-            </p>
+          {errors.submit && (
+            <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/50">
+              <p className="text-red-500 text-sm">{errors.submit}</p>
+            </div>
           )}
-        </div>
 
-        {errors.submit && (
-          <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/50">
-            <p className="text-red-500 text-sm">{errors.submit}</p>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg py-3 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+            data-testid="button-submit-form"
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              submitLabel
+            )}
+          </Button>
+        </form>
+
+        <div className="mt-8 pt-8 border-t border-white/10">
+          <p className="text-gray-400 text-sm mb-6">Or contact us directly:</p>
+          <div className="flex flex-col md:flex-row gap-6">
+            <a
+              href={CONTACT_INFO.phone.href}
+              className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
+            >
+              <Phone className="w-5 h-5 text-primary" />
+              <span>{CONTACT_INFO.phone.display}</span>
+            </a>
+            <a
+              href={CONTACT_INFO.email.href}
+              className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
+            >
+              <Mail className="w-5 h-5 text-primary" />
+              <span>{CONTACT_INFO.email.display}</span>
+            </a>
           </div>
-        )}
-
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg py-3 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
-          data-testid="button-submit-form"
-        >
-          {isSubmitting ? (
-            <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              Sending...
-            </>
-          ) : (
-            submitLabel
-          )}
-        </Button>
-      </form>
-
-      <div className="mt-8 pt-8 border-t border-white/10">
-        <p className="text-gray-400 text-sm mb-6">Or contact us directly:</p>
-        <div className="flex flex-col md:flex-row gap-6">
-          <a
-            href={CONTACT_INFO.phone.href}
-            className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
-          >
-            <Phone className="w-5 h-5 text-primary" />
-            <span>{CONTACT_INFO.phone.display}</span>
-          </a>
-          <a
-            href={CONTACT_INFO.email.href}
-            className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors"
-          >
-            <Mail className="w-5 h-5 text-primary" />
-            <span>{CONTACT_INFO.email.display}</span>
-          </a>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </ErrorBoundary>
   );
 }
