@@ -45,14 +45,14 @@ The application will be available at **http://localhost:3000**
 
 ### Available Scripts
 
-| Command                | Description                            |
-| ---------------------- | -------------------------------------- |
-| `npm run dev`          | Start development server with HMR      |
-| `npm run dev:client`   | Run only Vite dev server (client-only) |
-| `npm run build`        | Build for production (client + server) |
-| `npm run build:client` | Build only client (for static hosting) |
-| `npm run start`        | Start production server                |
-| `npm run check`        | Run TypeScript type checking           |
+| Command                | Description                                      |
+| ---------------------- | ------------------------------------------------ |
+| `npm run dev`          | Start development server with HMR                |
+| `npm run dev:client`   | Run only Vite dev server (client-only)           |
+| `npm run build`        | Build for production (client + server + sitemap) |
+| `npm run build:client` | Build only client (for static hosting)           |
+| `npm run start`        | Start production server                          |
+| `npm run check`        | Run TypeScript type checking                     |
 
 ## ✨ Features
 
@@ -74,7 +74,7 @@ The application will be available at **http://localhost:3000**
 - 🎥 **Video Backgrounds** - Hero sections with video backgrounds
 - 🎨 **Modern UI** - Built with shadcn/ui components and Tailwind CSS
 - 🎭 **Smooth Animations** - Scroll animations, hover effects, and transitions
-- 🔍 **SEO Optimized** - Proper heading hierarchy and meta tags
+- 🔍 **SEO Optimized** - Proper heading hierarchy, meta tags, XML sitemap, and robots.txt
 - ♿ **Accessible** - Built with accessibility in mind using Radix UI primitives
 - 🍪 **Cookie Consent & Tracking** - EU/CH-compliant cookie consent system with granular controls and Google Analytics 4 integration (Consent Mode v2)
 - 🛡️ **Error Handling** - React Error Boundaries with structured error logging
@@ -158,7 +158,11 @@ OrthoVeer/
 │   ├── materials/             # Material images
 │   └── [page]/                # Page-specific assets
 ├── script/                     # Build scripts
-│   └── build.ts               # Production build
+│   ├── build.ts               # Production build
+│   └── generate-sitemap.ts   # Automatic sitemap generation
+├── client/public/              # Public static files
+│   ├── robots.txt            # Search engine crawler instructions
+│   └── favicon.png
 ├── netlify.toml               # Netlify config
 └── vite.config.ts             # Vite config
 ```
@@ -388,10 +392,26 @@ Render
 - **One H1 per page**: Unique, keyword-rich
 - **Semantic HTML**: Proper heading hierarchy (H1-H4)
 - **Meta tags**: OpenGraph, Twitter cards
+- **XML Sitemap**: Automatically generated during build (30 URLs)
+- **robots.txt**: Search engine crawler instructions
 - **Structured content**: Clear sections with H2/H3
 - **Keyword strategy**: Commercial intent, B2B terminology
 
-See `HEADING_HIERARCHY.md` for detailed SEO guidelines.
+**Sitemap Generation:**
+
+- Automatically generated during `npm run build`
+- Includes all static pages, blog posts, and machine pages
+- Configurable base URL via `SITE_URL` environment variable
+- Output: `dist/public/sitemap.xml`
+
+**robots.txt:**
+
+- Located in `client/public/robots.txt`
+- Automatically copied to dist during build
+- References sitemap location
+
+See `HEADING_HIERARCHY.md` for detailed SEO guidelines.  
+See `SITEMAP_ROBOTS_IMPLEMENTATION.md` for sitemap generation details.
 
 ### Accessibility
 
@@ -548,8 +568,23 @@ npm run build:client
 
 1. Compiles TypeScript
 2. Builds React app with Vite
-3. Bundles Express server
-4. Outputs to `dist/` directory
+3. Generates sitemap.xml automatically
+4. Bundles Express server
+5. Outputs to `dist/` directory
+
+**Sitemap Generation:**
+The sitemap is automatically generated during the build process. It includes:
+
+- All static pages (15 routes)
+- All blog posts (6 posts with lastmod dates)
+- All machine pages (9 machines)
+- Total: 30 URLs
+
+To customize the base URL, set the `SITE_URL` environment variable:
+
+```bash
+SITE_URL=https://example.com npm run build
+```
 
 ### Path Aliases
 
@@ -656,7 +691,16 @@ export const blogPosts: BlogPost[] = [
 ];
 ```
 
-The blog listing and individual post pages will automatically update.
+2. **Update sitemap** - Add the new post to `script/generate-sitemap.ts`:
+
+```typescript
+const BLOG_POSTS = [
+  // ... existing posts
+  { slug: "new-blog-post", date: "2024-01-20" },
+];
+```
+
+The blog listing and individual post pages will automatically update. The sitemap will include the new post on the next build.
 
 ### Updating Contact Information
 
@@ -678,6 +722,8 @@ netlify deploy --prod
 - Publish directory: `dist/public`
 - Node version: 20
 - SPA routing: All routes redirect to `/index.html`
+- Sitemap: Automatically generated at `dist/public/sitemap.xml`
+- robots.txt: Automatically copied from `client/public/robots.txt`
 
 ### Other Platforms
 
@@ -692,12 +738,16 @@ For static hosting (Vercel, GitHub Pages, etc.):
 
 #### Client (Vite)
 
-| Variable        | Description                                    | Required | Default |
-| --------------- | ---------------------------------------------- | -------- | ------- |
-| `VITE_GA_ID`    | Google Analytics 4 Measurement ID (e.g., G-XX) | No       | -       |
-| `VITE_BASE_URL` | Base URL for OpenGraph images                  | No       | `/`     |
+| Variable        | Description                                                   | Required | Default                 |
+| --------------- | ------------------------------------------------------------- | -------- | ----------------------- |
+| `VITE_GA_ID`    | Google Analytics 4 Measurement ID (e.g., G-XX)                | No       | -                       |
+| `VITE_BASE_URL` | Base URL for OpenGraph images                                 | No       | `/`                     |
+| `SITE_URL`      | Base URL for sitemap generation (e.g., https://orthoveer.com) | No       | `https://orthoveer.com` |
 
-**Note:** `VITE_GA_ID` is only used in production mode. Tracking is disabled in development.
+**Note:**
+
+- `VITE_GA_ID` is only used in production mode. Tracking is disabled in development.
+- `SITE_URL` is used during build to generate sitemap.xml with correct absolute URLs.
 
 #### Server (Express)
 
@@ -770,6 +820,7 @@ import image from "../assets/image.png";
 
 - **[Cookie Consent & Tracking](client/src/lib/tracking/README.md)** - Cookie consent and GA4 tracking system
 - **[SEO Guidelines](HEADING_HIERARCHY.md)** - Heading hierarchy and SEO best practices
+- **[Sitemap & Robots.txt](SITEMAP_ROBOTS_IMPLEMENTATION.md)** - Automatic sitemap generation and robots.txt configuration
 
 ### External Resources
 
