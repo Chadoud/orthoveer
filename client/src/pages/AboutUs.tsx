@@ -12,6 +12,11 @@ import { Link } from "wouter";
 import { useRef } from "react";
 import { ScrollArrow } from "@/components/sections/ScrollArrow";
 import { track } from "@/lib/tracking/events";
+import { Container } from "@/components/layout/Container";
+import { Section } from "@/components/layout/Section";
+import { Heading } from "@/components/layout/Heading";
+import { text, patterns } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 import factoryImage from "@assets/aboutPage/factory.jpg";
 import trimmingImage from "@assets/aboutPage/thrimming.jpg";
 import smilingWomanImage from "@assets/aboutPage/woman-smiling-at-the-dentist-while-holding-a-mirror.jpg";
@@ -29,14 +34,14 @@ export default function AboutUs() {
       >
         <div className="absolute inset-0 z-0 bg-background" />
 
-        <div className="container mx-auto px-6 relative z-10 flex items-center py-8">
+        <Container className="relative z-10 flex items-center py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch w-full">
             {/* Left Column: Text Content */}
             <div>
-              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary leading-tight mb-4 md:mb-6">
+              <Heading level="h1" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-primary mb-4 md:mb-6">
                 Precision Manufacturing, Proven Excellence.
-              </h1>
-              <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-6 md:mb-10 max-w-xl leading-relaxed">
+              </Heading>
+              <p className={cn(text.description, "text-base sm:text-lg md:text-xl mb-6 md:mb-10 max-w-xl")}>
                 We provide orthodontic practices and dental laboratories with
                 cutting-edge production equipment, certified materials, and
                 white-label manufacturing services to ensure consistent quality
@@ -45,7 +50,7 @@ export default function AboutUs() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                  variant="primary"
                   onClick={() => {
                     track("cta_get_in_touch", {
                       location: "hero",
@@ -69,7 +74,7 @@ export default function AboutUs() {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
 
         {/* Scroll Arrow Indicator */}
         <ScrollArrow heroRef={heroRef} text="Scroll to learn more" />
@@ -77,7 +82,7 @@ export default function AboutUs() {
 
       {/* Feature Bar */}
       <section className="bg-secondary min-h-[15vh] py-8 md:py-0 md:h-[15vh] flex items-center">
-        <div className="container mx-auto px-6">
+        <Container>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <div className="flex flex-col items-center text-center">
               <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-white mb-3 md:mb-4" />
@@ -98,24 +103,23 @@ export default function AboutUs() {
               </p>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Main Story Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
+      <Section size="large">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-20">
             <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading">
+              <Heading level="h1" className="text-4xl md:text-5xl lg:text-6xl mb-8">
                 About OrthoVeer
-              </h1>
-              <p className="text-xl text-gray-400 leading-relaxed mb-6">
+              </Heading>
+              <p className={cn(text.cardText, "text-xl mb-6")}>
                 Our facility specializes in clear aligner production equipment,
                 thermoplastic materials, and white-label aligner manufacturing
                 services for orthodontic practices, dental laboratories, and
                 DSOs.
               </p>
-              <p className="text-lg text-gray-400 leading-relaxed mb-6">
+              <p className={cn(text.cardText, "text-lg mb-6")}>
                 We supply production equipment for in-house aligner
                 manufacturing, certified thermoplastic materials for
                 thermoforming, and provide white-label clear aligner
@@ -125,7 +129,7 @@ export default function AboutUs() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                  variant="primary"
                 >
                   Contact Us{" "}
                   <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
@@ -154,13 +158,13 @@ export default function AboutUs() {
               />
             </div>
             <div>
-              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wide mb-6">
+              <div className={cn(patterns.badgeSimple, "mb-6")}>
                 Manufacturing Solutions
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 font-heading">
-                Clear Aligner Production Equipment & Services
-              </h3>
-              <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-6">
+                <Heading level="h3" className="text-2xl md:text-3xl mb-6">
+                  Clear Aligner Production Equipment & Services
+                </Heading>
+              <p className={cn(text.cardText, "text-base md:text-lg mb-6")}>
                 OrthoVeer provides orthodontic production equipment including
                 thermoforming equipment, trimming systems, 3D printers, and
                 scanning equipment for in-house clear aligner manufacturing. We
@@ -168,7 +172,7 @@ export default function AboutUs() {
                 white-label aligner manufacturing services with integrated
                 clinical workflow support.
               </p>
-              <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-6">
+              <p className={cn(text.cardText, "text-base md:text-lg mb-6")}>
                 Our manufacturing solutions support both in-house production
                 models and outsourced white-label manufacturing. Equipment and
                 materials are compatible with 3Shape, iTero, and Medit scanner
@@ -178,7 +182,7 @@ export default function AboutUs() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                  variant="primary"
                 >
                   Contact Us{" "}
                   <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
@@ -186,17 +190,15 @@ export default function AboutUs() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Success Metrics Section */}
-      <section className="py-24 bg-secondary/20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-heading">
-              Orthodontic Manufacturing Infrastructure & Production Capacity
-            </h2>
-            <p className="text-xl text-gray-400 leading-relaxed mb-8">
+      <Section size="large" background="subtle">
+        <div className={cn(patterns.centeredContentXl, patterns.sectionHeader)}>
+          <Heading level="h2" className="text-4xl md:text-5xl lg:text-6xl mb-6">
+            Orthodontic Manufacturing Infrastructure & Production Capacity
+          </Heading>
+            <p className={cn(text.cardText, "text-xl mb-8")}>
               ISO 13485 certified manufacturing facility with production
               capacity for clear aligner manufacturing. Our manufacturing
               infrastructure supports both equipment supply and white-label
@@ -204,10 +206,7 @@ export default function AboutUs() {
               laboratories, and DSOs.
             </p>
             <Link href="/contact">
-              <Button
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
-              >
+              <Button size="lg" variant="primary">
                 Contact Us{" "}
                 <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
               </Button>
@@ -259,20 +258,20 @@ export default function AboutUs() {
               />
             </div>
             <div>
-              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wide mb-6">
+              <div className={cn(patterns.badgeSimple, "mb-6")}>
                 Production Equipment
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 font-heading">
-                Clear Aligner Manufacturing Equipment & Materials
-              </h3>
-              <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-6">
+                <Heading level="h3" className="text-2xl md:text-3xl mb-6">
+                  Clear Aligner Manufacturing Equipment & Materials
+                </Heading>
+              <p className={cn(text.cardText, "text-base md:text-lg mb-6")}>
                 Complete range of orthodontic production equipment for clear
                 aligner manufacturing: thermoforming equipment, trimming and
                 cutting systems, 3D printing equipment, scanning systems, and
                 finishing equipment. All equipment is compatible with standard
                 orthodontic workflows and treatment planning software.
               </p>
-              <p className="text-base md:text-lg text-gray-400 leading-relaxed mb-6">
+              <p className={cn(text.cardText, "text-base md:text-lg mb-6")}>
                 We supply ISO 13485 certified thermoplastic materials in sheet
                 and roll formats for thermoforming production. Materials are
                 tested for biocompatibility, transparency, and durability.
@@ -283,7 +282,7 @@ export default function AboutUs() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                  variant="primary"
                 >
                   Contact Us{" "}
                   <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
@@ -291,17 +290,15 @@ export default function AboutUs() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Manufacturing Standards Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
+      <Section size="large">
+          <div className={patterns.sectionHeader}>
+            <Heading level="h2" className="mb-4">
               Manufacturing Standards & Compliance
-            </h2>
-            <p className="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
+              </Heading>
+            <p className={cn(text.cardText, "text-xl", patterns.centeredContentLg)}>
               Certified manufacturing facility meeting global medical device
               standards with comprehensive quality control systems and material
               biocompatibility testing.
@@ -315,11 +312,11 @@ export default function AboutUs() {
                   className="w-12 h-12 text-primary shrink-0"
                   aria-hidden="true"
                 />
-                <h3 className="text-2xl font-bold text-white font-heading">
+                <Heading level="h3">
                   ISO 13485 Medical Device Certification
-                </h3>
+                  </Heading>
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className={text.cardText}>
                 Certified manufacturing facility meeting global medical device
                 standards for orthodontic production.
               </p>
@@ -331,11 +328,11 @@ export default function AboutUs() {
                   className="w-12 h-12 text-primary shrink-0"
                   aria-hidden="true"
                 />
-                <h3 className="text-2xl font-bold text-white font-heading">
+                <Heading level="h3">
                   Quality Control Systems
-                </h3>
+                  </Heading>
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className={text.cardText}>
                 Comprehensive quality control systems ensuring consistent
                 standards across all production stages.
               </p>
@@ -347,11 +344,11 @@ export default function AboutUs() {
                   className="w-12 h-12 text-primary shrink-0"
                   aria-hidden="true"
                 />
-                <h3 className="text-2xl font-bold text-white font-heading">
+                <Heading level="h3">
                   Material Biocompatibility Testing
-                </h3>
+                  </Heading>
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className={text.cardText}>
                 All materials undergo rigorous biocompatibility testing to
                 ensure patient safety and compliance.
               </p>
@@ -362,31 +359,29 @@ export default function AboutUs() {
             <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                variant="primary"
               >
                 Contact Us{" "}
                 <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
               </Button>
             </Link>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Commitment Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 font-heading">
+      <Section size="large">
+          <div className={cn(patterns.centeredContentXl, "text-center")}>
+            <Heading level="h2" className="text-4xl md:text-5xl lg:text-6xl mb-8">
               Orthodontic Manufacturing Services & Support
-            </h2>
-            <p className="text-xl text-gray-400 leading-relaxed mb-8">
+              </Heading>
+            <p className={cn(text.cardText, "text-xl mb-8")}>
               ISO 13485 certified manufacturing services for orthodontic
               practices, dental laboratories, and DSOs. We provide production
               equipment, certified thermoplastic materials, and white-label
               clear aligner manufacturing with integrated clinical workflow
               support.
             </p>
-            <p className="text-lg text-gray-400 leading-relaxed mb-8">
+            <p className={cn(text.cardText, "text-lg mb-8")}>
               Our manufacturing solutions include orthodontic production
               equipment for in-house aligner manufacturing, ISO 13485 certified
               thermoplastic materials in sheet and roll formats, and white-label
@@ -394,7 +389,7 @@ export default function AboutUs() {
               support, workflow integration with 3Shape, iTero, and Medit
               scanners, and order management portals.
             </p>
-            <p className="text-lg text-gray-400 leading-relaxed mb-8">
+            <p className={cn(text.cardText, "text-lg mb-8")}>
               Manufacturing services are available for single practices, dental
               laboratories, and large DSOs. Production equipment and materials
               meet ISO 13485 medical device standards with comprehensive quality
@@ -403,50 +398,44 @@ export default function AboutUs() {
             <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                variant="primary"
               >
                 Contact Us{" "}
                 <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
               </Button>
             </Link>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* CTA Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-heading">
-              Ready to Partner With Us?
-            </h2>
-            <p className="text-gray-400 text-lg mb-10 leading-relaxed max-w-2xl mx-auto">
-              Discover how OrthoVeer can transform your orthodontic practice
-              with our comprehensive manufacturing solutions.
-            </p>
-            <div className="flex-responsive-center">
-              <Link href="/machines">
-                <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
-                >
-                  Explore Solutions{" "}
-                  <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/20 text-white hover:bg-white/5 rounded-full px-8 h-12 text-base font-medium"
-                >
-                  Get in Touch
-                </Button>
-              </Link>
-            </div>
+      <Section size="large">
+        <div className="text-center">
+          <Heading level="h2" className="mb-6">
+            Ready to Partner With Us?
+          </Heading>
+          <p className={cn("text-gray-400 text-lg mb-10 leading-relaxed", patterns.centeredContentMd)}>
+            Discover how OrthoVeer can transform your orthodontic practice
+            with our comprehensive manufacturing solutions.
+          </p>
+          <div className="flex-responsive-center">
+            <Link href="/machines">
+              <Button size="lg" variant="primary">
+                Explore Solutions{" "}
+                <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/20 text-white hover:bg-white/5 rounded-full px-8 h-12 text-base font-medium"
+              >
+                Get in Touch
+              </Button>
+            </Link>
           </div>
         </div>
-      </section>
+      </Section>
     </PageLayout>
   );
 }

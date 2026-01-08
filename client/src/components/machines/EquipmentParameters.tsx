@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { Heading } from "@/components/layout/Heading";
 
 export interface EquipmentParameter {
   parameter: string;
@@ -35,9 +36,9 @@ export function EquipmentParameters({
 
   return (
     <div className={className || "py-20"}>
-      <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-heading">
+      <Heading level="h2" className="mb-6">
         {title}
-      </h2>
+      </Heading>
       
       {description && (
         <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-4xl">

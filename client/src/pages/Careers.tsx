@@ -17,6 +17,10 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import darkHeroImage from "@assets/dark-hero.png";
+import { Section } from "@/components/layout/Section";
+import { Heading } from "@/components/layout/Heading";
+import { patterns } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 interface Job {
   id: string;
@@ -189,13 +193,12 @@ export default function Careers() {
       />
 
       {/* Why Join Us Section */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+      <Section background="subtle">
+          <div className={patterns.sectionHeader}>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
               Why Join OrthoVeer?
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            <p className={cn("text-lg text-gray-400", patterns.centeredContentMd)}>
               We're building the future of orthodontic manufacturing. Join us in
               creating solutions that make a real difference in patient care.
             </p>
@@ -222,17 +225,15 @@ export default function Careers() {
               );
             })}
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Open Positions Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+      <Section>
+          <div className={patterns.sectionHeader}>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
               Open Positions
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            <p className={cn("text-lg text-gray-400", patterns.centeredContentMd)}>
               Explore opportunities to join our growing team and make an impact
               in orthodontic manufacturing.
             </p>
@@ -291,7 +292,8 @@ export default function Careers() {
                   <div className="md:ml-6 shrink-0">
                     <Button
                       onClick={() => handleApplyClick(job)}
-                      className="w-full md:w-auto bg-primary hover:bg-primary/90 text-white rounded-lg px-6"
+                      variant="default"
+                      className="w-full md:w-auto rounded-lg px-6"
                     >
                       Apply Now <ArrowRight className="ml-2 w-4 h-4" />
                     </Button>
@@ -300,30 +302,27 @@ export default function Careers() {
               </Card>
             ))}
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container mx-auto px-6">
+      <Section background="subtle">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
               Don't See a Role That Fits?
             </h2>
-            <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+            <p className={cn("text-lg text-gray-400 mb-8", patterns.centeredContentMd)}>
               We're always looking for talented individuals. Send us your resume
               and we'll keep you in mind for future opportunities.
             </p>
             <Button
               onClick={handleGeneralApplication}
               size="lg"
-              className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+              variant="primary"
             >
               Send Your Resume <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Application Form Dialog */}
       <CareerApplicationForm

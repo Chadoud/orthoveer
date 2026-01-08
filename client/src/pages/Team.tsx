@@ -13,6 +13,10 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import darkHeroImage from "@assets/dark-hero.png";
+import { Section } from "@/components/layout/Section";
+import { Heading } from "@/components/layout/Heading";
+import { patterns } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 interface TeamMember {
   id: string;
@@ -123,13 +127,12 @@ export default function Team() {
       />
 
       {/* Our Values Section */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
-              Our Values
-            </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+      <Section background="subtle">
+          <div className={patterns.sectionHeader}>
+              <Heading level="h2" className="mb-4">
+                Our Values
+              </Heading>
+            <p className={cn("text-lg text-gray-400", patterns.centeredContentMd)}>
               The principles that guide our team and shape our culture.
             </p>
           </div>
@@ -155,17 +158,15 @@ export default function Team() {
               );
             })}
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Team Members Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
-              Our Team
-            </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+      <Section>
+        <div className={patterns.sectionHeader}>
+          <Heading level="h2" className="mb-4">
+            Our Team
+          </Heading>
+            <p className={cn("text-lg text-gray-400", patterns.centeredContentMd)}>
               Meet the talented individuals who make OrthoVeer a leader in
               orthodontic manufacturing.
             </p>
@@ -219,17 +220,15 @@ export default function Team() {
               </Card>
             ))}
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Join Our Team Section */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container mx-auto px-6">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
-              Join Our Team
-            </h2>
-            <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+      <Section background="subtle">
+        <div className="text-center">
+          <Heading level="h2" className="mb-4">
+            Join Our Team
+          </Heading>
+            <p className={cn("text-lg text-gray-400 mb-8", patterns.centeredContentMd)}>
               We're always looking for talented individuals who share our
               passion for innovation and excellence in orthodontic
               manufacturing.
@@ -237,24 +236,22 @@ export default function Team() {
             <Link href="/careers">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                variant="primary"
               >
                 View Open Positions{" "}
                 <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
               </Button>
             </Link>
-          </div>
         </div>
-      </section>
+      </Section>
 
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-heading">
-              Want to Learn More?
-            </h2>
-            <p className="text-gray-400 text-lg mb-10 leading-relaxed max-w-2xl mx-auto">
+      <Section>
+        <div className="text-center">
+          <Heading level="h2" className="mb-6">
+            Want to Learn More?
+          </Heading>
+            <p className={cn("text-gray-400 text-lg mb-10 leading-relaxed", patterns.centeredContentMd)}>
               Get in touch with our team to discover how OrthoVeer can support
               your orthodontic practice.
             </p>
@@ -262,7 +259,7 @@ export default function Team() {
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                  variant="primary"
                 >
                   Contact Us{" "}
                   <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
@@ -278,9 +275,8 @@ export default function Team() {
                 </Button>
               </Link>
             </div>
-          </div>
         </div>
-      </section>
+      </Section>
     </PageLayout>
   );
 }

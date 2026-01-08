@@ -13,6 +13,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { Container } from "./Container";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,7 +77,7 @@ export function Navbar() {
           isVisible ? "translate-y-0" : "-translate-y-full"
         )}
       >
-        <div className="container mx-auto px-6">
+        <Container>
           <div className="flex items-center justify-between relative">
             {/* Logo - Left */}
             <Link
@@ -277,7 +278,7 @@ export function Navbar() {
               )}
             </button>
           </div>
-        </div>
+        </Container>
       </nav>
       <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
     </>
@@ -318,7 +319,7 @@ function MobileMenu({
         <div className="h-full w-full flex flex-col">
           {/* Header with Logo and Close Button */}
           <div className="border-b border-white/10 sticky top-0 bg-background z-10">
-            <div className="container mx-auto px-6">
+            <Container>
               <div className="flex items-center justify-between py-6">
                 <Link
                   href="/"
@@ -342,12 +343,12 @@ function MobileMenu({
                   <X className="w-6 h-6" />
                 </button>
               </div>
-            </div>
+            </Container>
           </div>
 
           {/* Menu Content */}
           <div className="flex-1 py-8">
-            <div className="container mx-auto px-6 w-full">
+            <Container className="w-full">
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-4">
                   <span className="text-sm font-semibold text-gray-400 uppercase tracking-wide">
@@ -443,7 +444,7 @@ function MobileMenu({
                   </Button>
                 </Link>
               </div>
-            </div>
+            </Container>
           </div>
         </div>
       </div>

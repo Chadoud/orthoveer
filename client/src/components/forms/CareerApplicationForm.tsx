@@ -241,10 +241,14 @@ export function CareerApplicationForm({
           // Handle validation errors
           setErrors({ submit: error.message });
         } else {
-          setErrors({ submit: "Failed to submit application. Please try again." });
+          setErrors({
+            submit: "Failed to submit application. Please try again.",
+          });
         }
       } else {
-        setErrors({ submit: "Failed to submit application. Please try again." });
+        setErrors({
+          submit: "Failed to submit application. Please try again.",
+        });
       }
     } finally {
       setIsSubmitting(false);
@@ -283,22 +287,22 @@ export function CareerApplicationForm({
 
   const formContent = isSubmitted ? (
     <ErrorBoundary errorBoundaryName="CareerApplicationForm-Success">
-    <div className="text-center py-6 sm:py-8">
-      <CheckCircle2 className="w-12 h-12 sm:w-16 sm:h-16 text-primary mx-auto mb-4" />
-      <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-heading">
-        Application Submitted Successfully!
-      </h3>
-      <p className="text-sm sm:text-base text-gray-400 mb-4 px-2">
-        Thank you for your interest in joining our team. We'll review your
-        application and get back to you soon.
-      </p>
-      <Button
-        onClick={handleClose}
-        className="bg-primary hover:bg-primary/90 text-white"
-      >
-        Close
-      </Button>
-    </div>
+      <div className="text-center py-6 sm:py-8">
+        <CheckCircle2 className="w-12 h-12 sm:w-16 sm:h-16 text-primary mx-auto mb-4" />
+        <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-heading">
+          Application Submitted Successfully!
+        </h3>
+        <p className="text-sm sm:text-base text-gray-400 mb-4 px-2">
+          Thank you for your interest in joining our team. We'll review your
+          application and get back to you soon.
+        </p>
+        <Button
+          onClick={handleClose}
+          className="bg-primary hover:bg-primary/90 text-white"
+        >
+          Close
+        </Button>
+      </div>
     </ErrorBoundary>
   ) : (
     <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" noValidate>
@@ -706,7 +710,7 @@ export function CareerApplicationForm({
   if (isOpen !== undefined) {
     return (
       <Dialog open={isOpen} onOpenChange={handleClose}>
-        <DialogContent className="w-[95vw] sm:w-full max-w-3xl max-h-[100vh] overflow-y-auto bg-background border-white/20 p-4 sm:p-6 m-4 sm:m-0 origin-center data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 data-[state=open]:duration-200 data-[state=closed]:duration-200 data-[state=open]:slide-in-from-bottom-0 data-[state=closed]:slide-out-to-bottom-0">
+        <DialogContent className="w-[95vw] sm:w-full max-w-3xl max-h-[95vh] md:max-h-[85vh] overflow-y-auto bg-background border-white/20 p-4 sm:p-6 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 origin-center data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 data-[state=open]:duration-200 data-[state=closed]:duration-200 data-[state=open]:slide-in-from-bottom-0 data-[state=closed]:slide-out-to-bottom-0">
           <DialogHeader className="mb-4 sm:mb-6">
             <DialogTitle className="text-xl sm:text-2xl font-bold text-white font-heading pr-6 sm:pr-0">
               {jobTitle ? `Apply for ${jobTitle}` : "Apply for a Position"}
@@ -726,17 +730,17 @@ export function CareerApplicationForm({
   return (
     <ErrorBoundary errorBoundaryName="CareerApplicationForm">
       <Card className="bg-white/5 border-white/10 p-4 sm:p-6 md:p-8 lg:p-12">
-      <div className="mb-6 sm:mb-8">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-heading">
-          {jobTitle ? `Apply for ${jobTitle}` : "Apply for a Position"}
-        </h2>
-        <p className="text-sm sm:text-base text-gray-400">
-          Fill out the form below to submit your application. We'll review it
-          and get back to you soon.
-        </p>
-      </div>
-      {formContent}
-    </Card>
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 font-heading">
+            {jobTitle ? `Apply for ${jobTitle}` : "Apply for a Position"}
+          </h2>
+          <p className="text-sm sm:text-base text-gray-400">
+            Fill out the form below to submit your application. We'll review it
+            and get back to you soon.
+          </p>
+        </div>
+        {formContent}
+      </Card>
     </ErrorBoundary>
   );
 }

@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { Heading } from "@/components/layout/Heading";
 
 interface Spec {
   label: string;
@@ -18,9 +19,9 @@ export function MachineSpecs({
 }: MachineSpecsProps) {
   return (
     <div className={className || "py-20 bg-secondary/20"}>
-      <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 font-heading">
+      <Heading level="h2" className="mb-12">
         {title}
-      </h2>
+      </Heading>
 
       <div className="grid-2col-lg mb-12">
         {specs.map((spec, i) => (

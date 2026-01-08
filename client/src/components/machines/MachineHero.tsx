@@ -3,6 +3,10 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useRef } from "react";
 import { ScrollArrow } from "@/components/sections/ScrollArrow";
+import { Container } from "@/components/layout/Container";
+import { Heading } from "@/components/layout/Heading";
+import { text, patterns } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 interface MachineHeroProps {
   category: string;
@@ -32,25 +36,19 @@ export function MachineHero({
     >
       <div className="absolute inset-0 z-0 bg-background" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <Container className={patterns.heroContent}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide uppercase mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <div className={cn(patterns.badgeWithDot, "mb-6")}>
+              <span className={patterns.badgeDot} />
               {category}
             </div>
 
-            <h1 className="font-heading text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+            <Heading level="h1" className="mb-6" highlight={nameHighlight}>
               {name}
-              {nameHighlight && (
-                <>
-                  {" "}
-                  <span className="text-primary">{nameHighlight}</span>
-                </>
-              )}
-            </h1>
+            </Heading>
 
-            <p className="text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
+            <p className={cn(text.description, "mb-10 max-w-xl")}>
               {description}
             </p>
 
@@ -58,7 +56,7 @@ export function MachineHero({
               <Link href="/contact">
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                  variant="primary"
                   data-testid="button-contact-us"
                 >
                   Contact Us <ArrowRight className="ml-2 w-4 h-4" />
@@ -68,12 +66,16 @@ export function MachineHero({
           </div>
 
           <div className="flex items-center justify-start lg:justify-end">
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 p-8">
-              <img src={image} alt={imageAlt} className="w-full h-auto" />
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 p-8 max-w-md">
+              <img
+                src={image}
+                alt={imageAlt}
+                className="w-full h-auto max-w-full"
+              />
             </div>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Scroll Arrow Indicator */}
       <ScrollArrow heroRef={heroRef} text={scrollText} />

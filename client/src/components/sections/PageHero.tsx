@@ -3,6 +3,10 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useRef } from "react";
 import { ScrollArrow } from "./ScrollArrow";
+import { Container } from "@/components/layout/Container";
+import { Heading } from "@/components/layout/Heading";
+import { badge, text, patterns } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 interface PageHeroProps {
   badge: string;
@@ -35,19 +39,12 @@ export function PageHero({
   const button = buttonText ? (
     buttonHref ? (
       <Link href={buttonHref}>
-        <Button
-          size="lg"
-          className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
-        >
+        <Button size="lg" variant="primary">
           {buttonText} <ArrowRight className="ml-2 w-4 h-4" />
         </Button>
       </Link>
     ) : (
-      <Button
-        size="lg"
-        className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
-        onClick={onButtonClick}
-      >
+      <Button size="lg" variant="primary" onClick={onButtonClick}>
         {buttonText} <ArrowRight className="ml-2 w-4 h-4" />
       </Button>
     )
@@ -55,10 +52,7 @@ export function PageHero({
 
   const contactButton = showContactButton ? (
     <Link href="/contact">
-      <Button
-        size="lg"
-        className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
-      >
+      <Button size="lg" variant="primary">
         Contact Us <ArrowRight className="ml-2 w-4 h-4" />
       </Button>
     </Link>
@@ -76,26 +70,20 @@ export function PageHero({
       }}
     >
       {/* Background overlay for readability */}
-      <div className="absolute inset-0 z-0 bg-background/80" />
+      <div className={patterns.heroOverlay} />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <Container className={patterns.heroContent}>
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide uppercase mb-6">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <div className={cn(patterns.badgeWithDot, "mb-6")}>
+            <span className={patterns.badgeDot} />
             {badge}
           </div>
 
-          <h1 className="font-heading text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+          <Heading level="h1" className="mb-6" highlight={titleHighlight}>
             {title}
-            {titleHighlight && (
-              <>
-                {" "}
-                <span className="text-primary">{titleHighlight}</span>
-              </>
-            )}
-          </h1>
+          </Heading>
 
-          <p className="text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
+          <p className={cn(text.description, "mb-10 max-w-xl")}>
             {description}
           </p>
 
@@ -106,7 +94,7 @@ export function PageHero({
             </div>
           )}
         </div>
-      </div>
+      </Container>
 
       {/* Scroll Arrow Indicator */}
       <ScrollArrow heroRef={heroRef} text={scrollText} />

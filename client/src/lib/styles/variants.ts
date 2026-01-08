@@ -69,6 +69,7 @@ export const textVariants: Record<TextVariant, string> = {
   body: "text-gray-300 leading-relaxed",
   muted: "text-gray-400 text-sm",
   small: "text-sm text-gray-500",
+  cardText: "text-gray-400 leading-relaxed",
 } as const;
 
 /**

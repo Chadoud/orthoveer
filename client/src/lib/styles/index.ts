@@ -80,10 +80,21 @@ export const spacing = {
     xl: "gap-12",
   },
   margin: {
+    xs: "mb-2",
     small: "mb-4",
     medium: "mb-6",
     large: "mb-8",
-    xl: "mb-12",
+    xl: "mb-10",
+    "2xl": "mb-12",
+    "3xl": "mb-16",
+  },
+  padding: {
+    xs: "p-2",
+    small: "p-4",
+    medium: "p-6",
+    large: "p-8",
+    xl: "p-10",
+    "2xl": "p-12",
   },
 } as const;
 
@@ -98,5 +109,10 @@ export type {
   LinkVariant,
   Size,
   SpacingSize,
+  ContainerMaxWidth,
+  SectionBackground,
 } from "./types";
+
+// Export patterns
+export { patterns } from "./patterns";
 

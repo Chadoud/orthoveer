@@ -6,6 +6,8 @@ import { ArrowRight, Calendar, User, Tag } from "lucide-react";
 import { Link } from "wouter";
 import { getAllBlogPosts } from "@/config/blog";
 import darkHeroImage from "@assets/dark-hero.png";
+import { Section } from "@/components/layout/Section";
+import { Heading } from "@/components/layout/Heading";
 
 const blogPosts = getAllBlogPosts();
 
@@ -22,8 +24,7 @@ export default function Blog() {
       />
 
       {/* Blog Posts Grid */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
+      <Section>
           <div className="grid-3col-lg">
             {blogPosts.map((post) => (
               <Link key={post.id} href={`/blog/${post.slug}`}>
@@ -83,34 +84,28 @@ export default function Blog() {
                   </div>
                 </Card>
               </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+              ))}
+            </div>
+      </Section>
 
       {/* Contact CTA */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container mx-auto px-6">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
-              Get in Touch
-            </h2>
-            <p className="text-gray-400 text-lg mb-8">
-              Have questions about our solutions? Want to schedule a
-              demonstration? Contact our team to learn how we can help transform
-              your orthodontic practice.
-            </p>
-            <Link href="/contact">
-              <Button
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
-              >
-                Get in Touch <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
+      <Section background="subtle">
+        <div className="text-center">
+          <Heading level="h2" className="mb-4">
+            Get in Touch
+          </Heading>
+          <p className="text-gray-400 text-lg mb-8">
+            Have questions about our solutions? Want to schedule a
+            demonstration? Contact our team to learn how we can help transform
+            your orthodontic practice.
+          </p>
+          <Link href="/contact">
+            <Button size="lg" variant="primary">
+              Get in Touch <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
         </div>
-      </section>
+      </Section>
     </PageLayout>
   );
 }

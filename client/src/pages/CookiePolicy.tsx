@@ -1,14 +1,16 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { Card } from "@/components/ui/card";
 import { CONTACT_INFO } from "@/lib/constants";
+import { Section } from "@/components/layout/Section";
+import { Heading } from "@/components/layout/Heading";
 
 export default function CookiePolicy() {
   return (
     <PageLayout>
-      <div className="container mx-auto px-6 py-24 max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 font-heading">
+      <Section size="large" containerClassName="max-w-4xl">
+        <Heading level="h1" className="text-4xl md:text-5xl mb-8">
           Cookie Policy
-        </h1>
+        </Heading>
         <p className="text-gray-400 mb-8 text-lg">
           Last updated:{" "}
           {new Date().toLocaleDateString("en-US", {
@@ -319,9 +321,9 @@ export default function CookiePolicy() {
                 </div>
               </div>
             </section>
-          </div>
-        </Card>
-      </div>
+            </div>
+          </Card>
+      </Section>
     </PageLayout>
   );
 }

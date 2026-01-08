@@ -15,83 +15,48 @@ import {
   Target,
 } from "lucide-react";
 import { Link } from "wouter";
-import { useRef } from "react";
-import { ScrollArrow } from "@/components/sections/ScrollArrow";
 import { track } from "@/lib/tracking/events";
 import solutionsHeroVideo from "@assets/solutionsPage/solutionsHero.mp4";
+import { Section } from "@/components/layout/Section";
+import { Heading } from "@/components/layout/Heading";
+import { VideoHero } from "@/components/sections/VideoHero";
+import { text, patterns } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 export default function Solutions() {
-  const heroRef = useRef<HTMLElement>(null);
-
   return (
     <PageLayout>
-      {/* Custom Hero Section with Video Background */}
-      <section
-        ref={heroRef}
-        className="relative min-h-[100vh] flex items-center pt-12 overflow-hidden"
-      >
-        {/* Background Video with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-60"
-          >
-            <source src={solutionsHeroVideo} type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-background/80" />
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide uppercase mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Complete Solutions
-            </div>
-
-            <h1 className="font-heading text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
-              Orthodontic Manufacturing{" "}
-              <span className="text-primary">Solutions</span>
-            </h1>
-
-            <p className="text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
-              End-to-end solutions for orthodontic practices: production
-              equipment, certified materials, white-label manufacturing, and
-              digital workflow integration.
-            </p>
-
-            <div className="flex-responsive">
-              <Link href="#solutions">
-                <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
-                  onClick={() => {
-                    track("cta_explore_solutions", {
-                      location: "hero",
-                    });
-                  }}
-                >
-                  Explore Solutions <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Arrow Indicator */}
-        <ScrollArrow heroRef={heroRef} text="Scroll to learn more" />
-      </section>
+      <VideoHero
+        videoSrc={solutionsHeroVideo}
+        badge="Complete Solutions"
+        title="Orthodontic Manufacturing"
+        titleHighlight="Solutions"
+        description="End-to-end solutions for orthodontic practices: production equipment, certified materials, white-label manufacturing, and digital workflow integration."
+        button={
+          <Link href="#solutions">
+            <Button
+              size="lg"
+              variant="primary"
+              onClick={() => {
+                track("cta_explore_solutions", {
+                  location: "hero",
+                });
+              }}
+            >
+              Explore Solutions <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+        }
+        scrollText="Scroll to learn more"
+      />
 
       {/* Solutions Overview Section */}
-      <section id="solutions" className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
+      <Section id="solutions">
+          <div className={patterns.sectionHeader}>
+          <Heading level="h2" className="mb-4">
               Complete Manufacturing Solutions
-            </h2>
-            <p className="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
+          </Heading>
+            <p className={cn(text.cardText, "text-xl", patterns.centeredContentLg)}>
               From equipment and materials to white-label production, we provide
               everything you need to offer clear aligner treatments.
             </p>
@@ -99,14 +64,14 @@ export default function Solutions() {
 
           <div className="grid-4col">
             <Link href="/machines">
-              <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300 h-full cursor-pointer group flex flex-col">
+              <Card className={cn(patterns.cardFull, "h-full cursor-pointer group flex flex-col")}>
                 <div className="flex-icon-title">
                   <Factory className="w-12 h-12 text-primary group-hover:scale-110 transition-transform shrink-0" />
                   <h3 className="text-xl font-bold text-white font-heading">
                     Production Equipment
                   </h3>
                 </div>
-                <p className="text-gray-400 leading-relaxed mb-6 grow">
+                <p className={cn(text.cardText, "mb-6 grow")}>
                   Specialized production equipment for every stage of aligner
                   manufacturing: thermoforming, trimming, scanning, 3D printing,
                   and more.
@@ -117,14 +82,14 @@ export default function Solutions() {
               </Card>
             </Link>
 
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300 h-full group flex flex-col">
+            <Card className={cn(patterns.cardFull, "h-full group flex flex-col")}>
               <div className="flex-icon-title">
                 <Package className="w-12 h-12 text-primary group-hover:scale-110 transition-transform shrink-0" />
                 <h3 className="text-xl font-bold text-white font-heading">
                   Materials & Consumables
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed mb-6 grow">
+              <p className={cn(text.cardText, "mb-6 grow")}>
                 Certified aligner sheet materials and bulk rolls for consistent,
                 high-quality production.
               </p>
@@ -143,14 +108,14 @@ export default function Solutions() {
             </Card>
 
             <Link href="/white-labeling">
-              <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300 h-full cursor-pointer group flex flex-col">
+              <Card className={cn(patterns.cardFull, "h-full cursor-pointer group flex flex-col")}>
                 <div className="flex-icon-title">
                   <Layers className="w-12 h-12 text-primary group-hover:scale-110 transition-transform shrink-0" />
                   <h3 className="text-xl font-bold text-white font-heading">
                     White-Label Manufacturing
                   </h3>
                 </div>
-                <p className="text-gray-400 leading-relaxed mb-6 grow">
+                <p className={cn(text.cardText, "mb-6 grow")}>
                   Outsource aligner production while maintaining your brand
                   identity and clinical standards.
                 </p>
@@ -160,14 +125,14 @@ export default function Solutions() {
               </Card>
             </Link>
 
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300 h-full flex flex-col group">
+            <Card className={cn(patterns.cardFull, "h-full flex flex-col group")}>
               <div className="flex-icon-title">
                 <Settings className="w-12 h-12 text-primary group-hover:scale-110 transition-transform shrink-0" />
                 <h3 className="text-xl font-bold text-white font-heading">
                   Digital Integration
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed mb-6 grow">
+              <p className={cn(text.cardText, "mb-6 grow")}>
                 Seamless integration with 3Shape, iTero, Medit scanners and
                 treatment planning software.
               </p>
@@ -176,31 +141,29 @@ export default function Solutions() {
               </div>
             </Card>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Production Models Section */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
+      <Section background="subtle">
+          <div className={patterns.sectionHeader}>
+          <Heading level="h2" className="mb-4">
               Production Models for Every Practice
-            </h2>
-            <p className="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
+          </Heading>
+            <p className={cn(text.cardText, "text-xl", patterns.centeredContentLg)}>
               Choose the production model that fits your practice size and
               operational needs.
             </p>
           </div>
 
           <div className="grid-3col-lg">
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+            <Card className={patterns.cardFull}>
               <div className="flex-icon-title">
                 <Target className="w-12 h-12 text-primary shrink-0" />
                 <h3 className="text-2xl font-bold text-white font-heading">
                   In-House Production
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed mb-6">
+              <p className={cn(text.cardText, "mb-6")}>
                 Produce aligners in your own facility with complete control over
                 quality, timing, and costs. Perfect for practices ready to
                 invest in production infrastructure.
@@ -229,14 +192,14 @@ export default function Solutions() {
               </Link>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+            <Card className={patterns.cardFull}>
               <div className="flex-icon-title">
                 <Users className="w-12 h-12 text-primary shrink-0" />
                 <h3 className="text-2xl font-bold text-white font-heading">
                   Centralized & Lab Production
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed mb-6">
+              <p className={cn(text.cardText, "mb-6")}>
                 Centralized production for multi-location practices or dedicated
                 lab facilities serving multiple clinics. Optimize resources
                 across locations.
@@ -265,14 +228,14 @@ export default function Solutions() {
               </Link>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+            <Card className={patterns.cardFull}>
               <div className="flex-icon-title">
                 <ShieldCheck className="w-12 h-12 text-primary shrink-0" />
                 <h3 className="text-2xl font-bold text-white font-heading">
                   White-Label Manufacturing
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed mb-6">
+              <p className={cn(text.cardText, "mb-6")}>
                 Outsource aligner production while maintaining your brand
                 identity and clinical standards. No infrastructure investment
                 required.
@@ -301,111 +264,107 @@ export default function Solutions() {
               </Link>
             </Card>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Key Benefits Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
+      <Section>
+          <div className={patterns.sectionHeader}>
+          <Heading level="h2" className="mb-4">
               Why Choose Our Solutions
-            </h2>
-            <p className="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto">
+          </Heading>
+            <p className={cn(text.cardText, "text-xl", patterns.centeredContentLg)}>
               Comprehensive support for every stage of your aligner production
               journey.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+            <Card className={patterns.cardFull}>
               <div className="flex-icon-title">
                 <Zap className="w-12 h-12 text-primary shrink-0" />
                 <h3 className="text-xl font-bold text-white font-heading">
                   Fast Turnaround
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className={text.cardText}>
                 Production to shipping in under 48 hours with scalable capacity
                 to meet your demand.
               </p>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+            <Card className={patterns.cardFull}>
               <div className="flex-icon-title">
                 <ShieldCheck className="w-12 h-12 text-primary shrink-0" />
                 <h3 className="text-xl font-bold text-white font-heading">
                   ISO 13485 Certified
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className={text.cardText}>
                 All solutions meet global medical device standards for
                 orthodontic manufacturing.
               </p>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+            <Card className={patterns.cardFull}>
               <div className="flex-icon-title">
                 <Settings className="w-12 h-12 text-primary shrink-0" />
                 <h3 className="text-xl font-bold text-white font-heading">
                   Seamless Integration
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className={text.cardText}>
                 Works with your existing workflow and integrates with major
                 scanner and software platforms.
               </p>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+            <Card className={patterns.cardFull}>
               <div className="flex-icon-title">
                 <Target className="w-12 h-12 text-primary shrink-0" />
                 <h3 className="text-xl font-bold text-white font-heading">
                   Scalable Solutions
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className={text.cardText}>
                 From single practices to large DSOs, our solutions scale to meet
                 your growing needs.
               </p>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+            <Card className={patterns.cardFull}>
               <div className="flex-icon-title">
                 <Users className="w-12 h-12 text-primary shrink-0" />
                 <h3 className="text-xl font-bold text-white font-heading">
                   Expert Support
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className={text.cardText}>
                 Comprehensive training, technical support, and ongoing guidance
                 from our team of experts.
               </p>
             </Card>
 
-            <Card className="bg-white/5 border-white/10 p-8 hover:border-primary/50 transition-all duration-300">
+            <Card className={patterns.cardFull}>
               <div className="flex-icon-title">
                 <CheckCircle2 className="w-12 h-12 text-primary shrink-0" />
                 <h3 className="text-xl font-bold text-white font-heading">
                   Quality Guaranteed
                 </h3>
               </div>
-              <p className="text-gray-400 leading-relaxed">
+              <p className={text.cardText}>
                 Consistent quality across all production stages with rigorous
                 quality control processes.
               </p>
             </Card>
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* Contact Form Section */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container mx-auto px-6">
+      <Section background="subtle">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading text-center">
+          <Heading level="h2" className="mb-4 text-center">
               Ready to Get Started?
-            </h2>
+          </Heading>
             <p className="text-gray-400 text-lg mb-12 text-center">
               Contact us to discuss which solution is right for your practice.
             </p>
@@ -414,8 +373,7 @@ export default function Solutions() {
               messagePlaceholder="Tell us about your practice needs and which solutions interest you..."
             />
           </div>
-        </div>
-      </section>
+      </Section>
     </PageLayout>
   );
 }

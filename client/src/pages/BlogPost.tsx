@@ -7,6 +7,7 @@ import { Link, useRoute } from "wouter";
 import { getBlogPostBySlug } from "@/config/blog";
 import NotFound from "@/pages/not-found";
 import labHeroImage from "@assets/aboutPage/factory.jpg";
+import { Section } from "@/components/layout/Section";
 
 export default function BlogPostPage() {
   const [, params] = useRoute("/blog/:slug");
@@ -33,8 +34,7 @@ export default function BlogPostPage() {
       />
 
       {/* Blog Post Content */}
-      <article className="py-20">
-        <div className="container mx-auto px-6">
+      <Section as="article">
           <div>
             {/* Back Button */}
             <Link href="/blog">
@@ -123,7 +123,7 @@ export default function BlogPostPage() {
               <Link href="/blog">
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                  variant="primary"
                 >
                   View All Articles{" "}
                   <ArrowLeft className="ml-2 w-4 h-4 rotate-180" />
@@ -131,8 +131,7 @@ export default function BlogPostPage() {
               </Link>
             </div>
           </div>
-        </div>
-      </article>
+      </Section>
     </PageLayout>
   );
 }

@@ -4,7 +4,8 @@ import { Card } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { ContactForm } from "@/components/forms";
-import { containerClass, sectionClass } from "@/lib/cn-utils";
+import { Section } from "@/components/layout/Section";
+import { Heading } from "@/components/layout/Heading";
 import type { MaterialType } from "@/config/materials";
 
 interface MaterialsPageProps {
@@ -58,11 +59,10 @@ export function MaterialsPage({
       />
 
       {/* Products Section */}
-      <section className={sectionClass("base", "bg-secondary/20")}>
-        <div className={containerClass()}>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 font-heading">
-            Select {badge.includes("Plastic") ? "Plastic" : "Roll"} Type
-          </h2>
+      <Section background="subtle">
+        <Heading level="h2" className="mb-8">
+          Select {badge.includes("Plastic") ? "Plastic" : "Roll"} Type
+        </Heading>
 
           <div className="flex flex-col lg:flex-row gap-6 md:gap-8 lg:gap-12 items-start mb-16">
             {/* Section Image */}
@@ -171,24 +171,21 @@ export function MaterialsPage({
               </div>
             </div>
           )}
-        </div>
-      </section>
+      </Section>
 
       {/* Contact Form */}
-      <section className={sectionClass("base")}>
-        <div className={containerClass()}>
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading text-center">
-              {formTitle}
-            </h2>
+      <Section>
+        <div>
+          <Heading level="h2" className="mb-4 text-center">
+            {formTitle}
+          </Heading>
             <p className="text-gray-400 text-lg mb-12 text-center">
               {formDescription}
             </p>
 
-            <ContactForm submitLabel={submitLabel} />
-          </div>
+          <ContactForm submitLabel={submitLabel} />
         </div>
-      </section>
+      </Section>
     </PageLayout>
   );
 }

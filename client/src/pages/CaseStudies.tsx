@@ -10,6 +10,10 @@ import factoryImage from "@assets/aboutPage/factory.jpg";
 import trimmingImage from "@assets/aboutPage/thrimming.jpg";
 import labHeroImage from "@assets/lab-hero.png";
 import techHeroImage from "@assets/tech-hero.png";
+import { Section } from "@/components/layout/Section";
+import { Heading } from "@/components/layout/Heading";
+import { text } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 const caseStudies: (CaseStudy & { image: string })[] = [
   {
@@ -117,8 +121,7 @@ export default function CaseStudies() {
       />
 
       {/* Case Studies List */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
+      <Section>
           <div className="space-y-16">
             {caseStudies.map((study) => (
               <Card
@@ -145,7 +148,7 @@ export default function CaseStudies() {
                         <span className="w-2 h-2 rounded-full bg-primary" />
                         Challenge
                       </h3>
-                      <p className="text-gray-400 leading-relaxed">
+                      <p className={text.cardText}>
                         {study.challenge}
                       </p>
                     </div>
@@ -154,7 +157,7 @@ export default function CaseStudies() {
                         <span className="w-2 h-2 rounded-full bg-primary" />
                         Solution
                       </h3>
-                      <p className="text-gray-400 leading-relaxed">
+                      <p className={text.cardText}>
                         {study.solution}
                       </p>
                     </div>
@@ -220,16 +223,14 @@ export default function CaseStudies() {
               </Card>
             ))}
           </div>
-        </div>
-      </section>
+      </Section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-secondary/20">
-        <div className="container mx-auto px-6">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-heading">
-              Ready to Write Your Success Story?
-            </h2>
+      <Section background="subtle">
+        <div className="text-center">
+          <Heading level="h2" className="mb-6">
+            Ready to Write Your Success Story?
+          </Heading>
             <p className="text-gray-400 text-lg mb-10 leading-relaxed">
               Join hundreds of practices and labs that have transformed their
               operations with OrthoVeer solutions.
@@ -238,7 +239,7 @@ export default function CaseStudies() {
               <Link href="/machines">
                 <Button
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                  variant="primary"
                 >
                   Explore Solutions <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
@@ -259,8 +260,7 @@ export default function CaseStudies() {
               </Link>
             </div>
           </div>
-        </div>
-      </section>
+      </Section>
     </PageLayout>
   );
 }

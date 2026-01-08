@@ -2,6 +2,8 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { MachineHero, MachineSpecs, MachineFeatures, EquipmentParameters } from "@/components/machines";
 import { ContactForm } from "@/components/forms";
 import { machines, type MachineData } from "@/config/machines";
+import { Section } from "@/components/layout/Section";
+import { Heading } from "@/components/layout/Heading";
 
 interface MachinePageProps {
   machineId: string;
@@ -28,27 +30,25 @@ export function MachinePage({ machineId, image }: MachinePageProps) {
 
       {(machineData.equipmentParameters ||
         (machineData.hasSpecs && machineData.specs)) && (
-        <section className="py-20">
-          <div className="container mx-auto px-6">
-            <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-              {machineData.equipmentParameters && (
-                <div className="flex-1 min-w-0">
-                  <EquipmentParameters
-                    parameters={machineData.equipmentParameters}
-                    description={machineData.equipmentDescription}
-                    className="py-0"
-                  />
-                </div>
-              )}
+        <Section>
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            {machineData.equipmentParameters && (
+              <div className="flex-1 min-w-0">
+                <EquipmentParameters
+                  parameters={machineData.equipmentParameters}
+                  description={machineData.equipmentDescription}
+                  className="py-0"
+                />
+              </div>
+            )}
 
-              {machineData.hasSpecs && machineData.specs && (
-                <div className="flex-1 min-w-0">
-                  <MachineSpecs specs={machineData.specs} className="py-0" />
-                </div>
-              )}
-            </div>
+            {machineData.hasSpecs && machineData.specs && (
+              <div className="flex-1 min-w-0">
+                <MachineSpecs specs={machineData.specs} className="py-0" />
+              </div>
+            )}
           </div>
-        </section>
+        </Section>
       )}
 
       <MachineFeatures
@@ -56,20 +56,18 @@ export function MachinePage({ machineId, image }: MachinePageProps) {
         title={machineData.hasSpecs ? "Features & Benefits" : "Key Features"}
       />
 
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading text-center">
-              Interested in {machineData.name} {machineData.nameHighlight}?
-            </h2>
-            <p className="text-gray-400 text-lg mb-12 text-center">
-              Schedule a demonstration or request detailed information.
-            </p>
+      <Section>
+        <div>
+          <Heading level="h2" className="mb-4 text-center">
+            Interested in {machineData.name} {machineData.nameHighlight}?
+          </Heading>
+          <p className="text-gray-400 text-lg mb-12 text-center">
+            Schedule a demonstration or request detailed information.
+          </p>
 
-            <ContactForm />
-          </div>
+          <ContactForm />
         </div>
-      </section>
+      </Section>
     </PageLayout>
   );
 }

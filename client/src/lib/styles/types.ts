@@ -41,7 +41,7 @@ export type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 /**
  * Text variant types
  */
-export type TextVariant = "description" | "body" | "muted" | "small";
+export type TextVariant = "description" | "body" | "muted" | "small" | "cardText";
 
 /**
  * Link variant types
@@ -57,4 +57,14 @@ export type StyleKey<T> = keyof T;
  * Utility type for style class combinations
  */
 export type StyleClass = string | undefined | false | null;
+
+/**
+ * Container max-width variants
+ */
+export type ContainerMaxWidth = "default" | "sm" | "md" | "lg" | "xl" | "2xl" | "4xl";
+
+/**
+ * Section background variants
+ */
+export type SectionBackground = "default" | "subtle" | "primary";
 

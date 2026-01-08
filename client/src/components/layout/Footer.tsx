@@ -2,11 +2,12 @@ import { Link } from "wouter";
 import { CONTACT_INFO } from "@/lib/constants/contact";
 import { resetConsent } from "@/lib/consent/consent.store";
 import logoImage from "@assets/logo/logo.png";
+import { Container } from "./Container";
 
 export function Footer() {
   return (
     <footer className="bg-black border-t border-white/10 pt-20 pb-10">
-      <div className="container mx-auto px-6">
+      <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
             <Link
@@ -161,7 +162,7 @@ export function Footer() {
             </Link>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

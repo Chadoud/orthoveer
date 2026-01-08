@@ -5,6 +5,10 @@ import { useRef } from "react";
 import { track } from "@/lib/tracking/events";
 import heroVideo from "@assets/homePage/homeHero.mp4";
 import { ScrollArrow } from "./ScrollArrow";
+import { Container } from "@/components/layout/Container";
+import { Heading } from "@/components/layout/Heading";
+import { text, patterns } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -25,21 +29,34 @@ export function Hero() {
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-background/80" />
+        <div className={patterns.heroOverlay} />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <Container className={patterns.heroContent}>
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide uppercase mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <div
+            className={cn(
+              patterns.badgeWithDot,
+              "mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700"
+            )}
+          >
+            <span className={patterns.badgeDot} />
             Orthodontic Manufacturing Solutions
           </div>
 
-          <h1 className="font-heading text-5xl md:text-7xl font-bold text-white leading-tight mb-8 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
+          <Heading
+            level="h1"
+            className="mb-8 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100 md:text-7xl"
+          >
             Orthodontic Equipment, Materials & White-Label Clear Aligners
-          </h1>
+          </Heading>
 
-          <p className="text-xl text-gray-400 mb-10 max-w-xl leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
+          <p
+            className={cn(
+              text.description,
+              "mb-10 max-w-xl animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200"
+            )}
+          >
             Complete solutions for orthodontic practices: production equipment,
             certified materials, and white-label aligner manufacturing services.
           </p>
@@ -48,7 +65,7 @@ export function Hero() {
             <Link href="/contact">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-12 text-base font-medium"
+                variant="primary"
                 onClick={() => {
                   track("cta_become_partner", {
                     location: "hero",
@@ -60,7 +77,7 @@ export function Hero() {
             </Link>
           </div>
         </div>
-      </div>
+      </Container>
 
       {/* Scroll Arrow Indicator */}
       <ScrollArrow heroRef={heroRef} text="Scroll to explore" />
