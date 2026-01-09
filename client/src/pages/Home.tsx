@@ -26,7 +26,7 @@ import { cn } from "@/lib/utils";
 
 // Import images
 import trimmingImage from "@assets/aboutPage/thrimming.jpg";
-import labHeroImage from "@assets/lab-hero.png";
+import darkHeroImage from "@assets/dark-hero.png";
 
 export default function Home() {
   return (
@@ -162,7 +162,7 @@ export default function Home() {
           </div>
           <div className="relative w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden">
             <img
-              src={labHeroImage}
+              src={darkHeroImage}
               alt="White-Label Aligner Manufacturing"
               className="w-full h-full object-cover"
               loading="lazy"

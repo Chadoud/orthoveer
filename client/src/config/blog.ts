@@ -1,9 +1,8 @@
 import type { BlogPost } from "@/types";
 import techHeroImage from "@assets/tech-hero.png";
-import labHeroImage from "@assets/lab-hero.png";
+import darkHeroImage from "@assets/dark-hero.png";
 import factoryImage from "@assets/aboutPage/factory.jpg";
 import trimmingImage from "@assets/aboutPage/thrimming.jpg";
-import darkHeroImage from "@assets/dark-hero.png";
 import smilingWomanImage from "@assets/aboutPage/woman-smiling-at-the-dentist-while-holding-a-mirror.jpg";
 
 export const blogPosts: BlogPost[] = [
@@ -103,7 +102,7 @@ export const blogPosts: BlogPost[] = [
     date: "2023-12-20",
     category: "Case Studies",
     readTime: "10 min read",
-    image: labHeroImage,
+    image: darkHeroImage,
     content: [
       "Dental Service Organizations (DSOs) face unique challenges in aligner manufacturing. With multiple locations and thousands of patients, they need scalable, efficient production systems that maintain quality at volume.",
       "One leading DSO with 50+ locations implemented a centralized manufacturing facility using our complete equipment suite. This approach consolidated production, reduced costs, and ensured consistent quality across all locations.",

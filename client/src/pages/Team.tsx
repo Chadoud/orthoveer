@@ -1,5 +1,5 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import { PageHero } from "@/components/sections/PageHero";
+import { VideoHero } from "@/components/sections/VideoHero";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,7 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Link } from "wouter";
-import darkHeroImage from "@assets/dark-hero.png";
+import { videos } from "@/lib/assets";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { patterns } from "@/lib/styles";
@@ -116,14 +116,19 @@ const values = [
 export default function Team() {
   return (
     <PageLayout>
-      <PageHero
+      <VideoHero
+        videoSrc={videos.expoHero}
         badge="Our Team"
         title="Meet the"
         titleHighlight="OrthoVeer Team"
         description="A dedicated group of professionals committed to advancing orthodontic manufacturing and improving patient care through innovation and precision."
-        image={darkHeroImage}
-        imageAlt="OrthoVeer Team"
-        showContactButton={true}
+        button={
+          <Link href="/contact">
+            <Button size="lg" variant="primary">
+              Contact Us <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+        }
       />
 
       {/* Our Values Section */}

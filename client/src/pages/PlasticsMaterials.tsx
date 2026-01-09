@@ -16,8 +16,6 @@ export default function PlasticsMaterials() {
       title="Thermoforming"
       titleHighlight="Plastics"
       description="Premium-grade thermoplastic materials engineered for precision aligner production. Choose from our range of FLEX and MAX formulations."
-      heroImage={plasticsImage}
-      heroImageAlt="Thermoforming Plastic Materials"
       materials={plastics}
       features={features}
       formTitle="Request Plastics"

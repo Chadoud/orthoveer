@@ -1,6 +1,6 @@
 import { PageLayout } from "@/components/layout/PageLayout";
 import { ContactForm } from "@/components/forms";
-import heroVideo from "@assets/homePage/homeHero.mp4";
+import { videos } from "@/lib/assets";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { VideoHero } from "@/components/sections/VideoHero";
@@ -9,7 +9,7 @@ export default function Contact() {
   return (
     <PageLayout>
       <VideoHero
-        videoSrc={heroVideo}
+        videoSrc={videos.expoHero}
         badge="Get in Touch"
         title="Contact"
         titleHighlight="Us"

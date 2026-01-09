@@ -1,9 +1,12 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import { PageHero } from "@/components/sections/PageHero";
+import { VideoHero } from "@/components/sections/VideoHero";
 import { Card } from "@/components/ui/card";
-import { CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import { Link } from "wouter";
 import { ContactForm } from "@/components/forms";
+import { videos } from "@/lib/assets";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import type { MaterialType } from "@/config/materials";
@@ -13,8 +16,6 @@ interface MaterialsPageProps {
   title: string;
   titleHighlight: string;
   description: string;
-  heroImage: string;
-  heroImageAlt: string;
   materials: MaterialType[];
   features: string[];
   formTitle: string;
@@ -29,8 +30,6 @@ export function MaterialsPage({
   title,
   titleHighlight,
   description,
-  heroImage,
-  heroImageAlt,
   materials,
   features,
   formTitle,
@@ -47,15 +46,19 @@ export function MaterialsPage({
 
   return (
     <PageLayout>
-      <PageHero
+      <VideoHero
+        videoSrc={videos.homeHero}
         badge={badge}
         title={title}
         titleHighlight={titleHighlight}
         description={description}
-        image={heroImage}
-        imageAlt={heroImageAlt}
-        buttonText="Request Information"
-        buttonHref="/contact"
+        button={
+          <Link href="/contact">
+            <Button size="lg" variant="primary">
+              Request Information <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+        }
       />
 
       {/* Products Section */}

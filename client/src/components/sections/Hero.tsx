@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { useRef } from "react";
 import { track } from "@/lib/tracking/events";
-import heroVideo from "@assets/homePage/homeHero.mp4";
+import { videos } from "@/lib/assets";
 import { ScrollArrow } from "./ScrollArrow";
 import { Container } from "@/components/layout/Container";
 import { Heading } from "@/components/layout/Heading";
@@ -27,7 +27,7 @@ export function Hero() {
           playsInline
           className="w-full h-full object-cover opacity-60"
         >
-          <source src={heroVideo} type="video/mp4" />
+          <source src={videos.expoHero} type="video/mp4" />
         </video>
         <div className={patterns.heroOverlay} />
       </div>

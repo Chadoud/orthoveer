@@ -26,18 +26,19 @@ export function VideoHero({
 }: VideoHeroProps) {
   const heroRef = useRef<HTMLElement>(null);
 
+  // Determine video MIME type based on file extension
+  const getVideoType = (src: string): string => {
+    if (src.endsWith(".mov")) return "video/quicktime";
+    if (src.endsWith(".webm")) return "video/webm";
+    return "video/mp4";
+  };
+
   return (
     <section ref={heroRef} className={patterns.heroSection}>
       {/* Background Video with Overlay */}
       <div className={patterns.heroVideoContainer}>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className={patterns.heroVideo}
-        >
-          <source src={videoSrc} type="video/mp4" />
+        <video autoPlay loop muted playsInline className={patterns.heroVideo}>
+          <source src={videoSrc} type={getVideoType(videoSrc)} />
         </video>
         <div className={patterns.heroOverlay} />
       </div>
@@ -66,4 +67,3 @@ export function VideoHero({
     </section>
   );
 }
-

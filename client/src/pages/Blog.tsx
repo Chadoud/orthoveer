@@ -1,11 +1,11 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import { PageHero } from "@/components/sections/PageHero";
+import { VideoHero } from "@/components/sections/VideoHero";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, User, Tag } from "lucide-react";
 import { Link } from "wouter";
 import { getAllBlogPosts } from "@/config/blog";
-import darkHeroImage from "@assets/dark-hero.png";
+import { videos } from "@/lib/assets";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 
@@ -14,13 +14,18 @@ const blogPosts = getAllBlogPosts();
 export default function Blog() {
   return (
     <PageLayout>
-      <PageHero
+      <VideoHero
+        videoSrc={videos.expoHero}
         badge="Insights & Updates"
         title="Blog"
         description="Stay informed with the latest insights, best practices, and industry updates from the world of orthodontic manufacturing."
-        image={darkHeroImage}
-        imageAlt="Blog"
-        showContactButton={true}
+        button={
+          <Link href="/contact">
+            <Button size="lg" variant="primary">
+              Contact Us <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+        }
       />
 
       {/* Blog Posts Grid */}

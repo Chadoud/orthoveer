@@ -25,10 +25,10 @@ export const patterns = {
   featureLink: "flex items-center text-primary text-sm font-semibold hover:text-white transition-colors",
   
   // Hero pattern
-  heroOverlay: "absolute inset-0 z-0 bg-background/80",
+  heroOverlay: "absolute inset-0 z-0 bg-background/60",
   heroContent: "relative z-10",
   heroSection: "relative min-h-[100vh] flex items-center pt-12 overflow-hidden",
-  heroVideo: "w-full h-full object-cover opacity-60",
+  heroVideo: "w-full h-full object-cover",
   heroVideoContainer: "absolute inset-0 z-0",
   
   // Image container pattern

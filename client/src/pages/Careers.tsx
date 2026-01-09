@@ -1,5 +1,5 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import { PageHero } from "@/components/sections/PageHero";
+import { VideoHero } from "@/components/sections/VideoHero";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CareerApplicationForm } from "@/components/forms";
@@ -16,7 +16,8 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { useState } from "react";
-import darkHeroImage from "@assets/dark-hero.png";
+import { Link } from "wouter";
+import { videos } from "@/lib/assets";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { patterns } from "@/lib/styles";
@@ -182,14 +183,19 @@ export default function Careers() {
 
   return (
     <PageLayout>
-      <PageHero
+      <VideoHero
+        videoSrc={videos.expoHero}
         badge="Join Our Team"
         title="OrthoVeer"
         titleHighlight="Careers"
         description="Be part of the future of orthodontic manufacturing. Join a team dedicated to precision, innovation, and transforming patient care."
-        image={darkHeroImage}
-        imageAlt="Careers at OrthoVeer"
-        showContactButton={true}
+        button={
+          <Link href="/contact">
+            <Button size="lg" variant="primary">
+              Contact Us <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+        }
       />
 
       {/* Why Join Us Section */}

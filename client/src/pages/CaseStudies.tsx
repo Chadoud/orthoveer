@@ -1,14 +1,15 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import { PageHero } from "@/components/sections/PageHero";
+import { VideoHero } from "@/components/sections/VideoHero";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Users, Clock, Award } from "lucide-react";
 import { Link } from "wouter";
 import { track } from "@/lib/tracking/events";
 import type { CaseStudy } from "@/types";
+import { videos } from "@/lib/assets";
 import factoryImage from "@assets/aboutPage/factory.jpg";
 import trimmingImage from "@assets/aboutPage/thrimming.jpg";
-import labHeroImage from "@assets/lab-hero.png";
+import darkHeroImage from "@assets/dark-hero.png";
 import techHeroImage from "@assets/tech-hero.png";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
@@ -69,7 +70,7 @@ const caseStudies: (CaseStudy & { image: string })[] = [
     title: "Startup Clinic Launch",
     client: "Smile Forward Orthodontics",
     industry: "Orthodontic Practice",
-    image: labHeroImage,
+    image: darkHeroImage,
     challenge:
       "A new orthodontic practice needed to establish in-house aligner production capabilities from day one to differentiate their services.",
     solution:
@@ -110,119 +111,118 @@ const caseStudies: (CaseStudy & { image: string })[] = [
 export default function CaseStudies() {
   return (
     <PageLayout>
-      <PageHero
+      <VideoHero
+        videoSrc={videos.homeHero}
         badge="Success Stories"
         title="Case"
         titleHighlight="Studies"
         description="Discover how orthodontic practices and labs worldwide are achieving remarkable results with OrthoVeer solutions."
-        image={labHeroImage}
-        imageAlt="Case Studies"
-        showContactButton={true}
+        button={
+          <Link href="/contact">
+            <Button size="lg" variant="primary">
+              Contact Us <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+        }
       />
 
       {/* Case Studies List */}
       <Section>
-          <div className="space-y-16">
-            {caseStudies.map((study) => (
-              <Card
-                key={study.id}
-                className="bg-white/5 border-white/10 p-8 md:p-12"
-              >
-                <div className="mb-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase">
-                      {study.industry}
-                    </div>
-                    <span className="text-gray-500 text-sm">
-                      {study.client}
-                    </span>
+        <div className="space-y-16">
+          {caseStudies.map((study) => (
+            <Card
+              key={study.id}
+              className="bg-white/5 border-white/10 p-8 md:p-12"
+            >
+              <div className="mb-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase">
+                    {study.industry}
                   </div>
-                  <h2 className="text-3xl font-bold text-white mb-6 font-heading">
-                    {study.title}
-                  </h2>
+                  <span className="text-gray-500 text-sm">{study.client}</span>
+                </div>
+                <h2 className="text-3xl font-bold text-white mb-6 font-heading">
+                  {study.title}
+                </h2>
 
-                  {/* Challenge and Solution in 2 columns */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div>
-                      <h3 className="text-lg font-bold text-white mb-3 flex-inline">
-                        <span className="w-2 h-2 rounded-full bg-primary" />
-                        Challenge
-                      </h3>
-                      <p className={text.cardText}>
-                        {study.challenge}
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-white mb-3 flex-inline">
-                        <span className="w-2 h-2 rounded-full bg-primary" />
-                        Solution
-                      </h3>
-                      <p className={text.cardText}>
-                        {study.solution}
-                      </p>
-                    </div>
+                {/* Challenge and Solution in 2 columns */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-3 flex-inline">
+                      <span className="w-2 h-2 rounded-full bg-primary" />
+                      Challenge
+                    </h3>
+                    <p className={text.cardText}>{study.challenge}</p>
                   </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white mb-3 flex-inline">
+                      <span className="w-2 h-2 rounded-full bg-primary" />
+                      Solution
+                    </h3>
+                    <p className={text.cardText}>{study.solution}</p>
+                  </div>
+                </div>
 
-                  {/* Image and Results on same row */}
-                  <div className="grid-2col-lg mb-8">
-                    <div className="relative w-full h-[250px] md:h-[300px] rounded-lg overflow-hidden">
+                {/* Image and Results on same row */}
+                <div className="grid-2col-lg mb-8">
+                  <div className="relative w-full h-[250px] md:h-[300px] rounded-lg overflow-hidden">
+                    <img
+                      src={study.image}
+                      alt={study.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 h-full">
+                    {study.results.map((result, idx) => (
+                      <div
+                        key={idx}
+                        className="p-4 rounded-lg bg-white/5 border border-white/10 text-left flex flex-col justify-center h-full"
+                      >
+                        <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">
+                          {result.metric}
+                        </div>
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-1">
+                          {result.value}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Testimonial */}
+              {study.testimonial && (
+                <div className="border-l-4 border-primary pl-6 py-4 bg-white/5 rounded-lg flex gap-4">
+                  <div className="shrink-0">
+                    <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/30 bg-white/5 flex items-center justify-center">
                       <img
-                        src={study.image}
-                        alt={study.title}
+                        src={study.testimonial.authorImage || study.image}
+                        alt={study.testimonial.author}
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
                     </div>
-                    <div className="grid grid-cols-2 gap-4 h-full">
-                      {study.results.map((result, idx) => (
-                        <div
-                          key={idx}
-                          className="p-4 rounded-lg bg-white/5 border border-white/10 text-left flex flex-col justify-center h-full"
-                        >
-                          <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">
-                            {result.metric}
-                          </div>
-                          <div className="text-lg sm:text-xl md:text-2xl font-bold text-primary mb-1">
-                            {result.value}
-                          </div>
-                        </div>
-                      ))}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-gray-300 italic mb-4">
+                      "{study.testimonial.quote}"
+                    </p>
+                    <div className="text-sm">
+                      <span className="font-semibold text-white">
+                        {study.testimonial.author}
+                      </span>
+                      <span className="text-gray-500">
+                        {" "}
+                        - {study.testimonial.role}
+                      </span>
                     </div>
                   </div>
                 </div>
-
-                {/* Testimonial */}
-                {study.testimonial && (
-                  <div className="border-l-4 border-primary pl-6 py-4 bg-white/5 rounded-lg flex gap-4">
-                    <div className="shrink-0">
-                      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/30 bg-white/5 flex items-center justify-center">
-                        <img
-                          src={study.testimonial.authorImage || study.image}
-                          alt={study.testimonial.author}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-gray-300 italic mb-4">
-                        "{study.testimonial.quote}"
-                      </p>
-                      <div className="text-sm">
-                        <span className="font-semibold text-white">
-                          {study.testimonial.author}
-                        </span>
-                        <span className="text-gray-500">
-                          {" "}
-                          - {study.testimonial.role}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </Card>
-            ))}
-          </div>
+              )}
+            </Card>
+          ))}
+        </div>
       </Section>
 
       {/* CTA Section */}
@@ -231,35 +231,32 @@ export default function CaseStudies() {
           <Heading level="h2" className="mb-6">
             Ready to Write Your Success Story?
           </Heading>
-            <p className="text-gray-400 text-lg mb-10 leading-relaxed">
-              Join hundreds of practices and labs that have transformed their
-              operations with OrthoVeer solutions.
-            </p>
-            <div className="flex-responsive-center">
-              <Link href="/machines">
-                <Button
-                  size="lg"
-                  variant="primary"
-                >
-                  Explore Solutions <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/20 text-white hover:bg-white/5 rounded-full px-8 h-12 text-base font-medium"
-                  onClick={() => {
-                    track("cta_schedule_consultation", {
-                      location: "cta_section",
-                    });
-                  }}
-                >
-                  Schedule Consultation
-                </Button>
-              </Link>
-            </div>
+          <p className="text-gray-400 text-lg mb-10 leading-relaxed">
+            Join hundreds of practices and labs that have transformed their
+            operations with OrthoVeer solutions.
+          </p>
+          <div className="flex-responsive-center">
+            <Link href="/machines">
+              <Button size="lg" variant="primary">
+                Explore Solutions <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/20 text-white hover:bg-white/5 rounded-full px-8 h-12 text-base font-medium"
+                onClick={() => {
+                  track("cta_schedule_consultation", {
+                    location: "cta_section",
+                  });
+                }}
+              >
+                Schedule Consultation
+              </Button>
+            </Link>
           </div>
+        </div>
       </Section>
     </PageLayout>
   );

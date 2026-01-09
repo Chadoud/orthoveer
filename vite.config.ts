@@ -3,12 +3,19 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import { metaImagesPlugin } from "./vite-plugin-meta-images";
+import checker from "vite-plugin-checker";
 
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
     metaImagesPlugin(),
+    checker({
+      typescript: {
+        tsconfigPath: "./tsconfig.json",
+        buildMode: false, // Only check in dev mode, not during build
+      },
+    }),
   ],
   resolve: {
     alias: {

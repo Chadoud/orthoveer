@@ -1,5 +1,5 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import { PageHero } from "@/components/sections/PageHero";
+import { VideoHero } from "@/components/sections/VideoHero";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/forms";
@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import { track } from "@/lib/tracking/events";
-import labHeroImage from "@assets/aboutPage/factory.jpg";
+import { videos } from "@/lib/assets";
 import customBoxImage from "@assets/whiteLabelingPage/customBox.jpg";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
@@ -24,15 +24,19 @@ import { cn } from "@/lib/utils";
 export default function WhiteLabeling() {
   return (
     <PageLayout>
-      <PageHero
+      <VideoHero
+        videoSrc={videos.homeHero}
         badge="White Label Solutions"
         title="White-Label"
         titleHighlight=" Aligner"
         description="White-label clear aligners for orthodontic treatments, manufactured to clinical standards and branded under your name. This allows practices to offer aligner treatments without investing in production infrastructure, while maintaining consistency, quality, and margins."
-        image={labHeroImage}
-        imageAlt="White Label Aligners"
-        buttonText="Get Started"
-        buttonHref="/contact"
+        button={
+          <Link href="/contact">
+            <Button size="lg" variant="primary">
+              Get Started <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </Link>
+        }
       />
 
       {/* Benefits Section */}

@@ -16,8 +16,6 @@ export default function Rolls() {
       title="Thermoforming"
       titleHighlight="Rolls"
       description="Premium thermoplastic rolls for high-volume aligner production. Designed for thermoforming production with seamless integration."
-      heroImage={rollsImage}
-      heroImageAlt="Thermoforming Material Rolls"
       materials={rolls}
       features={features}
       formTitle="Request Material Rolls"

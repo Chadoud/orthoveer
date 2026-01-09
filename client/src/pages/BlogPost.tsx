@@ -1,12 +1,12 @@
 import { PageLayout } from "@/components/layout/PageLayout";
-import { PageHero } from "@/components/sections/PageHero";
+import { VideoHero } from "@/components/sections/VideoHero";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, Tag, ArrowLeft, Clock } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { getBlogPostBySlug } from "@/config/blog";
 import NotFound from "@/pages/not-found";
-import labHeroImage from "@assets/aboutPage/factory.jpg";
+import { videos } from "@/lib/assets";
 import { Section } from "@/components/layout/Section";
 
 export default function BlogPostPage() {
@@ -25,12 +25,11 @@ export default function BlogPostPage() {
 
   return (
     <PageLayout>
-      <PageHero
+      <VideoHero
+        videoSrc={videos.expoHero}
         badge={post.category}
         title={post.title}
         description={post.excerpt}
-        image={labHeroImage}
-        imageAlt={post.title}
       />
 
       {/* Blog Post Content */}
