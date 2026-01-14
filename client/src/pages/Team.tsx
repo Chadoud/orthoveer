@@ -67,6 +67,7 @@ const teamMembers: TeamMember[] = [
     department: "Sales",
     bio: "Builds relationships with orthodontic practices and labs, helping them find the right solutions for their specific needs.",
     image: darrellImage,
+    linkedin: "https://www.linkedin.com/in/darrell-salumayi-024431248/",
   },
   {
     id: "5",
@@ -75,6 +76,7 @@ const teamMembers: TeamMember[] = [
     department: "Sales",
     bio: "Works with orthodontic professionals to understand their needs and provide tailored manufacturing solutions.",
     image: alexImage,
+    linkedin: "https://www.linkedin.com/in/alex-mulenga-553a95384/",
   },
   {
     id: "6",
