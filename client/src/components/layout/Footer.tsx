@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { CONTACT_INFO } from "@/lib/constants/contact";
 import { resetConsent } from "@/lib/consent/consent.store";
-import logoImage from "@assets/logo/logo.png";
+import logoImage from "@assets/logo/logo.webp";
 import { Container } from "./Container";
 
 export function Footer() {
@@ -24,7 +24,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              Premier B2B orthodontic manufacturing partner. Delivering
+              Orthodontic manufacturing partner. Delivering
               precision aligners and digital treatment planning for dental
               professionals worldwide.
             </p>
@@ -151,13 +151,22 @@ export function Footer() {
             >
               Cookie Settings
             </button>
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-white transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="hover:text-white transition-colors">
+            <Link
+              href="/terms-of-service"
+              className="hover:text-white transition-colors"
+            >
               Terms of Service
             </Link>
-            <Link href="/cookie-policy" className="hover:text-white transition-colors">
+            <Link
+              href="/cookie-policy"
+              className="hover:text-white transition-colors"
+            >
               Cookie Policy
             </Link>
           </div>

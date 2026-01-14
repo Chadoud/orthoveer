@@ -234,7 +234,7 @@ Two-layer styling approach:
 ```typescript
 // Why: Avoids relative path hell and improves readability
 import { Button } from "@/components/ui/button";
-import logo from "@assets/logo/logo.png";
+import logo from "@assets/logo/logo.webp";
 ```
 
 **Rationale**:
@@ -592,7 +592,7 @@ The project uses path aliases for cleaner imports:
 
 ```typescript
 import { Button } from "@/components/ui/button"; // @/ → client/src/
-import logo from "@assets/logo/logo.png"; // @assets/ → attached_assets/
+import logo from "@assets/logo/logo.webp"; // @assets/ → attached_assets/
 ```
 
 **Available Aliases:**
