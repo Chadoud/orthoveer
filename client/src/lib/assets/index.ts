@@ -31,18 +31,16 @@ export const machineImageMap: Record<string, string> = {
 } as const;
 
 // Videos
-import heroMachinesVideo from "@assets/machinesPage/heroMachines.mp4";
-import homeHeroVideo from "@assets/homePage/homeHero.mp4";
+import processHeroVideo from "@assets/processHero.mp4";
+import homeHeroVideo from "@assets/homeHero.mp4";
 import expoHeroVideo from "@assets/expoHero.mp4";
-import orthoHeroVideo from "@assets/orthoHero.mov";
 
 /**
  * Video asset registry.
  */
 export const videos = {
-  heroMachines: heroMachinesVideo,
+  processHero: processHeroVideo,
   homeHero: homeHeroVideo,
   expoHero: expoHeroVideo,
-  orthoHero: orthoHeroVideo,
 } as const;
 

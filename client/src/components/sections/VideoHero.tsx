@@ -25,6 +25,7 @@ export function VideoHero({
   scrollText = "Scroll to learn more",
 }: VideoHeroProps) {
   const heroRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Determine video MIME type based on file extension
   const getVideoType = (src: string): string => {
@@ -33,12 +34,41 @@ export function VideoHero({
     return "video/mp4";
   };
 
+  // Handle video errors
+  const handleVideoError = (
+    e: React.SyntheticEvent<HTMLVideoElement, Event>
+  ) => {
+    console.error("Video failed to load:", videoSrc, e);
+    // Video will fail silently, but we log it for debugging
+  };
+
+  // Handle video load
+  const handleVideoLoad = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch((err) => {
+        console.error("Video play failed:", err);
+      });
+    }
+  };
+
   return (
     <section ref={heroRef} className={patterns.heroSection}>
       {/* Background Video with Overlay */}
       <div className={patterns.heroVideoContainer}>
-        <video autoPlay loop muted playsInline className={patterns.heroVideo}>
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className={patterns.heroVideo}
+          onError={handleVideoError}
+          onLoadedData={handleVideoLoad}
+          preload="auto"
+        >
           <source src={videoSrc} type={getVideoType(videoSrc)} />
+          {/* Fallback message for unsupported formats */}
+          Your browser does not support the video tag or this video format.
         </video>
         <div className={patterns.heroOverlay} />
       </div>

@@ -13,6 +13,10 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import { videos } from "@/lib/assets";
+import bernardImage from "@assets/team/bernard.png";
+import abelImage from "@assets/team/abel.png";
+import darrellImage from "@assets/team/darrellSalumayi.jpeg";
+import alexImage from "@assets/team/alexMulenga.jpeg";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { patterns } from "@/lib/styles";
@@ -32,57 +36,52 @@ interface TeamMember {
 const teamMembers: TeamMember[] = [
   {
     id: "1",
-    name: "Dr. Sarah Chen",
-    role: "Chief Executive Officer",
+    name: "Bernard Najm",
+    role: "CEO",
     department: "Management",
-    bio: "With over 15 years of experience in medical device manufacturing, Dr. Chen leads OrthoVeer's strategic vision and innovation initiatives.",
-    linkedin: "#",
-    email: "s.chen@orthoveer.com",
+    bio: "CEO of OrthoVeer, leading the company's vision and strategic direction in orthodontic manufacturing solutions.",
+    image: bernardImage,
+    linkedin:
+      "https://www.linkedin.com/in/bernard-najm-4273b4a0?originalSubdomain=fr",
   },
   {
     id: "2",
-    name: "Michael Rodriguez",
-    role: "Head of Engineering",
-    department: "Engineering",
-    bio: "Michael specializes in manufacturing automation and process optimization, ensuring precision in every aligner we produce.",
-    linkedin: "#",
-    email: "m.rodriguez@orthoveer.com",
+    name: "Abel Salumai",
+    role: "Managing Partner",
+    department: "Management",
+    bio: "Managing Partner overseeing operations and strategic partnerships, ensuring successful delivery of orthodontic manufacturing solutions.",
+    image: abelImage,
+    linkedin: "https://www.linkedin.com/in/abel-salumai-866984109/",
   },
   {
     id: "3",
-    name: "Emma Thompson",
-    role: "Quality Assurance Manager",
-    department: "Quality",
-    bio: "Emma ensures every product meets ISO 13485 certification requirements, maintaining the highest standards in quality control.",
-    linkedin: "#",
-    email: "e.thompson@orthoveer.com",
+    name: "Dory Ziade",
+    role: "Production Manager",
+    department: "Manufacturing",
+    bio: "Manages production operations, ensuring high-quality aligner manufacturing and efficient production workflows.",
   },
   {
     id: "4",
-    name: "Dr. James Wilson",
-    role: "Clinical Director",
-    department: "Clinical",
-    bio: "Dr. Wilson works directly with orthodontic professionals, providing clinical guidance and expertise throughout the treatment process.",
-    linkedin: "#",
-    email: "j.wilson@orthoveer.com",
+    name: "Darrell Salumayi",
+    role: "Sales Manager: Commercial",
+    department: "Sales",
+    bio: "Builds relationships with orthodontic practices and labs, helping them find the right solutions for their specific needs.",
+    image: darrellImage,
   },
   {
     id: "5",
-    name: "Lisa Anderson",
-    role: "Production Manager",
-    department: "Manufacturing",
-    bio: "Lisa oversees our manufacturing operations, ensuring our skilled team produces high-quality aligners with precision and care.",
-    linkedin: "#",
-    email: "l.anderson@orthoveer.com",
+    name: "Alex Mulenga",
+    role: "Sales Manager- Enterprise",
+    department: "Sales",
+    bio: "Works with orthodontic professionals to understand their needs and provide tailored manufacturing solutions.",
+    image: alexImage,
   },
   {
     id: "6",
-    name: "David Park",
-    role: "Business Development Director",
+    name: "Joseph",
+    role: "Sales",
     department: "Sales",
-    bio: "David builds relationships with orthodontic practices and labs, helping them find the right solutions for their specific needs.",
-    linkedin: "#",
-    email: "d.park@orthoveer.com",
+    bio: "Supports orthodontic practices in implementing in-house production capabilities and white-label solutions.",
   },
 ];
 
@@ -133,36 +132,38 @@ export default function Team() {
 
       {/* Our Values Section */}
       <Section background="subtle">
-          <div className={patterns.sectionHeader}>
-              <Heading level="h2" className="mb-4">
-                Our Values
-              </Heading>
-            <p className={cn("text-lg text-gray-400", patterns.centeredContentMd)}>
-              The principles that guide our team and shape our culture.
-            </p>
-          </div>
+        <div className={patterns.sectionHeader}>
+          <Heading level="h2" className="mb-4">
+            Our Values
+          </Heading>
+          <p
+            className={cn("text-lg text-gray-400", patterns.centeredContentMd)}
+          >
+            The principles that guide our team and shape our culture.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => {
-              const Icon = value.icon;
-              return (
-                <Card
-                  key={index}
-                  className="bg-white/5 border-white/10 p-6 hover:border-primary/50 transition-all duration-300 text-center"
-                >
-                  <div className="flex flex-col items-center">
-                    <Icon className="w-12 h-12 text-primary mb-4" />
-                    <h3 className="text-xl font-bold text-white mb-2 font-heading">
-                      {value.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      {value.description}
-                    </p>
-                  </div>
-                </Card>
-              );
-            })}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {values.map((value, index) => {
+            const Icon = value.icon;
+            return (
+              <Card
+                key={index}
+                className="bg-white/5 border-white/10 p-6 hover:border-primary/50 transition-all duration-300 text-center"
+              >
+                <div className="flex flex-col items-center">
+                  <Icon className="w-12 h-12 text-primary mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-2 font-heading">
+                    {value.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {value.description}
+                  </p>
+                </div>
+              </Card>
+            );
+          })}
+        </div>
       </Section>
 
       {/* Team Members Section */}
@@ -171,60 +172,72 @@ export default function Team() {
           <Heading level="h2" className="mb-4">
             Our Team
           </Heading>
-            <p className={cn("text-lg text-gray-400", patterns.centeredContentMd)}>
-              Meet the talented individuals who make OrthoVeer a leader in
-              orthodontic manufacturing.
-            </p>
-          </div>
+          <p
+            className={cn("text-lg text-gray-400", patterns.centeredContentMd)}
+          >
+            Meet the talented individuals who make OrthoVeer a leader in
+            orthodontic manufacturing.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member) => (
-              <Card
-                key={member.id}
-                className="bg-white/5 border-white/10 p-6 hover:border-primary/50 transition-all duration-300"
-              >
-                <div className="flex flex-col items-center text-center mb-4">
-                  <div className="w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-                    <Users className="w-12 h-12 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-1 font-heading">
-                    {member.name}
-                  </h3>
-                  <p className="text-primary text-sm font-medium mb-1">
-                    {member.role}
-                  </p>
-                  <p className="text-gray-400 text-xs uppercase tracking-wide">
-                    {member.department}
-                  </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teamMembers.map((member) => (
+            <Card
+              key={member.id}
+              className="bg-white/5 border-white/10 p-6 hover:border-primary/50 transition-all duration-300"
+            >
+              <div className="flex flex-col items-center text-center mb-4">
+                <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-primary/20">
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-primary/20 flex items-center justify-center">
+                      <Users className="w-12 h-12 text-primary" />
+                    </div>
+                  )}
                 </div>
-                <p className="text-gray-300 text-sm leading-relaxed mb-6 text-center">
-                  {member.bio}
+                <h3 className="text-xl font-bold text-white mb-1 font-heading">
+                  {member.name}
+                </h3>
+                <p className="text-primary text-sm font-medium mb-1">
+                  {member.role}
                 </p>
-                <div className="flex justify-center gap-4">
-                  {member.linkedin && (
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-400 hover:text-primary transition-colors"
-                      aria-label={`${member.name} LinkedIn`}
-                    >
-                      <Linkedin className="w-5 h-5" />
-                    </a>
-                  )}
-                  {member.email && (
-                    <a
-                      href={`mailto:${member.email}`}
-                      className="text-gray-400 hover:text-primary transition-colors"
-                      aria-label={`Email ${member.name}`}
-                    >
-                      <Mail className="w-5 h-5" />
-                    </a>
-                  )}
-                </div>
-              </Card>
-            ))}
-          </div>
+                <p className="text-gray-400 text-xs uppercase tracking-wide">
+                  {member.department}
+                </p>
+              </div>
+              <p className="text-gray-300 text-sm leading-relaxed mb-6 text-center">
+                {member.bio}
+              </p>
+              <div className="flex justify-center gap-4">
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-primary transition-colors"
+                    aria-label={`${member.name} LinkedIn`}
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                )}
+                {member.email && (
+                  <a
+                    href={`mailto:${member.email}`}
+                    className="text-gray-400 hover:text-primary transition-colors"
+                    aria-label={`Email ${member.name}`}
+                  >
+                    <Mail className="w-5 h-5" />
+                  </a>
+                )}
+              </div>
+            </Card>
+          ))}
+        </div>
       </Section>
 
       {/* Join Our Team Section */}
@@ -233,20 +246,21 @@ export default function Team() {
           <Heading level="h2" className="mb-4">
             Join Our Team
           </Heading>
-            <p className={cn("text-lg text-gray-400 mb-8", patterns.centeredContentMd)}>
-              We're always looking for talented individuals who share our
-              passion for innovation and excellence in orthodontic
-              manufacturing.
-            </p>
-            <Link href="/careers">
-              <Button
-                size="lg"
-                variant="primary"
-              >
-                View Open Positions{" "}
-                <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
-              </Button>
-            </Link>
+          <p
+            className={cn(
+              "text-lg text-gray-400 mb-8",
+              patterns.centeredContentMd
+            )}
+          >
+            We're always looking for talented individuals who share our passion
+            for innovation and excellence in orthodontic manufacturing.
+          </p>
+          <Link href="/careers">
+            <Button size="lg" variant="primary">
+              View Open Positions{" "}
+              <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
+            </Button>
+          </Link>
         </div>
       </Section>
 
@@ -256,30 +270,32 @@ export default function Team() {
           <Heading level="h2" className="mb-6">
             Want to Learn More?
           </Heading>
-            <p className={cn("text-gray-400 text-lg mb-10 leading-relaxed", patterns.centeredContentMd)}>
-              Get in touch with our team to discover how OrthoVeer can support
-              your orthodontic practice.
-            </p>
-            <div className="flex-responsive-center">
-              <Link href="/contact">
-                <Button
-                  size="lg"
-                  variant="primary"
-                >
-                  Contact Us{" "}
-                  <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
-                </Button>
-              </Link>
-              <Link href="/about">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/20 text-white hover:bg-white/5 rounded-full px-8 h-12 text-base font-medium"
-                >
-                  Learn More About Us
-                </Button>
-              </Link>
-            </div>
+          <p
+            className={cn(
+              "text-gray-400 text-lg mb-10 leading-relaxed",
+              patterns.centeredContentMd
+            )}
+          >
+            Get in touch with our team to discover how OrthoVeer can support
+            your orthodontic practice.
+          </p>
+          <div className="flex-responsive-center">
+            <Link href="/contact">
+              <Button size="lg" variant="primary">
+                Contact Us{" "}
+                <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
+              </Button>
+            </Link>
+            <Link href="/about">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/20 text-white hover:bg-white/5 rounded-full px-8 h-12 text-base font-medium"
+              >
+                Learn More About Us
+              </Button>
+            </Link>
+          </div>
         </div>
       </Section>
     </PageLayout>

@@ -27,7 +27,7 @@ export default function Solutions() {
   return (
     <PageLayout>
       <VideoHero
-        videoSrc={videos.orthoHero}
+        videoSrc={videos.processHero}
         badge="Complete Solutions"
         title="Orthodontic Manufacturing"
         titleHighlight="Solutions"

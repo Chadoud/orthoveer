@@ -65,7 +65,7 @@ export const headingVariants: Record<HeadingLevel, string> = {
  * Text style variants
  */
 export const textVariants: Record<TextVariant, string> = {
-  description: "text-xl text-gray-400 leading-relaxed",
+  description: "sm:text-xl text-sm text-gray-400 leading-relaxed",
   body: "text-gray-300 leading-relaxed",
   muted: "text-gray-400 text-sm",
   small: "text-sm text-gray-500",

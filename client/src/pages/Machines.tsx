@@ -24,7 +24,7 @@ export default function Machines() {
   return (
     <PageLayout>
       <VideoHero
-        videoSrc={videos.heroMachines}
+        videoSrc={videos.processHero}
         badge="Manufacturing Equipment"
         title="Orthodontic Production"
         titleHighlight="Equipment"

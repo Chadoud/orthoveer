@@ -32,14 +32,14 @@ export function MachineHero({
   return (
     <section
       ref={heroRef}
-      className="min-h-[100vh] flex items-center pt-12 relative overflow-hidden"
+      className="min-h-screen flex items-center pt-12 relative overflow-hidden"
     >
       <div className="absolute inset-0 z-0 bg-background" />
 
       <Container className={patterns.heroContent}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 items-start">
           <div>
-            <div className={cn(patterns.badgeWithDot, "mb-6")}>
+            <div className={cn(patterns.badgeWithDot, "mb-5")}>
               <span className={patterns.badgeDot} />
               {category}
             </div>
@@ -48,9 +48,20 @@ export function MachineHero({
               {name}
             </Heading>
 
-            <p className={cn(text.description, "mb-10 max-w-xl")}>
+            <p className={cn(text.description, "mb-5 lg:mb-10 max-w-xl")}>
               {description}
             </p>
+
+            {/* Image on mobile - appears between description and button */}
+            <div className="flex items-center mb-5 lg:hidden">
+              <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 p-1">
+                <img
+                  src={image}
+                  alt={imageAlt}
+                  className="block max-w-full h-auto max-h-[40vh]"
+                />
+              </div>
+            </div>
 
             <div className="flex-responsive">
               <Link href="/contact">
@@ -65,7 +76,8 @@ export function MachineHero({
             </div>
           </div>
 
-          <div className="flex items-center justify-start lg:justify-end">
+          {/* Image on desktop - appears on the right side */}
+          <div className="hidden lg:flex items-center justify-end">
             <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-white/5 p-8 max-w-md">
               <img
                 src={image}
