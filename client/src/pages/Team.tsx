@@ -63,7 +63,7 @@ const teamMembers: TeamMember[] = [
   {
     id: "4",
     name: "Darrell Salumayi",
-    role: "Sales Manager: Commercial",
+    role: "Sales Manager - Commercial",
     department: "Sales",
     bio: "Builds relationships with orthodontic practices and labs, helping them find the right solutions for their specific needs.",
     image: darrellImage,
@@ -72,7 +72,7 @@ const teamMembers: TeamMember[] = [
   {
     id: "5",
     name: "Alex Mulenga",
-    role: "Sales Manager- Enterprise",
+    role: "Sales Manager - Enterprise",
     department: "Sales",
     bio: "Works with orthodontic professionals to understand their needs and provide tailored manufacturing solutions.",
     image: alexImage,
