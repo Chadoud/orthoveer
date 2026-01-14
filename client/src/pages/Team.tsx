@@ -13,10 +13,10 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import { videos } from "@/lib/assets";
-import bernardImage from "@assets/team/bernard.png";
-import abelImage from "@assets/team/abel.png";
-import darrellImage from "@assets/team/darrellSalumayi.jpeg";
-import alexImage from "@assets/team/alexMulenga.jpeg";
+import bernardImage from "@assets/team/bernard.jpg";
+import abelImage from "@assets/team/abel.jpg";
+import darrellImage from "@assets/team/darrellSalumay.jpg";
+import alexImage from "@assets/team/alexMuleng.jpg";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { patterns } from "@/lib/styles";
