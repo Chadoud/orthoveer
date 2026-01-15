@@ -26,7 +26,7 @@ import { cn } from "@/lib/utils";
 
 // Import images
 import trimmingImage from "@assets/aboutPage/thrimming.jpg";
-import darkHeroImage from "@assets/dark-hero.png";
+import darkHeroImage from "@assets/heroes/images/dark-hero.png";
 
 export default function Home() {
   return (

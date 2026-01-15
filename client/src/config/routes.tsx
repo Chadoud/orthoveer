@@ -5,7 +5,6 @@ import Rolls from "@/pages/Rolls";
 import Machines from "@/pages/Machines";
 import AboutUs from "@/pages/AboutUs";
 import Blog from "@/pages/Blog";
-import CaseStudies from "@/pages/CaseStudies";
 import Contact from "@/pages/Contact";
 import Careers from "@/pages/Careers";
 import Team from "@/pages/Team";
@@ -153,13 +152,6 @@ export const routeConfigs: RouteConfig[] = [
     lazy: true,
     title: "Blog Post",
     description: "Read our latest blog post.",
-  },
-  {
-    path: "/case-studies",
-    component: CaseStudies,
-    lazy: false,
-    title: "Case Studies",
-    description: "Success stories from our clients.",
   },
   {
     path: "/contact",

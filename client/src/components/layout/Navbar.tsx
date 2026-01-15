@@ -183,18 +183,6 @@ export function Navbar() {
                 </NavigationMenuList>
               </NavigationMenu>
               <Link
-                href="/case-studies"
-                className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-4 py-2"
-                onMouseEnter={() =>
-                  routePrefetcher.scheduleHoverPrefetch("/case-studies")
-                }
-                onMouseLeave={() =>
-                  routePrefetcher.cancelHoverPrefetch("/case-studies")
-                }
-              >
-                Case Studies
-              </Link>
-              <Link
                 href="/about"
                 className="text-sm font-medium text-gray-300 hover:text-white transition-colors px-4 py-2"
                 onMouseEnter={() =>
@@ -395,13 +383,6 @@ function MobileMenu({
                 <div className="h-px bg-white/10" />
 
                 <div className="flex flex-col gap-4">
-                  <Link
-                    href="/case-studies"
-                    className="text-xl font-medium text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 transition-colors"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Case Studies
-                  </Link>
                   <Link
                     href="/about"
                     className="text-xl font-medium text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-white/5 transition-colors"

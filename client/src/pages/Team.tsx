@@ -55,13 +55,6 @@ const teamMembers: TeamMember[] = [
   },
   {
     id: "3",
-    name: "Dory Ziade",
-    role: "Production Manager",
-    department: "Manufacturing",
-    bio: "Manages production operations, ensuring high-quality aligner manufacturing and efficient production workflows.",
-  },
-  {
-    id: "4",
     name: "Darrell Salumayi",
     role: "Sales Manager - Commercial",
     department: "Sales",
@@ -70,20 +63,13 @@ const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/darrell-salumayi-024431248/",
   },
   {
-    id: "5",
+    id: "4",
     name: "Alex Mulenga",
     role: "Sales Manager - Enterprise",
     department: "Sales",
     bio: "Works with orthodontic professionals to understand their needs and provide tailored manufacturing solutions.",
     image: alexImage,
     linkedin: "https://www.linkedin.com/in/alex-mulenga-553a95384/",
-  },
-  {
-    id: "6",
-    name: "Joseph",
-    role: "Sales",
-    department: "Sales",
-    bio: "Supports orthodontic practices in implementing in-house production capabilities and white-label solutions.",
   },
 ];
 

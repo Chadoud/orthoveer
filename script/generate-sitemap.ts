@@ -27,7 +27,6 @@ const STATIC_ROUTES = [
   { path: "/white-labeling", priority: "0.8", changefreq: "weekly" },
   { path: "/about", priority: "0.7", changefreq: "monthly" },
   { path: "/team", priority: "0.7", changefreq: "monthly" },
-  { path: "/case-studies", priority: "0.7", changefreq: "monthly" },
   { path: "/blog", priority: "0.7", changefreq: "weekly" },
   { path: "/careers", priority: "0.7", changefreq: "monthly" },
   { path: "/contact", priority: "0.8", changefreq: "monthly" },

@@ -1,6 +1,6 @@
 import type { BlogPost } from "@/types";
-import techHeroImage from "@assets/tech-hero.png";
-import darkHeroImage from "@assets/dark-hero.png";
+import techHeroImage from "@assets/heroes/images/tech-hero.png";
+import darkHeroImage from "@assets/heroes/images/dark-hero.png";
 import factoryImage from "@assets/aboutPage/factory.jpg";
 import trimmingImage from "@assets/aboutPage/thrimming.jpg";
 import smilingWomanImage from "@assets/aboutPage/woman-smiling-at-the-dentist-while-holding-a-mirror.jpg";
