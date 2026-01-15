@@ -1,6 +1,7 @@
 import type { BlogPost } from "@/types";
 import techHeroImage from "@assets/heroes/images/tech-hero.png";
 import darkHeroImage from "@assets/heroes/images/dark-hero.png";
+import clearAlignerImage from "@assets/heroes/images/clear-aligner.png";
 import factoryImage from "@assets/aboutPage/factory.jpg";
 import trimmingImage from "@assets/aboutPage/thrimming.jpg";
 import smilingWomanImage from "@assets/aboutPage/woman-smiling-at-the-dentist-while-holding-a-mirror.jpg";
@@ -80,7 +81,7 @@ export const blogPosts: BlogPost[] = [
     date: "2023-12-28",
     category: "Quality",
     readTime: "8 min read",
-    image: darkHeroImage,
+    image: clearAlignerImage,
     content: [
       "ISO 13485 is the international standard for quality management systems in medical device manufacturing. For orthodontic practices producing aligners, understanding and implementing this standard is crucial for regulatory compliance and patient safety.",
       "The standard focuses on risk management throughout the product lifecycle. Every process, from material selection to final inspection, must be documented and controlled. This systematic approach ensures consistent quality and traceability.",
