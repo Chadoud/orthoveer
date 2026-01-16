@@ -17,6 +17,7 @@ import bernardImage from "@assets/team/bernard.jpg";
 import abelImage from "@assets/team/abel.jpg";
 import darrellImage from "@assets/team/darrellSalumay.jpg";
 import alexImage from "@assets/team/alexMuleng.jpg";
+import doryImage from "@assets/team/doryZiade.jpg";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { patterns } from "@/lib/styles";
@@ -70,6 +71,14 @@ const teamMembers: TeamMember[] = [
     bio: "Works with orthodontic professionals to understand their needs and provide tailored manufacturing solutions.",
     image: alexImage,
     linkedin: "https://www.linkedin.com/in/alex-mulenga-553a95384/",
+  },
+  {
+    id: "5",
+    name: "Dory Ziade",
+    role: "Production Manager",
+    department: "Production",
+    bio: "Oversees production operations, ensuring quality standards and efficient manufacturing processes for orthodontic aligners and equipment.",
+    image: doryImage,
   },
 ];
 
