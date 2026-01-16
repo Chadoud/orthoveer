@@ -234,18 +234,15 @@ export function Navbar() {
 
             {/* Contact Button - Right */}
             <div className="hidden lg:flex items-center gap-4 z-10 shrink-0">
-              <a
-                href="https://dashboard.orthoveer.com"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Button
+                variant="outline"
+                className="border-white/20 text-white hover:bg-white/10 hover:border-white/30 rounded-full px-6"
+                onClick={() => {
+                  window.location.href = "https://dashboard.orthoveer.com";
+                }}
               >
-                <Button
-                  variant="outline"
-                  className="border-white/20 text-white hover:bg-white/10 hover:border-white/30 rounded-full px-6"
-                >
-                  Login
-                </Button>
-              </a>
+                Login
+              </Button>
               <Link
                 href="/contact"
                 onMouseEnter={() =>
@@ -264,19 +261,30 @@ export function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile/Tablet Toggle */}
-            <button
-              className="lg:hidden text-white p-2 z-[120] relative shrink-0"
-              onClick={() => setIsOpen(!isOpen)}
-              data-testid="button-menu-toggle"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
-            >
-              {isOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+            {/* Mobile Login Button and Toggle - Right side */}
+            <div className="lg:hidden flex items-center gap-2 z-[120] shrink-0">
+              <Button
+                variant="ghost"
+                className="border-none text-white hover:bg-white/10 rounded-full px-4 text-sm"
+                onClick={() => {
+                  window.location.href = "https://dashboard.orthoveer.com";
+                }}
+              >
+                Login
+              </Button>
+              <button
+                className="text-white p-2"
+                onClick={() => setIsOpen(!isOpen)}
+                data-testid="button-menu-toggle"
+                aria-label={isOpen ? "Close menu" : "Open menu"}
+              >
+                {isOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            </div>
           </div>
         </Container>
       </nav>
@@ -428,23 +436,17 @@ function MobileMenu({
                 <div className="h-px bg-white/10" />
 
                 <div className="flex flex-col gap-4 mt-auto">
-                  <a
-                    href="https://dashboard.orthoveer.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsOpen(false)}
+                  <Button
+                    variant="outline"
+                    className="w-full border-white/20 text-white hover:bg-white/10 hover:border-white/30 rounded-full px-8 h-14 text-lg font-medium"
+                    onClick={() => {
+                      setIsOpen(false);
+                      window.location.href = "https://dashboard.orthoveer.com";
+                    }}
                   >
-                    <Button
-                      variant="outline"
-                      className="w-full border-white/20 text-white hover:bg-white/10 hover:border-white/30 rounded-full px-8 h-14 text-lg font-medium"
-                    >
-                      Login
-                    </Button>
-                  </a>
-                  <Link
-                    href="/contact"
-                    onClick={() => setIsOpen(false)}
-                  >
+                    Login
+                  </Button>
+                  <Link href="/contact" onClick={() => setIsOpen(false)}>
                     <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-14 text-lg font-medium">
                       Contact Us
                     </Button>
