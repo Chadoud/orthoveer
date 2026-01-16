@@ -7,14 +7,14 @@ import { Link } from "wouter";
 import { track } from "@/lib/tracking/events";
 import type { CaseStudy } from "@/types";
 import { videos } from "@/lib/assets";
-import factoryImage from "@assets/aboutPage/factory.jpg";
-import trimmingImage from "@assets/aboutPage/thrimming.jpg";
+import factoryImage from "@assets/pages/about/factory.jpg";
+import trimmingImage from "@assets/pages/about/thrimming.jpg";
 import darkHeroImage from "@assets/heroes/images/dark-hero.png";
 import techHeroImage from "@assets/heroes/images/tech-hero.png";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { text } from "@/lib/styles";
-import { cn } from "@/lib/utils";
+
 
 const caseStudies: (CaseStudy & { image: string })[] = [
   {

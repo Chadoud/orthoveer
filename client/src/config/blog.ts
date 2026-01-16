@@ -1,10 +1,10 @@
 import type { BlogPost } from "@/types";
-import techHeroImage from "@assets/heroes/images/tech-hero.png";
+import duoImage from "@assets/pages/blog/duo.jpg";
 import darkHeroImage from "@assets/heroes/images/dark-hero.png";
 import clearAlignerImage from "@assets/heroes/images/clear-aligner.png";
-import factoryImage from "@assets/aboutPage/factory.jpg";
-import trimmingImage from "@assets/aboutPage/thrimming.jpg";
-import smilingWomanImage from "@assets/aboutPage/woman-smiling-at-the-dentist-while-holding-a-mirror.jpg";
+import modelsGridImage from "@assets/pages/blog/modelsGridImage.jpg";
+import displayPlastic from "@assets/materials/displayPlastics.jpg";
+import expositionTips from "@assets/pages/blog/expositionTips.jpg";
 
 export const blogPosts: BlogPost[] = [
   {
@@ -17,7 +17,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-01-15",
     category: "Technology",
     readTime: "5 min read",
-    image: techHeroImage,
+    image: duoImage,
     content: [
       "The orthodontic industry is experiencing a technological revolution, with clear aligner manufacturing at the forefront of innovation. As patient demand for invisible orthodontic solutions continues to grow, manufacturers are developing increasingly sophisticated production methods.",
       "One of the most significant advancements in recent years has been the integration of AI-powered treatment planning systems. These systems analyze patient scans with unprecedented precision, generating optimal aligner designs that minimize treatment time while maximizing effectiveness.",
@@ -37,7 +37,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-01-10",
     category: "Materials",
     readTime: "7 min read",
-    image: trimmingImage,
+    image: displayPlastic,
     content: [
       "Selecting the right thermoplastic material is one of the most critical decisions in aligner manufacturing. The material you choose directly impacts treatment outcomes, patient comfort, and practice efficiency.",
       "When evaluating materials, consider several key factors: thickness, clarity, force delivery, and durability. Each of these properties plays a crucial role in treatment success.",
@@ -59,7 +59,7 @@ export const blogPosts: BlogPost[] = [
     date: "2024-01-05",
     category: "Production",
     readTime: "6 min read",
-    image: factoryImage,
+    image: modelsGridImage,
     content: [
       "Efficient manufacturing workflows are the backbone of successful orthodontic production. By optimizing your processes, you can increase capacity, reduce costs, and improve patient satisfaction through faster turnaround times.",
       "Start by mapping your current workflow from case receipt to shipment. Identify bottlenecks, redundant steps, and areas where errors commonly occur. This analysis provides the foundation for improvement.",
@@ -126,7 +126,7 @@ export const blogPosts: BlogPost[] = [
     date: "2023-12-15",
     category: "Equipment",
     readTime: "6 min read",
-    image: smilingWomanImage,
+    image: expositionTips,
     content: [
       "Proper maintenance is essential for thermoforming equipment longevity and consistent production quality. Neglecting maintenance leads to downtime, quality issues, and costly repairs.",
       "Daily maintenance should include cleaning the forming chamber, checking vacuum system operation, and inspecting heating elements. Keep a maintenance log to track these activities and identify patterns.",

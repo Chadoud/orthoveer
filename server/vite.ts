@@ -11,7 +11,11 @@ const viteLogger = createLogger();
 export async function setupVite(server: Server, app: Express) {
   const serverOptions = {
     middlewareMode: true,
-    hmr: { server, path: "/vite-hmr" },
+    hmr: { 
+      server, 
+      path: "/vite-hmr",
+      overlay: true, // Show errors in browser overlay instead of crashing
+    },
   };
 
   const vite = await createViteServer({
@@ -21,11 +25,14 @@ export async function setupVite(server: Server, app: Express) {
       ...viteLogger,
       error: (msg, options) => {
         viteLogger.error(msg, options);
-        process.exit(1);
+        // Don't exit - let the dev server continue running
+        // Errors will be shown in the browser and can be fixed without restarting
       },
     },
     server: serverOptions,
     appType: "custom",
+    // Continue serving even with errors
+    clearScreen: false,
   });
 
   app.use(vite.middlewares);

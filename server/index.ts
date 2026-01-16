@@ -7,6 +7,18 @@ import { cspMiddleware } from "./middleware/csp";
 const app = express();
 const httpServer = createServer(app);
 
+// Prevent process from exiting on unhandled errors
+process.on("uncaughtException", (err) => {
+  log(`Uncaught Exception: ${err.message}`, "error");
+  console.error(err);
+  // Don't exit - let the server continue running
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+  log(`Unhandled Rejection at: ${promise}, reason: ${reason}`, "error");
+  // Don't exit - let the server continue running
+});
+
 declare module "http" {
   interface IncomingMessage {
     rawBody: unknown;
@@ -70,8 +82,9 @@ app.use((req, res, next) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
 
+    log(`Error ${status}: ${message}`, "error");
     res.status(status).json({ message });
-    throw err;
+    // Don't re-throw - let the server continue running
   });
 
   // importantly only setup vite in development and after

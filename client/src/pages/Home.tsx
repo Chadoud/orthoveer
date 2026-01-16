@@ -19,14 +19,13 @@ import {
 import { Link } from "wouter";
 import { track } from "@/lib/tracking/events";
 import { Section } from "@/components/layout/Section";
-import { Container } from "@/components/layout/Container";
 import { Heading } from "@/components/layout/Heading";
 import { patterns, text } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 
 // Import images
-import trimmingImage from "@assets/aboutPage/thrimming.jpg";
-import darkHeroImage from "@assets/heroes/images/dark-hero.png";
+import alignersGridImage from "@assets/pages/home/alignersGrid.jpg";
+import explicationImage from "@assets/pages/home/explicationImage.jpg";
 
 export default function Home() {
   return (
@@ -55,7 +54,7 @@ export default function Home() {
             <Heading level="h3" className="mb-8">
               Orthodontic Production Equipment
             </Heading>
-            <div className="grid-3col-lg mb-8">
+            <div className="grid-4col mb-8">
               <Link href="/machines" className="group">
                 <div className={patterns.featureCard}>
                   <div className={patterns.featureIcon}>
@@ -118,6 +117,27 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
+
+              <Link href="/white-labeling" className="group">
+                <div className={patterns.featureCard}>
+                  <div className={patterns.featureIcon}>
+                    <ShieldCheck className="w-6 h-6" />
+                  </div>
+                  <div className={patterns.featureTitle}>
+                    White-Label Manufacturing
+                  </div>
+                  <p className={patterns.featureDescription}>
+                    Outsource aligner production with your brand identity.
+                    Professional white-label manufacturing services with
+                    clinical workflow integration, quality assurance, and custom
+                    branding options.
+                  </p>
+                  <div className={patterns.featureLink}>
+                    Learn more{" "}
+                    <ArrowRight className="w-4 h-4 ml-2" aria-hidden="true" />
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -125,48 +145,50 @@ export default function Home() {
 
       {/* Aligner White-Label Manufacturing Section */}
       <Section className="border-t border-white/5">
-        <Heading level="h2" className="mb-12">
-          Aligner White-Label Manufacturing
-        </Heading>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12 items-center">
-          <div>
-            <div className="grid-2col">
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-6 font-heading">
-                  Outsourced Aligner Production
-                </h3>
-                <p className="text-gray-400 text-lg leading-relaxed">
-                  White-label clear aligners manufactured to clinical standards
-                  and branded under your name, without infrastructure
-                  investment.
-                </p>
+        <div>
+          <Heading level="h2" className="mb-8">
+            Aligner White-Label Manufacturing
+          </Heading>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-12 items-center">
+            <div>
+              <div className="grid-2col">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-6 font-heading">
+                    Outsourced Aligner Production
+                  </h3>
+                  <p className="text-gray-400 text-lg leading-relaxed">
+                    White-label clear aligners manufactured to clinical
+                    standards and branded under your name, without
+                    infrastructure investment.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-6 font-heading">
+                    Clinical Workflow Integration
+                  </h3>
+                  <p className="text-gray-400 text-lg leading-relaxed">
+                    Seamless integration with your existing clinical workflows,
+                    scanner platforms, and treatment planning software.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-6 font-heading">
-                  Clinical Workflow Integration
-                </h3>
-                <p className="text-gray-400 text-lg leading-relaxed">
-                  Seamless integration with your existing clinical workflows,
-                  scanner platforms, and treatment planning software.
-                </p>
+              <div className="mt-8">
+                <Link href="/white-labeling">
+                  <Button size="lg" variant="primary">
+                    Learn more{" "}
+                    <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
+                  </Button>
+                </Link>
               </div>
             </div>
-            <div className="mt-8">
-              <Link href="/white-labeling">
-                <Button size="lg" variant="primary">
-                  Learn more{" "}
-                  <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
-                </Button>
-              </Link>
+            <div className="relative w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden">
+              <img
+                src={explicationImage}
+                alt="White-Label Aligner Manufacturing"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
             </div>
-          </div>
-          <div className="relative w-full h-[300px] md:h-[400px] rounded-lg overflow-hidden">
-            <img
-              src={darkHeroImage}
-              alt="White-Label Aligner Manufacturing"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
           </div>
         </div>
       </Section>
@@ -230,7 +252,7 @@ export default function Home() {
         <div className="relative z-10">
           <div className="flex flex-col-reverse lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
-              <Heading level="h2" className="mb-6 md:text-5xl">
+              <Heading level="h2" className="mb-6 md:text-5xl leading-tight">
                 Quality Standards & Compliance
               </Heading>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed">
@@ -262,9 +284,9 @@ export default function Home() {
             <div className="lg:w-1/2">
               <div className={patterns.imageContainer}>
                 <img
-                  src={trimmingImage}
+                  src={alignersGridImage}
                   alt="Manufacturing Lab"
-                  className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-auto"
                 />
               </div>
             </div>

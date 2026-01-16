@@ -18,9 +18,10 @@ import {
 import { useState } from "react";
 import { Link } from "wouter";
 import { videos } from "@/lib/assets";
+import expositionImage from "@assets/pages/careers/expositionOrthoveer.jpg";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
-import { patterns } from "@/lib/styles";
+import { patterns, text } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 
 interface Job {
@@ -198,136 +199,183 @@ export default function Careers() {
         }
       />
 
+      {/* Company Culture Section */}
+      <Section size="large">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-full lg:min-h-[500px]">
+            <img
+              src={expositionImage}
+              alt="OrthoVeer team at exposition and company culture"
+              className="w-full h-full object-cover rounded-lg"
+              loading="lazy"
+            />
+          </div>
+          <div>
+            <div className={cn(patterns.badgeSimple, "mb-6")}>Our Culture</div>
+            <Heading level="h2" className="text-3xl md:text-4xl mb-6">
+              Join a Team That's Shaping the Future
+            </Heading>
+            <p className={cn(text.cardText, "text-base md:text-lg mb-6")}>
+              At OrthoVeer, we're more than just a manufacturing company. We're
+              a team of passionate professionals dedicated to advancing
+              orthodontic care through innovation, precision, and collaboration.
+            </p>
+            <p className={cn(text.cardText, "text-base md:text-lg mb-6")}>
+              From our state-of-the-art facilities to our commitment to
+              excellence, we create an environment where talent thrives, ideas
+              flourish, and careers grow. Join us at industry expositions,
+              collaborate on groundbreaking projects, and be part of a company
+              that's transforming patient care worldwide.
+            </p>
+            <Link href="/contact">
+              <Button size="lg" variant="primary">
+                Explore Opportunities{" "}
+                <ArrowRight className="ml-2 w-4 h-4" aria-hidden="true" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </Section>
+
       {/* Why Join Us Section */}
       <Section background="subtle">
-          <div className={patterns.sectionHeader}>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
-              Why Join OrthoVeer?
-            </h2>
-            <p className={cn("text-lg text-gray-400", patterns.centeredContentMd)}>
-              We're building the future of orthodontic manufacturing. Join us in
-              creating solutions that make a real difference in patient care.
-            </p>
-          </div>
+        <div className={patterns.sectionHeader}>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
+            Why Join OrthoVeer?
+          </h2>
+          <p
+            className={cn("text-lg text-gray-400", patterns.centeredContentMd)}
+          >
+            We're building the future of orthodontic manufacturing. Join us in
+            creating solutions that make a real difference in patient care.
+          </p>
+        </div>
 
-          <div className="grid-3col">
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
-              return (
-                <Card
-                  key={index}
-                  className="bg-white/5 border-white/10 p-6 hover:border-primary/50 transition-all duration-300"
-                >
-                  <div className="flex-icon-title-sm">
-                    <Icon className="w-10 h-10 text-primary shrink-0" />
-                    <h3 className="text-xl font-bold text-white font-heading">
-                      {benefit.title}
-                    </h3>
-                  </div>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {benefit.description}
-                  </p>
-                </Card>
-              );
-            })}
-          </div>
+        <div className="grid-3col">
+          {benefits.map((benefit, index) => {
+            const Icon = benefit.icon;
+            return (
+              <Card
+                key={index}
+                className="bg-white/5 border-white/10 p-6 hover:border-primary/50 transition-all duration-300"
+              >
+                <div className="flex-icon-title-sm">
+                  <Icon className="w-10 h-10 text-primary shrink-0" />
+                  <h3 className="text-xl font-bold text-white font-heading">
+                    {benefit.title}
+                  </h3>
+                </div>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {benefit.description}
+                </p>
+              </Card>
+            );
+          })}
+        </div>
       </Section>
 
       {/* Open Positions Section */}
       <Section>
-          <div className={patterns.sectionHeader}>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
-              Open Positions
-            </h2>
-            <p className={cn("text-lg text-gray-400", patterns.centeredContentMd)}>
-              Explore opportunities to join our growing team and make an impact
-              in orthodontic manufacturing.
-            </p>
-          </div>
+        <div className={patterns.sectionHeader}>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
+            Open Positions
+          </h2>
+          <p
+            className={cn("text-lg text-gray-400", patterns.centeredContentMd)}
+          >
+            Explore opportunities to join our growing team and make an impact in
+            orthodontic manufacturing.
+          </p>
+        </div>
 
-          <div className="space-y-6 grid-2col">
-            {jobs.map((job) => (
-              <Card
-                key={job.id}
-                className="bg-white/5 border-white/10 p-6 md:p-8 hover:border-primary/50 transition-all duration-300"
-              >
-                <div className="flex-between-responsive">
-                  <div className="flex-1">
-                    <div className="flex-icon-title-sm-md">
-                      <Briefcase className="w-5 h-5 text-primary" />
-                      <h3 className="text-2xl font-bold text-white font-heading">
-                        {job.title}
-                      </h3>
+        <div className="space-y-6 grid-2col">
+          {jobs.map((job) => (
+            <Card
+              key={job.id}
+              className="bg-white/5 border-white/10 p-6 md:p-8 hover:border-primary/50 transition-all duration-300"
+            >
+              <div className="flex-between-responsive">
+                <div className="flex-1">
+                  <div className="flex-icon-title-sm-md">
+                    <Briefcase className="w-5 h-5 text-primary" />
+                    <h3 className="text-2xl font-bold text-white font-heading">
+                      {job.title}
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-gray-400">
+                    <div className="flex-inline">
+                      <Building2 className="w-4 h-4" />
+                      <span>{job.department}</span>
                     </div>
-                    <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-gray-400">
-                      <div className="flex-inline">
-                        <Building2 className="w-4 h-4" />
-                        <span>{job.department}</span>
-                      </div>
-                      <div className="flex-inline">
-                        <MapPin className="w-4 h-4" />
-                        <span>{job.location}</span>
-                      </div>
-                      <div className="flex-inline">
-                        <Clock className="w-4 h-4" />
-                        <span>{job.type}</span>
-                      </div>
+                    <div className="flex-inline">
+                      <MapPin className="w-4 h-4" />
+                      <span>{job.location}</span>
                     </div>
-                    <p className="text-gray-300 mb-4 leading-relaxed">
-                      {job.description}
-                    </p>
-                    <div className="mb-4">
-                      <h4 className="text-sm font-semibold text-white mb-2">
-                        Key Requirements:
-                      </h4>
-                      <ul className="space-y-2 list-none">
-                        {job.requirements.map((req, idx) => (
-                          <li
-                            key={idx}
-                            className="text-sm text-gray-400 flex items-start gap-3"
-                          >
-                            <span className="text-primary shrink-0 mt-0.5">
-                              •
-                            </span>
-                            <span className="flex-1">{req}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    <div className="flex-inline">
+                      <Clock className="w-4 h-4" />
+                      <span>{job.type}</span>
                     </div>
                   </div>
-                  <div className="md:ml-6 shrink-0">
-                    <Button
-                      onClick={() => handleApplyClick(job)}
-                      variant="default"
-                      className="w-full md:w-auto rounded-lg px-6"
-                    >
-                      Apply Now <ArrowRight className="ml-2 w-4 h-4" />
-                    </Button>
+                  <p className="text-gray-300 mb-4 leading-relaxed">
+                    {job.description}
+                  </p>
+                  <div className="mb-4">
+                    <h4 className="text-sm font-semibold text-white mb-2">
+                      Key Requirements:
+                    </h4>
+                    <ul className="space-y-2 list-none">
+                      {job.requirements.map((req, idx) => (
+                        <li
+                          key={idx}
+                          className="text-sm text-gray-400 flex items-start gap-3"
+                        >
+                          <span className="text-primary shrink-0 mt-0.5">
+                            •
+                          </span>
+                          <span className="flex-1">{req}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              </Card>
-            ))}
-          </div>
+                <div className="md:ml-6 shrink-0">
+                  <Button
+                    onClick={() => handleApplyClick(job)}
+                    variant="default"
+                    className="w-full md:w-auto rounded-lg px-6"
+                  >
+                    Apply Now <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
       </Section>
 
       {/* CTA Section */}
       <Section background="subtle">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
-              Don't See a Role That Fits?
-            </h2>
-            <p className={cn("text-lg text-gray-400 mb-8", patterns.centeredContentMd)}>
-              We're always looking for talented individuals. Send us your resume
-              and we'll keep you in mind for future opportunities.
-            </p>
-            <Button
-              onClick={handleGeneralApplication}
-              size="lg"
-              variant="primary"
-            >
-              Send Your Resume <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-          </div>
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
+            Don't See a Role That Fits?
+          </h2>
+          <p
+            className={cn(
+              "text-lg text-gray-400 mb-8",
+              patterns.centeredContentMd
+            )}
+          >
+            We're always looking for talented individuals. Send us your resume
+            and we'll keep you in mind for future opportunities.
+          </p>
+          <Button
+            onClick={handleGeneralApplication}
+            size="lg"
+            variant="primary"
+          >
+            Send Your Resume <ArrowRight className="ml-2 w-4 h-4" />
+          </Button>
+        </div>
       </Section>
 
       {/* Application Form Dialog */}

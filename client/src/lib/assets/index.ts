@@ -4,15 +4,15 @@
  */
 
 // Machine images
-import maxtrimT2 from "@assets/machinesPage/maxtrim-t2.png";
-import maxtrimT1 from "@assets/machinesPage/maxtrim-t1.png";
-import maxformL2 from "@assets/machinesPage/maxform-l2.png";
-import maxscanS1 from "@assets/machinesPage/maxscan-s1.png";
-import maxprinterP2 from "@assets/machinesPage/maxprinter-p2.png";
-import maxprinterP1 from "@assets/machinesPage/maxprinter-p1.png";
-import maxmarkM2 from "@assets/machinesPage/maxmark-m2.png";
-import maxpolishI from "@assets/machinesPage/maxpolish-i.png";
-import maxpolishII from "@assets/machinesPage/maxpolish-ii.png";
+import maxtrimT2 from "@assets/machines/maxtrim-t2.png";
+import maxtrimT1 from "@assets/machines/maxtrim-t1.png";
+import maxformL2 from "@assets/machines/maxform-l2.png";
+import maxscanS1 from "@assets/machines/maxscan-s1.png";
+import maxprinterP2 from "@assets/machines/maxprinter-p2.png";
+import maxprinterP1 from "@assets/machines/maxprinter-p1.png";
+import maxmarkM2 from "@assets/machines/maxmark-m2.png";
+import maxpolishI from "@assets/machines/maxpolish-i.png";
+import maxpolishII from "@assets/machines/maxpolish-ii.png";
 
 /**
  * Machine image registry.
