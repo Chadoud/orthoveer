@@ -1,6 +1,6 @@
 import type { CookieConsent } from "./consent.types";
 
-const STORAGE_KEY = "orthoveer_cookie_consent";
+const STORAGE_KEY = "Orthoveer_cookie_consent";
 
 /**
  * Get consent from localStorage.

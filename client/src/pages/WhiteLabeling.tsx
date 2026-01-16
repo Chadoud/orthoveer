@@ -15,7 +15,7 @@ import {
 import { Link } from "wouter";
 import { track } from "@/lib/tracking/events";
 import { videos } from "@/lib/assets";
-import customBoxImage from "@assets/pages/white-labeling/customBox.jpg";
+import customBoxImage from "@assets/pages/white-labeling/customBox.webp";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { text, patterns } from "@/lib/styles";

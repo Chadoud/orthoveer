@@ -16,17 +16,16 @@ export function Footer() {
             >
               <img
                 src={logoImage}
-                alt="OrthoVeer Logo"
+                alt="Orthoveer Logo"
                 className="h-10 w-10 object-contain"
               />
               <span className="font-heading font-bold text-xl tracking-tight text-white">
-                OrthoVeer
+                Orthoveer
               </span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              Orthodontic manufacturing partner. Delivering
-              precision aligners and digital treatment planning for dental
-              professionals worldwide.
+              Orthodontic manufacturing partner. Delivering precision aligners
+              and digital treatment planning for dental professionals worldwide.
             </p>
           </div>
 
@@ -138,7 +137,7 @@ export function Footer() {
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs">
-            © {new Date().getFullYear()} OrthoVeer. All rights reserved.
+            © {new Date().getFullYear()} Orthoveer. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-gray-500">
             <button

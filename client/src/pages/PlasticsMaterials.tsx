@@ -1,6 +1,6 @@
 import { MaterialsPage } from "@/components/materials/MaterialsPage";
 import { plastics } from "@/config/materials";
-import plasticsImage from "@assets/materials/plastics.jpg";
+import plasticsImage from "@assets/materials/plastics.webp";
 
 const features = [
   "Exceptional tear resistance and durability",

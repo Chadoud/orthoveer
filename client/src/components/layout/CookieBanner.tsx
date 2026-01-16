@@ -33,7 +33,7 @@ export function CookieBanner() {
 
     // Listen for storage changes (e.g., from other tabs or resetConsent)
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "orthoveer_cookie_consent" || e.key === null) {
+      if (e.key === "Orthoveer_cookie_consent" || e.key === null) {
         checkConsent();
       }
     };

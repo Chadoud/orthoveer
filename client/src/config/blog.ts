@@ -1,10 +1,10 @@
 import type { BlogPost } from "@/types";
-import duoImage from "@assets/pages/blog/duo.jpg";
-import darkHeroImage from "@assets/heroes/images/dark-hero.png";
-import clearAlignerImage from "@assets/heroes/images/clear-aligner.png";
-import modelsGridImage from "@assets/pages/blog/modelsGridImage.jpg";
-import displayPlastic from "@assets/materials/displayPlastics.jpg";
-import expositionTips from "@assets/pages/blog/expositionTips.jpg";
+import duoImage from "@assets/pages/blog/duo.webp";
+import darkHeroImage from "@assets/heroes/images/dark-hero.webp";
+import clearAlignerImage from "@assets/heroes/images/clear-aligner.webp";
+import modelsGridImage from "@assets/pages/blog/modelsGridImage.webp";
+import displayPlastic from "@assets/materials/displayPlastics.webp";
+import expositionTips from "@assets/pages/blog/expositionTips.webp";
 
 export const blogPosts: BlogPost[] = [
   {

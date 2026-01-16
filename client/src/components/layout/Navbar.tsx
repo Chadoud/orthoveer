@@ -86,7 +86,7 @@ export function Navbar() {
             >
               <img
                 src={logoImage}
-                alt="OrthoVeer Logo"
+                alt="Orthoveer Logo"
                 className="h-12 w-12 object-contain"
               />
               <span className="font-heading font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors leading-tight">
@@ -316,11 +316,11 @@ function MobileMenu({
                 >
                   <img
                     src={logoImage}
-                    alt="OrthoVeer Logo"
+                    alt="Orthoveer Logo"
                     className="h-12 w-12 object-contain"
                   />
                   <span className="font-heading font-bold text-xl tracking-tight text-white group-hover:text-primary transition-colors leading-tight">
-                    OrthoVeer
+                    Orthoveer
                   </span>
                 </Link>
                 <button

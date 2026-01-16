@@ -1,6 +1,6 @@
 # Cookie Consent & Tracking System
 
-This directory contains the cookie consent and Google Analytics tracking implementation for OrthoVeer. The system has been refactored with senior-level best practices including modular architecture, dependency injection, comprehensive error handling, and performance optimizations.
+This directory contains the cookie consent and Google Analytics tracking implementation for Orthoveer. The system has been refactored with senior-level best practices including modular architecture, dependency injection, comprehensive error handling, and performance optimizations.
 
 ## Architecture
 

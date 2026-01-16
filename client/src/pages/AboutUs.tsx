@@ -17,10 +17,10 @@ import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { text, patterns } from "@/lib/styles";
 import { cn } from "@/lib/utils";
-import aboutExpoImage from "@assets/pages/about/aboutExpo.jpg";
-import machineImageTrim from "@assets/pages/home/machineImageTrim.jpg";
-import expositionImage from "@assets/pages/about/expositionOrthoveer.jpg";
-import darkHeroImage from "@assets/heroes/images/dark-hero.png";
+import aboutExpoImage from "@assets/pages/about/aboutExpo.webp";
+import machineImageTrim from "@assets/pages/home/machineImageTrim.webp";
+import expositionImage from "@assets/pages/about/expositionOrthoveer.webp";
+import darkHeroImage from "@assets/heroes/images/dark-hero.webp";
 
 export default function AboutUs() {
   const heroRef = useRef<HTMLElement>(null);
@@ -122,7 +122,7 @@ export default function AboutUs() {
               level="h1"
               className="text-4xl md:text-5xl lg:text-6xl mb-8"
             >
-              About OrthoVeer
+              About Orthoveer
             </Heading>
             <p className={cn(text.cardText, "text-xl mb-6")}>
               Our facility specializes in clear aligner production equipment,
@@ -146,7 +146,7 @@ export default function AboutUs() {
             <div className="relative w-full h-full rounded-lg overflow-hidden">
               <img
                 src={aboutExpoImage}
-                alt="OrthoVeer Manufacturing"
+                alt="Orthoveer Manufacturing"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -158,7 +158,7 @@ export default function AboutUs() {
           <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-full lg:min-h-[500px]">
             <img
               src={machineImageTrim}
-              alt="OrthoVeer Manufacturing Facility"
+              alt="Orthoveer Manufacturing Facility"
               className="w-full h-full object-cover rounded-lg"
               loading="lazy"
             />
@@ -171,7 +171,7 @@ export default function AboutUs() {
               Clear Aligner Production Equipment & Services
             </Heading>
             <p className={cn(text.cardText, "text-base md:text-lg mb-6")}>
-              OrthoVeer provides orthodontic production equipment including
+              Orthoveer provides orthodontic production equipment including
               thermoforming equipment, trimming systems, 3D printers, and
               scanning equipment for in-house clear aligner manufacturing. We
               supply ISO 13485 certified thermoplastic materials and offer
@@ -254,7 +254,7 @@ export default function AboutUs() {
           <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-full lg:min-h-[500px]">
             <img
               src={darkHeroImage}
-              alt="OrthoVeer Technology & Innovation"
+              alt="Orthoveer Technology & Innovation"
               className="w-full h-full object-cover rounded-lg"
               loading="lazy"
             />
@@ -408,7 +408,7 @@ export default function AboutUs() {
               patterns.centeredContentMd
             )}
           >
-            Discover how OrthoVeer can transform your orthodontic practice with
+            Discover how Orthoveer can transform your orthodontic practice with
             our comprehensive manufacturing solutions.
           </p>
           <div className="flex-responsive-center">

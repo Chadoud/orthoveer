@@ -33,8 +33,8 @@ export default function CookiePolicy() {
                 the website owners.
               </p>
               <p className="text-gray-300 leading-relaxed mb-4">
-                OrthoVeer ("we," "our," or "us") uses cookies on our website
-                (orthoveer.com) to enhance your browsing experience, analyze
+                Orthoveer ("we," "our," or "us") uses cookies on our website
+                (Orthoveer.com) to enhance your browsing experience, analyze
                 site traffic, and provide personalized content. This Cookie
                 Policy explains what cookies are, how we use them, and your
                 choices regarding their use.
@@ -285,7 +285,7 @@ export default function CookiePolicy() {
               </p>
               <div className="text-gray-300 space-y-4 bg-white/5 p-6 rounded-lg border border-white/10">
                 <div>
-                  <strong className="text-white block mb-1">OrthoVeer</strong>
+                  <strong className="text-white block mb-1">Orthoveer</strong>
                   <p>190 Avenue du General de Gaulle</p>
                   <p>94500 Champigny sur Marne, France</p>
                 </div>
@@ -321,8 +321,8 @@ export default function CookiePolicy() {
                 </div>
               </div>
             </section>
-            </div>
-          </Card>
+          </div>
+        </Card>
       </Section>
     </PageLayout>
   );

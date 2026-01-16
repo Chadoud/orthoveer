@@ -13,11 +13,11 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import { videos } from "@/lib/assets";
-import bernardImage from "@assets/team/bernard.jpg";
-import abelImage from "@assets/team/abel.jpg";
-import darrellImage from "@assets/team/darrellSalumay.jpg";
-import alexImage from "@assets/team/alexMuleng.jpg";
-import doryImage from "@assets/team/doryZiade.jpg";
+import bernardImage from "@assets/team/bernard.webp";
+import abelImage from "@assets/team/abel.webp";
+import darrellImage from "@assets/team/darrellSalumay.webp";
+import alexImage from "@assets/team/alexMuleng.webp";
+import doryImage from "@assets/team/doryZiade.webp";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { patterns } from "@/lib/styles";
@@ -40,7 +40,7 @@ const teamMembers: TeamMember[] = [
     name: "Bernard Najm",
     role: "CEO",
     department: "Management",
-    bio: "CEO of OrthoVeer, leading the company's vision and strategic direction in orthodontic manufacturing solutions.",
+    bio: "CEO of Orthoveer, leading the company's vision and strategic direction in orthodontic manufacturing solutions.",
     image: bernardImage,
     linkedin:
       "https://www.linkedin.com/in/bernard-najm-4273b4a0?originalSubdomain=fr",
@@ -116,7 +116,7 @@ export default function Team() {
         videoSrc={videos.expoHero}
         badge="Our Team"
         title="Meet the"
-        titleHighlight="OrthoVeer Team"
+        titleHighlight="Orthoveer Team"
         description="A dedicated group of professionals committed to advancing orthodontic manufacturing and improving patient care through innovation and precision."
         button={
           <Link href="/contact">
@@ -172,7 +172,7 @@ export default function Team() {
           <p
             className={cn("text-lg text-gray-400", patterns.centeredContentMd)}
           >
-            Meet the talented individuals who make OrthoVeer a leader in
+            Meet the talented individuals who make Orthoveer a leader in
             orthodontic manufacturing.
           </p>
         </div>
@@ -273,7 +273,7 @@ export default function Team() {
               patterns.centeredContentMd
             )}
           >
-            Get in touch with our team to discover how OrthoVeer can support
+            Get in touch with our team to discover how Orthoveer can support
             your orthodontic practice.
           </p>
           <div className="flex-responsive-center">

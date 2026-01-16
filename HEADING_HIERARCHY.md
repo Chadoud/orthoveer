@@ -11,7 +11,7 @@ Each page has its own unique H1 optimized for commercial search intent:
 - **White-Labeling Page (`/white-labeling`):** White-Label Clear Aligner Manufacturing
 - **Plastics Materials Page (`/plastics-materials`):** Aligner Sheet Materials & Consumables
 - **Rolls Page (`/rolls`):** Bulk Material Rolls for Aligner Production
-- **About Us Page (`/about`):** Abous OrthoVeer
+- **About Us Page (`/about`):** Abous Orthoveer
 - **Individual Machine Pages (`/machines/:id`):** [Machine Name] [Model] - [Category]
   - Example: "MaxTrim T2 - Precision Trimming System"
 
@@ -182,7 +182,7 @@ Each page has its own unique H1 optimized for commercial search intent:
 
 #### Hero Section (PageHero component)
 
-- **H1:** About OrthoVeer
+- **H1:** About Orthoveer
 
 #### Manufacturing Standards Section (line 29-91)
 
@@ -259,7 +259,7 @@ Each page has its own unique H1 optimized for commercial search intent:
 | White-Labeling (`/white-labeling`) | "Aligner White Labeling"                        | "White-Label Clear Aligner Manufacturing"                       |
 | Plastics (`/plastics-materials`)   | "High-Performance Plastics"                     | "Aligner Sheet Materials & Consumables"                         |
 | Rolls (`/rolls`)                   | "High-Volume Material Rolls"                    | "Bulk Material Rolls for Aligner Production"                    |
-| About (`/about`)                   | "About OrthoVeer"                               | "About OrthoVeer"                                               |
+| About (`/about`)                   | "About Orthoveer"                               | "About Orthoveer"                                               |
 | Machine Detail (`/machines/:id`)   | Varies by machine                               | "[Machine Name] [Model] - [Category]"                           |
 
 ### Home Page Structure

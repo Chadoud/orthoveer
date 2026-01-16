@@ -1,6 +1,6 @@
 import { MaterialsPage } from "@/components/materials/MaterialsPage";
 import { rolls } from "@/config/materials";
-import rollsImage from "@assets/materials/rolls.jpg";
+import rollsImage from "@assets/materials/rolls.webp";
 
 const features = [
   "Consistent material quality across entire roll",

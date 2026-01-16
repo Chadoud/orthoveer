@@ -7,14 +7,13 @@ import { Link } from "wouter";
 import { track } from "@/lib/tracking/events";
 import type { CaseStudy } from "@/types";
 import { videos } from "@/lib/assets";
-import factoryImage from "@assets/pages/about/factory.jpg";
-import trimmingImage from "@assets/pages/about/thrimming.jpg";
-import darkHeroImage from "@assets/heroes/images/dark-hero.png";
-import techHeroImage from "@assets/heroes/images/tech-hero.png";
+import factoryImage from "@assets/pages/about/factory.webp";
+import trimmingImage from "@assets/pages/about/thrimming.webp";
+import darkHeroImage from "@assets/heroes/images/dark-hero.webp";
+import techHeroImage from "@assets/heroes/images/tech-hero.webp";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { text } from "@/lib/styles";
-
 
 const caseStudies: (CaseStudy & { image: string })[] = [
   {
@@ -35,7 +34,7 @@ const caseStudies: (CaseStudy & { image: string })[] = [
     ],
     testimonial: {
       quote:
-        "OrthoVeer's solutions transformed our production capabilities. We can now serve all our locations efficiently while maintaining the highest quality standards.",
+        "Orthoveer's solutions transformed our production capabilities. We can now serve all our locations efficiently while maintaining the highest quality standards.",
       author: "Dr. Robert Martinez",
       role: "Chief Clinical Officer",
       authorImage: "https://i.pravatar.cc/150?img=12",
@@ -83,7 +82,7 @@ const caseStudies: (CaseStudy & { image: string })[] = [
     ],
     testimonial: {
       quote:
-        "Starting with OrthoVeer's equipment gave us a competitive edge from day one. Our patients love the quick turnaround and quality.",
+        "Starting with Orthoveer's equipment gave us a competitive edge from day one. Our patients love the quick turnaround and quality.",
       author: "Dr. Amanda Foster",
       role: "Founder & Lead Orthodontist",
       authorImage: "https://i.pravatar.cc/150?img=45",
@@ -116,7 +115,7 @@ export default function CaseStudies() {
         badge="Success Stories"
         title="Case"
         titleHighlight="Studies"
-        description="Discover how orthodontic practices and labs worldwide are achieving remarkable results with OrthoVeer solutions."
+        description="Discover how orthodontic practices and labs worldwide are achieving remarkable results with Orthoveer solutions."
         button={
           <Link href="/contact">
             <Button size="lg" variant="primary">
@@ -233,7 +232,7 @@ export default function CaseStudies() {
           </Heading>
           <p className="text-gray-400 text-lg mb-10 leading-relaxed">
             Join hundreds of practices and labs that have transformed their
-            operations with OrthoVeer solutions.
+            operations with Orthoveer solutions.
           </p>
           <div className="flex-responsive-center">
             <Link href="/machines">

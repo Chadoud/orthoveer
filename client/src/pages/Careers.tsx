@@ -18,7 +18,7 @@ import {
 import { useState } from "react";
 import { Link } from "wouter";
 import { videos } from "@/lib/assets";
-import expositionImage from "@assets/pages/careers/expositionOrthoveer.jpg";
+import expositionImage from "@assets/pages/careers/expositionOrthoveer.webp";
 import { Section } from "@/components/layout/Section";
 import { Heading } from "@/components/layout/Heading";
 import { patterns, text } from "@/lib/styles";
@@ -187,7 +187,7 @@ export default function Careers() {
       <VideoHero
         videoSrc={videos.expoHero}
         badge="Join Our Team"
-        title="OrthoVeer"
+        title="Orthoveer"
         titleHighlight="Careers"
         description="Be part of the future of orthodontic manufacturing. Join a team dedicated to precision, innovation, and transforming patient care."
         button={
@@ -205,7 +205,7 @@ export default function Careers() {
           <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-full lg:min-h-[500px]">
             <img
               src={expositionImage}
-              alt="OrthoVeer team at exposition and company culture"
+              alt="Orthoveer team at exposition and company culture"
               className="w-full h-full object-cover rounded-lg"
               loading="lazy"
             />
@@ -216,7 +216,7 @@ export default function Careers() {
               Join a Team That's Shaping the Future
             </Heading>
             <p className={cn(text.cardText, "text-base md:text-lg mb-6")}>
-              At OrthoVeer, we're more than just a manufacturing company. We're
+              At Orthoveer, we're more than just a manufacturing company. We're
               a team of passionate professionals dedicated to advancing
               orthodontic care through innovation, precision, and collaboration.
             </p>
@@ -241,7 +241,7 @@ export default function Careers() {
       <Section background="subtle">
         <div className={patterns.sectionHeader}>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
-            Why Join OrthoVeer?
+            Why Join Orthoveer?
           </h2>
           <p
             className={cn("text-lg text-gray-400", patterns.centeredContentMd)}

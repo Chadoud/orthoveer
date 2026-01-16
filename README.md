@@ -1,4 +1,4 @@
-# OrthoVeer
+# Orthoveer
 
 > A modern B2B website for selling orthodontic manufacturing equipment and consumables (production equipment, plastics, and material rolls), along with white-label manufacturing services.
 
@@ -32,7 +32,7 @@
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd OrthoVeer
+cd Orthoveer
 
 # Install dependencies
 npm install
@@ -108,7 +108,7 @@ The application will be available at **http://localhost:3000**
 ## 📁 Project Structure
 
 ```
-OrthoVeer/
+Orthoveer/
 ├── client/                      # Frontend React application
 │   ├── public/                  # Static assets
 │   │   ├── favicon.png
@@ -742,7 +742,7 @@ For static hosting (Vercel, GitHub Pages, etc.):
 | --------------- | ------------------------------------------------------------- | -------- | ----------------------- |
 | `VITE_GA_ID`    | Google Analytics 4 Measurement ID (e.g., G-XX)                | No       | -                       |
 | `VITE_BASE_URL` | Base URL for OpenGraph images                                 | No       | `/`                     |
-| `SITE_URL`      | Base URL for sitemap generation (e.g., https://orthoveer.com) | No       | `https://orthoveer.com` |
+| `SITE_URL`      | Base URL for sitemap generation (e.g., https://Orthoveer.com) | No       | `https://Orthoveer.com` |
 
 **Note:**
 

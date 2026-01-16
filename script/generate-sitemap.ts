@@ -13,7 +13,7 @@ const __dirname = dirname(__filename);
 /**
  * Base URL for the website (can be overridden via environment variable)
  */
-const BASE_URL = process.env.SITE_URL || "https://orthoveer.com";
+const BASE_URL = process.env.SITE_URL || "https://Orthoveer.com";
 
 /**
  * Static routes with their priorities

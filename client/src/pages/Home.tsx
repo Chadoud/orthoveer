@@ -24,8 +24,8 @@ import { patterns, text } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 
 // Import images
-import alignersGridImage from "@assets/pages/home/alignersGrid.jpg";
-import explicationImage from "@assets/pages/home/explicationImage.jpg";
+import alignersGridImage from "@assets/pages/home/alignersGrid.webp";
+import explicationImage from "@assets/pages/home/explicationImage.webp";
 
 export default function Home() {
   return (

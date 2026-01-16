@@ -17,7 +17,7 @@ export function getMachineImagePath(machineId: string): string {
     throw new Error(`Invalid machine ID: ${machineId}`);
   }
 
-  return machineImageMap[machineId] || `/assets/machines/${machineId}.png`;
+  return machineImageMap[machineId] || `/assets/machines/${machineId}.webp`;
 }
 
 /**
