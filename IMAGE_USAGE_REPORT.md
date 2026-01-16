@@ -15,16 +15,19 @@
 
 1. **pages/about/aboutExpo.jpg**
    ![aboutExpo.jpg](attached_assets/pages/about/aboutExpo.jpg)
+
    - Used in: `client/src/pages/AboutUs.tsx`
    - Usage count: 1 time
 
 2. **pages/about/expositionOrthoveer.jpg**
    ![expositionOrthoveer.jpg](attached_assets/pages/about/expositionOrthoveer.jpg)
+
    - Used in: `client/src/pages/AboutUs.tsx`
    - Usage count: 1 time
 
 3. **pages/about/factory.jpg**
    ![factory.jpg](attached_assets/pages/about/factory.jpg)
+
    - Used in: `client/src/pages/CaseStudies.tsx`
    - Usage count: 1 time
 
@@ -39,12 +42,14 @@
 
 5. **pages/home/alignersGrid.jpg**
    ![alignersGrid.jpg](attached_assets/pages/home/alignersGrid.jpg)
+
    - Used in: `client/src/pages/Home.tsx`
    - Usage count: 1 time
    - **Note**: Duplicate exists in `assets/alignersGrid.jpg` (unused)
 
 6. **pages/home/explicationImage.jpg**
    ![explicationImage.jpg](attached_assets/pages/home/explicationImage.jpg)
+
    - Used in: `client/src/pages/Home.tsx`
    - Usage count: 1 time
 
@@ -57,11 +62,13 @@
 
 8. **pages/blog/duo.jpg**
    ![duo.jpg](attached_assets/pages/blog/duo.jpg)
+
    - Used in: `client/src/config/blog.ts`
    - Usage count: 1 time
 
 9. **pages/blog/expositionTips.jpg**
    ![expositionTips.jpg](attached_assets/pages/blog/expositionTips.jpg)
+
    - Used in: `client/src/config/blog.ts`
    - Usage count: 1 time
 
@@ -88,11 +95,13 @@
 
 13. **heroes/images/clear-aligner.png**
     ![clear-aligner.png](attached_assets/heroes/images/clear-aligner.png)
+
     - Used in: `client/src/config/blog.ts`
     - Usage count: 1 time
 
 14. **heroes/images/dark-hero.png**
     ![dark-hero.png](attached_assets/heroes/images/dark-hero.png)
+
     - Used in:
       - `client/src/pages/AboutUs.tsx` (1 time)
       - `client/src/config/blog.ts` (1 time)
@@ -150,11 +159,13 @@
 
 26. **materials/plastics.jpg**
     ![plastics.jpg](attached_assets/materials/plastics.jpg)
+
     - Used in: `client/src/pages/PlasticsMaterials.tsx`
     - Usage count: 1 time
 
 27. **materials/rolls.jpg**
     ![rolls.jpg](attached_assets/materials/rolls.jpg)
+
     - Used in: `client/src/pages/Rolls.tsx`
     - Usage count: 1 time
 
@@ -186,11 +197,13 @@
 
 1. **assets/DoctorScanningPatient.webp**
    ![DoctorScanningPatient.webp](attached_assets/assets/DoctorScanningPatient.webp)
+
    - Location: `attached_assets/assets/DoctorScanningPatient.webp`
    - Status: Not imported or referenced anywhere
 
 2. **assets/customerPuttingAligner.webp**
    ![customerPuttingAligner.webp](attached_assets/assets/customerPuttingAligner.webp)
+
    - Location: `attached_assets/assets/customerPuttingAligner.webp`
    - Status: Not imported or referenced anywhere
 
@@ -266,12 +279,14 @@ attached_assets/
 ## 💡 Recommendations
 
 1. **Remove unused images** to reduce bundle size:
+
    - `assets/DoctorScanningPatient.webp`
    - `assets/customerPuttingAligner.webp`
    - `logo/logo3.png`
    - `assets/alignersGrid.jpg` (duplicate)
 
 2. **Consider using unused images** if they fit your design:
+
    - `DoctorScanningPatient.webp` could be used in AboutUs or Home page
    - `customerPuttingAligner.webp` could be used in WhiteLabeling or Home page
 
