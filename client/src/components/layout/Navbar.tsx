@@ -234,6 +234,18 @@ export function Navbar() {
 
             {/* Contact Button - Right */}
             <div className="hidden lg:flex items-center gap-4 z-10 shrink-0">
+              <a
+                href="https://dashboard.orthoveer.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  variant="outline"
+                  className="border-white/20 text-white hover:bg-white/10 hover:border-white/30 rounded-full px-6"
+                >
+                  Login
+                </Button>
+              </a>
               <Link
                 href="/contact"
                 onMouseEnter={() =>
@@ -415,15 +427,29 @@ function MobileMenu({
 
                 <div className="h-px bg-white/10" />
 
-                <Link
-                  href="/contact"
-                  onClick={() => setIsOpen(false)}
-                  className="mt-auto"
-                >
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-14 text-lg font-medium">
-                    Contact Us
-                  </Button>
-                </Link>
+                <div className="flex flex-col gap-4 mt-auto">
+                  <a
+                    href="https://dashboard.orthoveer.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Button
+                      variant="outline"
+                      className="w-full border-white/20 text-white hover:bg-white/10 hover:border-white/30 rounded-full px-8 h-14 text-lg font-medium"
+                    >
+                      Login
+                    </Button>
+                  </a>
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <Button className="w-full bg-primary hover:bg-primary/90 text-white rounded-full px-8 h-14 text-lg font-medium">
+                      Contact Us
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </Container>
           </div>
